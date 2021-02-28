@@ -1,1 +1,36 @@
 /* You can add global styles to this file, and also import other style files */
+body{
+    font-family: 'Roboto', sans-serif;
+}
+/* Reset properties */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.navbar{
+    background-color: #056665;
+}
+.navbar-menu{
+    display: flex;
+    justify-content: flex-end;
+}
+.navbar-menu li{
+    list-style: none;
+}
+.navbar-link{
+    font-family: 'Open Sans', sans-serif;
+    display: inline-block;
+    font-size: 20px;
+    color: #e1e1e1;
+    text-decoration: none;
+    padding: 20px 15px;
+    transition: color 0.3s ease-in-out;
+}   
+.navbar-link:hover{
+  color: #70AF85;
+}
+.navbar-link-active{
+    border: none;
+    border-bottom: 5px solid #C6EBC9;
+}

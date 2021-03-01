@@ -34,3 +34,83 @@ body{
     border: none;
     border-bottom: 5px solid #C6EBC9;
 }
+
+/*Login*/
+
+.formulario{
+    margin-top: 150px;
+    width: 496px;
+    height: 689px;
+    text-align: center;
+}
+
+@media(min-width:800px)
+{
+    .formulario{
+        margin: auto;
+        width: 350px;
+        margin-top: 150px;
+    }
+}
+
+img {
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 10px;
+    width: 50%;
+}
+
+.contenedor{
+    width: 100%;
+    padding: 15px;
+    background-color:#04838C;
+    border-radius: 10px;  
+}
+
+.input-contenedor{
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 25px;
+    font-size: 20px;
+    background: #EAFFD0;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 10px; 
+}
+
+input[type="text"],
+input[type="password"]{
+    color: #6C757D;
+    background: #EAFFD0;
+    font-family: 'Open Sans';
+    font-size: 17px;
+    width: 100%;
+    padding: 10px;
+    border-style: none;
+}
+
+.botton{
+    margin-top: 20px;
+    width: 282px;
+    text-decoration: none;
+    padding: 20px;
+    font-weight: 100;
+    color: #E1E1E1;
+    background-color:#04838C;
+    border-radius: 10px;
+    border: none;  
+    font-size: 20px; 
+}
+
+.botton:hover{
+    /*opacity: 0.6;*/
+    background-color:#1f4253;
+    text-decoration: none;
+}
+
+.link{
+    text-align: right;
+}
+
+
+

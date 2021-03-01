@@ -3,19 +3,26 @@
 
     <div class="contenedor">
         
-        <img src="https://image.flaticon.com/icons/png/512/16/16363.png">
+        <figure class="img-container">
+            <img class="img" src="assets/images/user.png">
+        </figure>
 
         <div class="input-contenedor">
-            <input type="text" placeholder="Nobre de usuario">
+            <input class="form-control" type="text" placeholder="Nombre de usuario">
+            <figure class="form-control-icon">
+                <img class="img" src="assets/images/user-icon.png" alt="icon user">
+            </figure>
         </div>    
 
         <div class="input-contenedor">
-            <input type="password" placeholder="Contraseña"> 
+            <input class="form-control" type="password" placeholder="Contraseña"> 
+            <figure class="form-control-icon">
+                <img class="img" src="assets/images/no-visibility.png" alt="pass visibility">
+            </figure>
         </div>
 
-        <input type= "submit" value= "Ingresar" class="botton">
+        <input type= "submit" value= "Ingresar" class="btn btn-submit">
        
-        <a class="link" routerLink="/registerpatient">Registrarse</a>
     </div>
 </form>
 

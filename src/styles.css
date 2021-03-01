@@ -1,6 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 body{
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Open Sans';
+}
+.btn{
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    padding: 12px 20px;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 18px; 
 }
 /* Reset properties */
 *{
@@ -21,10 +30,10 @@ body{
 .navbar-link{
     font-family: 'Open Sans', sans-serif;
     display: inline-block;
-    font-size: 20px;
+    font-size: 19px;
     color: #e1e1e1;
     text-decoration: none;
-    padding: 20px 15px;
+    padding: 17px 15px;
     transition: color 0.3s ease-in-out;
 }   
 .navbar-link:hover{
@@ -34,76 +43,82 @@ body{
     border: none;
     border-bottom: 5px solid #C6EBC9;
 }
+/* user 1 */
 
 /*Login*/
-
 .formulario{
-    margin-top: 150px;
-    width: 496px;
-    height: 689px;
-    text-align: center;
+    margin: 50px auto 0 auto;
+    width: 350px;
 }
 
-@media(min-width:800px)
-{
+@media screen and (max-width: 768px){
     .formulario{
-        margin: auto;
-        width: 350px;
-        margin-top: 150px;
+        margin-top: 50px;
+        width: 500px;
+        height: 689px;
+        text-align: center;
     }
 }
 
-img {
-    text-align: center;
-    margin-top: 50px;
-    margin-bottom: 10px;
-    width: 50%;
+.img-container{
+    width: 128px;
+    margin: 20px auto 30px auto;
+    position: relative;
+    border-radius: 5px
 }
 
+.img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: opacity(0.3);
+}
+
+/* Login */
 .contenedor{
     width: 100%;
-    padding: 15px;
+    padding: 30px;
     background-color:#04838C;
     border-radius: 10px;  
 }
 
 .input-contenedor{
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-bottom: 25px;
+    margin: 0 0 25px 0;
     font-size: 20px;
     background: #EAFFD0;
-    text-decoration: none;
-    padding: 10px 15px;
     border-radius: 10px; 
+    position: relative;
+   
 }
 
-input[type="text"],
-input[type="password"]{
+.form-control{
     color: #6C757D;
     background: #EAFFD0;
-    font-family: 'Open Sans';
-    font-size: 17px;
+    font-size: 18px;
     width: 100%;
-    padding: 10px;
-    border-style: none;
+    height: 50px;
+    border: none;
+    border-radius: 5px;
+    padding-left: 10px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    padding-right: 40px;
 }
 
-.botton{
-    margin-top: 20px;
-    width: 282px;
-    text-decoration: none;
-    padding: 20px;
-    font-weight: 100;
-    color: #E1E1E1;
-    background-color:#04838C;
-    border-radius: 10px;
-    border: none;  
-    font-size: 20px; 
+.form-control-icon{
+    width: 28px;
+    position: absolute;
+    top: 12px;
+    right: 7px;
+    z-index: 100;
+}   
+
+.btn-submit{
+    margin: 20px 0 20px 0;
+    background-color:rgba(0, 0, 0, 0.301);
 }
 
-.botton:hover{
-    /*opacity: 0.6;*/
+.btn-submit:hover{
     background-color:#1f4253;
     text-decoration: none;
 }

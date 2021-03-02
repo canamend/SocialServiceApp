@@ -2,14 +2,20 @@
 body{
     font-family: 'Open Sans';
 }
+.main{
+    min-height: calc(100vh - 61px - 78px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .btn{
     border: none;
     cursor: pointer;
     width: 100%;
-    padding: 12px 20px;
+    padding: 10px 20px;
     border-radius: 10px;
     color: #fff;
-    font-size: 18px; 
+    font-size: 16px; 
 }
 /* Reset properties */
 *{
@@ -46,23 +52,22 @@ body{
 /* user 1 */
 
 /*Login*/
-.formulario{
-    margin: 20px auto 0 auto;
-    width: 350px;
+.form{
+    
+    width: 300px;
 }
 
 @media screen and (max-width: 768px){
-    .formulario{
+    .form{
         margin-top: 50px;
-        width: 500px;
-        height: 689px;
+        width: 250px;
         text-align: center;
     }
 }
 
 .img-container{
-    width: 128px;
-    margin: 20px auto 30px auto;
+    width: 110px;
+    margin: 20px auto;
     position: relative;
 }
 
@@ -74,46 +79,42 @@ body{
 }
 
 /* Login contenedor*/
-.contenedor{
+.container{
     width: 100%;
     padding: 30px;
     background-color:#04838C;
     border-radius: 10px;  
 }
 
-.input-contenedor{
+.form-group{
     margin: 0 0 25px 0;
     font-size: 20px;
-    background: #EAFFD0;
     border-radius: 10px; 
     position: relative;
    
 }
-
 .form-control{
     color: #6C757D;
     background: #EAFFD0;
-    font-size: 18px;
+    font-size: 16px;
     width: 100%;
-    height: 50px;
     border: none;
     border-radius: 5px;
-    padding-left: 10px;
+    padding: 8px 40px 8px 10px;
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
-    padding-right: 40px;
 }
 
 .form-control-icon{
     width: 28px;
     position: absolute;
-    top: 12px;
+    top: 5px;
     right: 7px;
     z-index: 100;
 }   
 
 .btn-submit{
-    margin: 20px 0 20px 0;
+    margin: 20px 0;
     background-color:rgba(0, 0, 0, 0.301);
 }
 
@@ -125,18 +126,52 @@ body{
 .link{
     text-align: right;
 }
-.footer{
-    position: fixed;
-    bottom: 0;
+.footer div{
     width: 100%;
     background-color: #203b47;
-    padding: 12px 0;
     text-align: center;
     color: white;
-    font-size: 13px
+    font-size: 13px;
+    padding: 12px 0;
 }
 
-
-
+/*------------FORM REGISTER-------------*/
+.title{
+    margin-top: 20px;
+    color: #797979;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 30px;
+}
+.form.form-register{
+    width: 400px;
+    margin: 20px auto 40px auto;
+}
+.form-register .form-group{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.field-set{
+    border: unset;
+}
+.form-register .form-control{
+    flex: 0 0 65%;
+    margin-left: 10px;
+    padding-right: 10px;
+}
+.form-register label{
+    flex: 1;
+    text-align: left;
+    font-size: 16px;
+    color: white;
+    font-weight: 300;
+}
+.title-form{
+    color: white;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #fff;
+}
 
 

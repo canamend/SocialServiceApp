@@ -266,11 +266,20 @@ body{
     color: #000;
 }
 
-.btn-container{
+.object-container{
     display: flex;
     justify-content: flex-end;
-    border: 1px solid red;
 }
-.btn-container .btn{
+.object-container .btn{
     width: 50%;
 }
+
+.select-all{
+    padding: 10px 10px 0 10px;
+    display: block;
+    width: 155px;
+    text-decoration: none;
+    color: #000;
+    margin-bottom: 10px;
+}
+

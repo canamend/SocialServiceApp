@@ -192,6 +192,9 @@ body{
     width: 100%;
     margin: 40px auto;
 }
+.items{
+    width: 100%;
+}
 
 .container .title{
     margin: 0 0 20px 0;
@@ -276,10 +279,30 @@ body{
 
 .select-all{
     padding: 10px 10px 0 10px;
-    display: block;
-    width: 155px;
+    display: inline-block;
     text-decoration: none;
     color: #000;
     margin-bottom: 10px;
 }
 
+/* PATIENT INFORMATION */
+.container-info-patient figure{
+    display: inline;
+}
+/* Tabla */
+.table{
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+}
+.table-row{
+    margin: 5px 0px;
+    margin-bottom: 10xpx;
+    background-color: #C6EBC9;
+
+}
+.cell{
+    width: 25%;
+    text-align: center;
+    padding: 10px 0px;
+}

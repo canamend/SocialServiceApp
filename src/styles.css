@@ -18,7 +18,7 @@ body{
     padding: 10px 20px;
     border-radius: 10px;
     color: #fff;
-    font-size: 16px; 
+    font-size: 16px;
 }
 .btn-submit{
     margin: 20px 0;
@@ -65,7 +65,7 @@ body{
     text-decoration: none;
     padding: 17px 15px;
     transition: color 0.3s ease-in-out;
-}   
+}
 .navbar-link:hover{
   color: #70AF85;
 }
@@ -97,7 +97,7 @@ body{
     width: 100%;
     padding: 30px;
     background-color:#04838C;
-    border-radius: 10px;  
+    border-radius: 10px;
 }
 .form-group{
     margin: 0 0 25px 0;
@@ -194,6 +194,10 @@ body{
     width: 100%;
     margin: 40px auto;
 }
+.items{
+    width: 100%;
+}
+
 .container .title{
     margin: 0 0 20px 0;
 }
@@ -217,7 +221,8 @@ body{
     width: 60%;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: 
+    center;
     margin: 0 40px;
 }
 .item-name{
@@ -309,4 +314,100 @@ body{
         width: 250px;
         text-align: center;
     }
+}
+/* Set-Test Component */
+.check-box{
+    width: 25px;
+    height: 25px; 
+    margin-top: 7px;
+}
+
+.container.set-test{
+    max-width: 600px;
+}
+.container.set-test .item{
+    padding: 10px 0px;
+}
+.container.set-test .item:hover{
+    background-color: #C6EBC9;
+    color: #000;
+}
+
+.object-container{
+    display: flex;
+    justify-content: flex-end;
+}
+.object-container .btn{
+    width: 50%;
+}
+
+.select-all{
+    padding: 10px 10px 0 10px;
+    display: inline-block;
+    text-decoration: none;
+    color: #000;
+    margin-bottom: 10px;
+}
+
+/* VER MÁS */
+.container-info-patient{
+    display: flex;
+    justify-content: space-evenly;
+    width: 55%;
+    margin: 20px auto;
+}
+.container-info-patient figure{
+    width: 75px;
+    height: 75px;
+}
+.container-info-patient h1{
+    font-size: 1.5rem;
+    text-align: center;
+}
+.container-info-patient h2{
+    font-size: 1.2rem;
+    text-align: center;
+    margin-top: 10px;
+}
+.table{
+    table-layout: fixed;
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+    margin: 30px 0;
+}
+.table-row{
+    background-color: #C6EBC9;
+    border: 2px solid #fff;
+    height: 40px;
+}
+
+.aditional-info{
+    display: flex;
+}
+.container-tasks{
+    width: 60%;
+    padding: 0 100px 0 0;
+}
+.container-tasks .table tbody .table-row{
+    height: 50px;
+    border: 10px solid #fff;
+}
+.container-parent{
+    padding-top: 35px;
+}
+.container-parent .title{
+    font-size: 1.7rem;
+    margin-bottom: 10px;
+}
+.target{
+    background-color: #C6EBC9;
+    height: 180px;
+    padding: 45px 40px;
+}
+.target p{
+    margin-bottom: 10px;
+}
+.target p span{
+    font-weight: 600;
 }

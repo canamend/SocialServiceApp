@@ -308,20 +308,12 @@ body{
     font-weight: 600;
 }
 
-@media screen and (max-width: 768px){
-    .form{
-        margin-top: 50px;
-        width: 250px;
-        text-align: center;
-    }
-}
 /* Set-Test Component */
 .check-box{
     width: 25px;
     height: 25px; 
     margin-top: 7px;
 }
-
 .container.set-test{
     max-width: 600px;
 }
@@ -332,7 +324,6 @@ body{
     background-color: #C6EBC9;
     color: #000;
 }
-
 .object-container{
     display: flex;
     justify-content: flex-end;
@@ -340,7 +331,6 @@ body{
 .object-container .btn{
     width: 50%;
 }
-
 .select-all{
     padding: 10px 10px 0 10px;
     display: inline-block;
@@ -410,4 +400,12 @@ body{
 }
 .target p span{
     font-weight: 600;
+}
+
+@media screen and (max-width: 768px){
+    .form{
+        margin-top: 50px;
+        width: 250px;
+        text-align: center;
+    }
 }

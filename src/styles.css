@@ -1,6 +1,7 @@
 /* GLOBALS */
 body{
     font-family: 'Open Sans';
+    font-size: 16px;
 }
 .title{
     margin-top: 20px;
@@ -8,6 +9,7 @@ body{
     text-align: center;
     font-family: 'Open Sans', sans-serif;
     font-size: 30px;
+    font-weight: 600;
 }
 .btn{
     border: none;
@@ -238,6 +240,68 @@ body{
     transition: all 0.2s ease-in;
 }
 
+/* VER MÁS */
+.container-info-patient{
+    display: flex;
+    justify-content: space-evenly;
+    width: 55%;
+    margin: 20px auto;
+}
+.container-info-patient figure{
+    width: 75px;
+    height: 75px;
+}
+.container-info-patient h1{
+    font-size: 1.5rem;
+    text-align: center;
+}
+.container-info-patient h2{
+    font-size: 1.2rem;
+    text-align: center;
+    margin-top: 10px;
+}
+.table{
+    table-layout: fixed;
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+    margin: 30px 0;
+}
+.table-row{
+    background-color: #C6EBC9;
+    border: 2px solid #fff;
+    height: 40px;
+}
+
+.aditional-info{
+    display: flex;
+}
+.container-tasks{
+    width: 60%;
+    padding: 0 100px 0 0;
+}
+.container-tasks .table tbody .table-row{
+    height: 50px;
+    border: 10px solid #fff;
+}
+.container-parent{
+    padding-top: 35px;
+}
+.container-parent .title{
+    font-size: 1.7rem;
+    margin-bottom: 10px;
+}
+.target{
+    background-color: #C6EBC9;
+    height: 180px;
+    padding: 45px 40px;
+}
+.target p{
+    margin-bottom: 10px;
+}
+.target p span{
+    font-weight: 600;
+}
 
 @media screen and (max-width: 768px){
     .form{

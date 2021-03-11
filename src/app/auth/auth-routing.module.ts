@@ -6,6 +6,7 @@ import { RegisterAdminComponent } from './pages/register-admin/register-admin.co
 import { RegisterPatientComponent } from './pages/register-patient/register-patient.component';
 
 const routes: Routes = [
+  // auth/login
   { path: '', component: LayoutComponent,
     children: [
       { path: 'login', component: LoginComponent},                      /*  /auth/login */

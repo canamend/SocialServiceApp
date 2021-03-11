@@ -371,7 +371,6 @@ body{
     border: 2px solid #fff;
     height: 40px;
 }
-
 .aditional-info{
     display: flex;
 }
@@ -381,7 +380,7 @@ body{
 }
 .container-tasks .table tbody .table-row{
     height: 50px;
-    border: 10px solid #fff;
+    border: 5px solid #fff;
 }
 .container-parent{
     padding-top: 35px;
@@ -401,7 +400,57 @@ body{
 .target p span{
     font-weight: 600;
 }
-
+/* PATIENT */
+.info-patient{
+    width: 500px;
+    margin: 0 auto;
+    text-align: center;
+}
+.container-tasks.patient{
+    max-width: 600px;
+    margin: 0 auto;
+    padding-right: 0px;
+}
+/* TEST */
+.test-intructions{
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #34626C;
+}
+hr{
+    border-top: 2px solid #056665;
+}
+.title.test-name{
+    color: #34626C;
+    font-size: 28px;
+    margin-top: 15px;
+}
+.question-text{
+    text-align: center;
+    color: #797979;
+    font-size: 24px;
+}
+.question-image-container{
+    width: 256px;
+    height: 256px;
+    margin: 10px auto;
+}
+.container-answers{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.container-answers figure{
+    width: calc(((100% - 120px) / 4) - 10px);
+    border: 1px solid blue;
+}
+.answer-text{
+    text-align: center;
+    display: block;
+}
+.container-answers .btn{
+    width: 120px;
+}
 @media screen and (max-width: 768px){
     .form{
         margin-top: 50px;

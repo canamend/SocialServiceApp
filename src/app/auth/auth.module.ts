@@ -11,16 +11,12 @@ import { LayoutComponent } from './layout/layout/layout.component';
 
 import { AuthRoutingModule } from './auth-routing.module';
 
-
-
 @NgModule({
   declarations: [LoginComponent, RegisterAdminComponent, RegisterPatientComponent, HeaderComponent, FooterComponent, LayoutComponent],
   imports: [
     CommonModule,
     AuthRoutingModule
   ],
-  exports: [
-    LayoutComponent
-  ]
+  exports: []
 })
 export class AuthModule { }

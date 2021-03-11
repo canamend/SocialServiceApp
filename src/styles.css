@@ -436,20 +436,29 @@ hr{
     margin: 10px auto;
 }
 .container-answers{
+    max-width: 500px;
+    margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
 }
 .container-answers figure{
-    width: calc(((100% - 120px) / 4) - 10px);
-    border: 1px solid blue;
+    width: calc(25% - 20px);
 }
 .answer-text{
     text-align: center;
     display: block;
+    font-size: 16px;
 }
-.container-answers .btn{
+.button-next-container{
     width: 120px;
+    position: absolute;
+    right: -150px;
+    bottom: 0;
+}
+.button-next-container .btn{
+    margin: 0px;
 }
 @media screen and (max-width: 768px){
     .form{

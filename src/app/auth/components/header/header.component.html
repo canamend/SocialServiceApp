@@ -1,9 +1,13 @@
 <header>
   <nav class="navbar">
+    <figure class="menu-hamburguer" (click)="onClickMenu()">
+      <img *ngIf="!menuActive" class="img" src="assets/images/menu.svg" alt="menu">
+      <img *ngIf="menuActive" class="img" src="assets/images/close.svg" alt="menu">
+    </figure>
     <ul class="navbar-menu">
-      <li><a class="navbar-link" routerLinkActive="navbar-link-active" routerLink="/auth/login">Iniciar sesión</a></li>
-      <li><a class="navbar-link" routerLinkActive="navbar-link-active" routerLink="/auth/registerpatient">Nuevo paciente</a></li>
-      <li><a class="navbar-link" routerLinkActive="navbar-link-active" routerLink="/auth/registeradmin">Nuevo administrador</a></li>
+      <li><a class="navbar-link" routerLinkActive="navbar-link-active" routerLink="/auth/login" (click)="closeMenu()">Iniciar sesión</a></li>
+      <li><a class="navbar-link" routerLinkActive="navbar-link-active" routerLink="/auth/registerpatient" (click)="closeMenu()">Nuevo paciente</a></li>
+      <li><a class="navbar-link" routerLinkActive="navbar-link-active" routerLink="/auth/registeradmin" (click)="closeMenu()">Nuevo administrador</a></li>
     </ul>
   </nav>
 </header>

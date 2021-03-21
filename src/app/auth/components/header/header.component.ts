@@ -16,18 +16,18 @@ export class HeaderComponent implements OnInit {
     this.menuActive = !this.menuActive;
     let navbarMenu = document.querySelector('.navbar-menu');
     if(this.menuActive){
-      navbarMenu.classList.add('show');
       navbarMenu.classList.remove('hidden');
+      navbarMenu.classList.add('show');
     }else{      
-      navbarMenu.classList.add('hidden');
       navbarMenu.classList.remove('show');
+      navbarMenu.classList.add('hidden');
     }
   }
 
   closeMenu(){
     let navbarMenu = document.querySelector('.navbar-menu');
-    navbarMenu.classList.add('hidden');
     navbarMenu.classList.remove('show');
+    navbarMenu.classList.add('hidden');
     this.menuActive = false;
   }
 }

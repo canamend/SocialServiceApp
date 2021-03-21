@@ -28,6 +28,9 @@ body{
     background-color:#1f4253;
     text-decoration: none;
 }
+.btn:focus{
+    outline: none;
+}
 .btn-primary{
     background-color: #056665;
 }
@@ -85,7 +88,7 @@ body{
 
 /*LOGIN*/
 .view-login{
-    min-height: calc(100vh - 61px - 78px);
+    min-height: calc(100vh - 61px - 80px);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -134,6 +137,7 @@ body{
 /* FOOTER */
 .footer{
     width: 100%;
+    height: 80px;
     background-color: #203b47;
     text-align: center;
     color: white;
@@ -142,10 +146,12 @@ body{
 }
 
 /*------------FORM REGISTER-------------*/
-.form-register{
-    width: 400px;
+.form.form-register{
+    max-width: 400px;
+    width: 100%;
     margin: 20px auto 40px auto;
 }
+
 .form-register .form-group{
     display: flex;
     justify-content: space-between;
@@ -177,6 +183,9 @@ body{
 /* ADMINISTRADOR */
 .search{
     position: relative;
+}
+.search.responsive, .responsive{
+    display: none;
 }
 .search-input{
     padding-left: 30px;
@@ -356,15 +365,15 @@ body{
     margin: 20px auto;
 }
 .container-info-patient figure{
-    width: 75px;
+    flex: 0 0 75px;
     height: 75px;
 }
 .container-info-patient h1{
-    font-size: 1.5rem;
+    font-size: 22px;
     text-align: center;
 }
 .container-info-patient h2{
-    font-size: 1.2rem;
+    font-size: 20px;
     text-align: center;
     margin-top: 10px;
 }
@@ -422,12 +431,12 @@ body{
 }
 /* TEST */
 .test-intructions{
-    font-size: 18px;
+    font-size: 16px;
+    margin: 0px 20px;
+    padding-bottom: 5px;
     margin-bottom: 10px;
     color: #34626C;
-}
-hr{
-    border-top: 2px solid #056665;
+    border-bottom: 1px solid #056665;
 }
 .title.test-name{
     color: #34626C;
@@ -440,8 +449,8 @@ hr{
     font-size: 24px;
 }
 .question-image-container{
-    width: 256px;
-    height: 256px;
+    width: 180px;
+    height: 180px;
     margin: 10px auto;
 }
 .container-answers{
@@ -451,9 +460,19 @@ hr{
     justify-content: space-between;
     align-items: center;
     position: relative;
+    margin-top: 20px;
 }
-.container-answers figure{
-    width: calc(25% - 20px);
+.container-answer{
+    width: 105px;
+    height: 125px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.answer-image{
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
 }
 .answer-text{
     text-align: center;
@@ -470,7 +489,26 @@ hr{
     margin: 0px;
 }
 
+/* ANIMATIONS */
+@keyframes openMenu{
+    0%{
+        margin-left: -100%;
+        margin-right: 100%;
+    }
+    100%{
+        margin-right: 0px;
+        margin-left: 0px;
+    }
+}
 
+@media screen and (max-width: 890px){
+    .button-next-container{
+        width: 120px;
+        position: absolute;
+        right: 0px;
+        bottom: -40px;
+    }
+}
 @media screen and (max-width: 768px){
     .form{
         margin-top: 50px;
@@ -478,13 +516,16 @@ hr{
         text-align: center;
     }
     .view-login{
-        min-height: calc(100vh - 48px - 76.8px);
+        min-height: calc(100vh - 48px - 80px);
     }
     .menu-hamburguer{
         display: block;
     }
     .navbar{
         position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
     .navbar-menu{
         display: none;
@@ -500,6 +541,7 @@ hr{
     }
     .show{
         display: block;
+        animation: openMenu 0.5s ease-in;
     }
     .hidden{
         display: none;
@@ -517,7 +559,288 @@ hr{
         border: none;
         background-color: #70af8552;
     }
+
+    /* REGISTER PATIENT */
+    .form-register .form-group{
+        flex-direction: column;
+        align-items: unset;
+    }
+    .form-register .form-control{
+        flex: 0 0 100%;
+        margin-left: 0px;
+        margin-top: 5px;
+    }
+    .search.no-responsive, .avatar-container.no-responsive, .no-responsive{
+        display: none;
+    }
+    .responsive{
+        display: block;
+        margin-right: 10px;
+    }
+    .search.responsive{
+        display: block;
+        flex: 0 0 60%;
+        margin-right: 10px;
+    }
+
+    .container{
+        padding: 0px 15px;
+    }
+    .title{
+        font-size: 22px;
+    }
+    .item{
+        justify-content: space-between;
+        padding: 0px 20px;
+    }
+    .item-info {
+        margin: 0px;
+    }
+    .item-info figure{
+        flex: 0 0 calc(40px - 10px);
+        height: 30px;
+        padding: 2px;
+    }
+    .item .btn-primary{
+        flex: 0 0 calc(40% - 10px);
+        margin: 12px 5px 12px 0px;
+        transition: all 0.2s ease-in;
+    }
+    .item-name, .item .btn{
+        font-size: 14px;
+    }
+    .item-name{
+        text-align: center;
+        flex: 1;
+    }
+    .set-test .items .item{
+        padding: 10px 25px;
+    }
+
+    /* Set test */
+    .set-test .items .item .item-info {
+        flex: 1;
+    }
+    .check-box{
+        width: 20px;
+        height: 20px;
+    }
+
+    .table .title{
+        margin: 20px auto 10px auto;
+    }
+    .aditional-info{
+        display: block;
+    }
+
+    .container-tasks{
+        width: 100%;
+        margin: 0 auto; 
+        padding-right: 0px;
+    }
+
+    .container-info-patient{
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+    }
+    .info-patient{
+        width: 100%;
+    }
+    .container-parent .title{
+        font-size: 24px;
+    }
+
+
+    /* Table */
+    .table{
+        max-width: 80%;
+        margin: 0 auto;
+    }
+    .history-test thead{
+        display: none;
+    }
+    .history-test .table-column{
+        display: block;
+        text-align: left;
+        padding: 3px 10px;
+    }
+    .history-test .table-column::before{
+        content: attr(data-th);
+        display: inline-block;
+        width: 40%;
+        text-align: left;
+        font-weight: 700;
+    }
+    .history-test .table-row{
+        border: 8px solid #fff;
+    }
+    .container-parent{
+        max-width: 80%;
+        margin: 0 auto;
+    }
+    .table-column{
+        border-bottom: 2px solid #fff;
+    }
+
+    /*TEST*/
+    .container.test-container{
+        margin: 15px 0px;
+        padding: 0px 5px;
+    }
+    .test-intructions{
+        margin: 0px 10px;
+    }
+
+    .title.test-name{
+        font-size: 26px;
+    }
+    .question-text{
+        font-size: 22px;
+    }
+    .container-answer{
+        width: calc(25% - 15px);
+        height: 120px;
+    }
+    .answer-image{
+        width: 70px;
+        height: 70px;
+    }
 }
+
 @media screen and (max-width: 428px){
+    .container-info-patient{
+        width: 100%;
+    }
+    .navbar-link{
+        font-size: 14px;
+    }
+    .form.form-register{
+        padding: 0px 15px;
+    }
+    .footer{
+        font-size: 12px;
+    }
+    .search.responsive{
+        flex: 0 0 80%;
+    }
+    .btn{
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .item{
+        justify-content: space-between;
+        padding: 0px 10px;
+    }
+    .info-patient h1{
+        font-size: 18px;
+        text-align: cente
+    }
+    .info-patient h2{
+        font-size: 16px ;
+    }
+    .table{
+        max-width: 100%;
+    }
+    .container-parent .title{
+        font-size: 22px;
+    }
+    .container-parent{
+        max-width: 100%;
+    }
+
     
+    /*TEST*/
+    .test-intructions{
+        font-size: 14px;
+    }
+    .title.test-name{
+        font-size: 22px;
+        margin-bottom: 10px;
+    }
+    .question-text{
+        font-size: 18px;
+    }
+    .question-image-container{
+        width: 150px;
+        height: 150px;
+    }
+    .container-answer{
+        width: calc(25% - 5px);
+        height: 100px;
+    }
+    .answer-image{
+        width: 60px;
+        height: 60px;
+    }
+    .answer-text{
+        font-size: 14px;
+    }
+    .button-next-container{
+        width: 80%;
+        position: absolute;
+        right: 10%;
+        left: 10%;
+        bottom: -60px;
+    }
+}
+
+@media screen and (max-width: 360px){
+    .title{
+        font-size: 20px;
+    }
+    .container-parent .title{
+        font-size: 20px;
+    }
+    .view-login .form-container{
+        padding: 10px 20px;
+    }
+    .form-control{
+        font-size: 14px;
+    }
+    .item .item-name, .item .btn{
+        font-size: 12px;
+    }
+    .set-test .items .item{
+        padding: 10px;
+    }
+    .select-all{
+        font-size: 14px;
+    }
+    .table-head, .table-row, .target{
+        font-size: 12px;
+    }
+
+    /*TEST*/
+    .test-intructions{
+        font-size: 13px;
+    }
+
+    .title.test-name{
+        font-size: 20px;
+    }
+    .question-text{
+        font-size: 18px;
+        margin-top: 30px;
+    }
+    .container-answer{
+        width: calc(25% - 15px);
+        height: 120px;
+    }
+    .answer-image{
+        width: 70px;
+        height: 70px;
+    }
+
+    .container-answer{
+        width: calc(25% - 5px);
+        height: 90px;
+    }
+    .answer-image{
+        width: 50px;
+        height: 50px;
+    }
+    .answer-text{
+        font-size: 14px;
+    }
 }

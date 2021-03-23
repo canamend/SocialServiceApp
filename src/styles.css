@@ -412,6 +412,9 @@ body{
     height: 180px;
     padding: 45px 40px;
 }
+.target:hover{
+    transform: scale(1.08);
+}
 .target p{
     margin-bottom: 10px;
 }
@@ -429,6 +432,16 @@ body{
     margin: 0 auto;
     padding-right: 0px;
 }
+.table-row.task, .table-row.info{
+    transition: all 0.2s ease-in;
+}
+.table-row.task:hover, .table-row.info:hover{
+    background-color: #70AF85;
+}
+.table-row.task:hover{
+    cursor: pointer;
+}
+
 /* TEST */
 .test-intructions{
     font-size: 16px;
@@ -679,9 +692,9 @@ body{
         max-width: 80%;
         margin: 0 auto;
     }
-    .table-column{
-        border-bottom: 2px solid #fff;
-    }
+    /* .table-column{
+        border-bottom: 2px solid #70AF85;
+    } */
 
     /*TEST*/
     .container.test-container{
@@ -713,7 +726,7 @@ body{
         width: 100%;
     }
     .navbar-link{
-        font-size: 14px;
+        font-size: 16px;
     }
     .form.form-register{
         padding: 0px 15px;

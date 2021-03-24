@@ -298,7 +298,6 @@ body{
     border: 2px solid #fff;
     height: 40px;
 }
-
 .aditional-info{
     display: flex;
 }
@@ -749,11 +748,11 @@ body{
         padding: 0px 10px;
     }
     .info-patient h1{
-        font-size: 18px;
+        font-size: 20px;
         text-align: cente
     }
     .info-patient h2{
-        font-size: 16px ;
+        font-size: 18px ;
     }
     .table{
         max-width: 100%;

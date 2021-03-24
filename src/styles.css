@@ -126,6 +126,9 @@ body{
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
 }
+.form-control:focus{
+    outline: none;
+}
 .form-control-icon{
     width: 28px;
     position: absolute;
@@ -411,6 +414,7 @@ body{
     background-color: #C6EBC9;
     height: 180px;
     padding: 45px 40px;
+    transition: all 0.3s ease-in;
 }
 .target:hover{
     transform: scale(1.08);
@@ -704,7 +708,6 @@ body{
     .test-intructions{
         margin: 0px 10px;
     }
-
     .title.test-name{
         font-size: 26px;
     }

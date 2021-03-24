@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-patient',
   templateUrl: './home-patient.component.html',
   styleUrls: ['./home-patient.component.css']
 })
-export class HomePatientComponent implements OnInit {
+export class HomePatientComponent{
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(
+    private router: Router
+  ) { }
+  onAnswerTest(){
+    this.router.navigate(['/patient/test']);
   }
-
 }

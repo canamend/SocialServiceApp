@@ -1,18 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { FormGroup, FormBuilder } from "@angular/forms";
 
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
-
-// Added by @Melkia
-// Regular expression to deal with names. Only letters and spaces are allowed.
-// TODO: For scalability put all regex in a file 
-const REGEX_NAME = /^[a-zA-Z ]{3,30}$/;
+import { accountForm, infoPersonForm, parentForm } from '../../shared/form.model';
 
 @Component({
   selector: 'app-register-patient',
   templateUrl: './register-patient.component.html',
   styleUrls: ['./register-patient.component.css']
 })
-export class RegisterPatientComponent implements OnInit {
+export class RegisterPatientComponent{
 
   form: FormGroup;
 
@@ -22,44 +18,15 @@ export class RegisterPatientComponent implements OnInit {
     this._initForm();
   }
 
-  //formGroup =  {
-      // personInfo = { formGroup},
-      // account = { formGroup }
-      // cuidador = {  formGroup}
-  // }
-
   // Initialize the form.
   private _initForm(){
     this.form = this.fb.group(
       {
-        nombre: ['', this._nameValidators],
-        appaterno: ['', this._nameValidators],
-        apmaterno: ['', this._nameValidators],
-        fnacimiento: [Validators.required],
-        genero: [Validators.required],
-        
-        usuario: ['', [Validators.required, Validators.minLength(6)]],
-        contrasenia: ['', [Validators.required, Validators.minLength(6)]],
-        contraseniaConfirm: ['', [Validators.required, Validators.minLength(6)]],
-        
-        nombreCuidador: ['', Validators.required, ], 
-        parentesco: [Validators.required],
-        generoCuidador: [Validators.required],
-        telefono: ['', Validators.required]
-
+        infoPerson: infoPersonForm,
+        account: accountForm,
+        parent: parentForm
       }
     )
-  }
-
-  ngOnInit(): void {
-  }
-
-  // Validators for name control
-  private get _nameValidators(): Validators []{
-    return [
-      Validators.required, 
-      Validators.pattern(REGEX_NAME)
-    ]
   }
 
   getControl(controlName: string){
@@ -70,6 +37,7 @@ export class RegisterPatientComponent implements OnInit {
   // Return: true if invalid, false otherwise.
   isInvalid(controlName: string): boolean{
     const control = this.form.get(controlName);
+    
     return control.invalid && control.touched;
   }
   

@@ -9,8 +9,7 @@
                 placeholder="Expediente"
             >
         </div>
-
-        <fieldset class="field-set">
+        <fieldset class="field-set" formGroupName="infoPerson">
             <p class="section-title">Datos personales</p>
             <div class="form-group">
                 <label for="name">Nombre(s):</label>
@@ -19,11 +18,11 @@
                     id="name" type="text" 
                     placeholder="Ingresa tu nombre"
                     formControlName="nombre" 
-                    [class.input-invalid]="isInvalid('nombre')"
+                    [class.input-invalid]="isInvalid('infoPerson.nombre')"
                 >
                 <small 
                     class="message-error"
-                    *ngIf="isInvalid('nombre')"
+                    *ngIf="isInvalid('infoPerson.nombre')"
                 >Formato incorrecto</small>
             </div>
             <div class="form-group">
@@ -33,11 +32,11 @@
                     id="ap_paterno" type="text" 
                     placeholder="Apellido paterno"
                     formControlName ="appaterno"
-                    [class.input-invalid]="isInvalid('appaterno')"
+                    [class.input-invalid]="isInvalid('infoPerson.appaterno')"
                 >
                 <small 
                     class="message-error"
-                    *ngIf="isInvalid('appaterno')"
+                    *ngIf="isInvalid('infoPerson.appaterno')"
                 >Formato incorrecto</small>
             </div>
             <div class="form-group">
@@ -47,11 +46,11 @@
                     id="ap_materno" type="text" 
                     placeholder="Apellido materno"
                     formControlName="apmaterno"
-                    [class.input-invalid]="isInvalid('apmaterno')"
+                    [class.input-invalid]="isInvalid('infoPerson.apmaterno')"
                 >
                 <small 
                     class="message-error"
-                    *ngIf="isInvalid('apmaterno')"
+                    *ngIf="isInvalid('infoPerson.apmaterno')"
                 >Formato incorrecto</small>
             </div>
             <div class="form-group">
@@ -60,11 +59,11 @@
                     class="form-control" 
                     id="date" type="date"
                     formControlName="fnacimiento"
-                    [class.input-invalid]="isInvalid('fnacimiento')"
+                    [class.input-invalid]="isInvalid('infoPerson.fnacimiento')"
                 >
                 <small 
                     class="message-error"
-                    *ngIf="isInvalid('fnacimiento')"
+                    *ngIf="isInvalid('infoPerson.fnacimiento')"
                 >Fecha inválida</small>
             </div>
             <div class="form-group">
@@ -73,7 +72,7 @@
                     class="form-control" 
                     id="genero" 
                     formControlName="genero"
-                    [class.input-invalid]="isInvalid('genero')"
+                    [class.input-invalid]="isInvalid('infoPerson.genero')"
                 >
                     <option value="">Género</option>
                     <option value="M">Masculino</option>
@@ -81,12 +80,12 @@
                 </select>
                 <small 
                     class="message-error"
-                    *ngIf="isInvalid('genero')"
+                    *ngIf="isInvalid('infoPerson.genero')"
                 >Género no seleccionado</small>
             </div>
         </fieldset>
 
-        <fieldset class="field-set">
+        <fieldset class="field-set" formGroupName="account">
             <p class="section-title">Datos de usuario</p>
             <div class="form-group">
                 <label for="user">Usuario:</label>
@@ -95,52 +94,73 @@
                     id="user" type="text" 
                     placeholder="Nombre de usuario" 
                     formControlName="usuario"
-                    [class.input-invalid]="isInvalid('usuario')"
+                    [class.input-invalid]="isInvalid('account.usuario')"
                 >
                 <small 
                     class="message-error"
-                    *ngIf="isInvalid('usuario')"
+                    *ngIf="isInvalid('account.usuario')"
                 >Nombre de ususario muy corto</small>
             </div>
             <div class="form-group">
                 <label for="pass">Contraseña:</label>
                 <input 
                     class="form-control" 
-                    id="pass" type="text" 
+                    id="pass" 
+                    type="password" 
                     placeholder="Contraseña"
                     formControlName="contrasenia"
-                    [class.input-invalid]="isInvalid('contrasenia')"
+                    [class.input-invalid]="isInvalid('account.contrasenia')"
                 >
                 <small 
                     class="message-error"
-                    *ngIf="isInvalid('contrasenia')"
+                    *ngIf="isInvalid('account.contrasenia')"
                 >Contraseña muy corta</small>
             </div>
             <div class="form-group">
                 <label for="verify-pass">Confirmar contraseña:</label>
                 <input 
                     class="form-control" 
-                    id="verify-pass" type="text" 
+                    id="verify-pass" 
+                    type="password" 
                     placeholder="Contraseña"
                     formControlName="contraseniaConfirm"
-                    [class.input-invalid]="isInvalid('contraseniaConfirm')"
+                    [class.input-invalid]="isInvalid('account.contraseniaConfirm')"
                 >
                 <small 
                     class="message-error"
-                    *ngIf="isInvalid('contraseniaConfirm')"
+                    *ngIf="isInvalid('account.contraseniaConfirm')"
                 >Contraseñas no coincide</small>
             </div>
         </fieldset>
 
-        <fieldset class="field-set">
+        <fieldset class="field-set" formGroupName="parent">
             <p class="section-title">Datos de cuidadores</p>
             <div class="form-group">
                 <label for="tutor">Cuidador primario:</label>
-                <input class="form-control" id="tutor" type="text" placeholder="Nombre completo">
+                <input class="form-control" 
+                    id="tutor" type="text" 
+                    placeholder="Nombre completo"
+                    formControlName="nombreCuidador"
+                    [class.input-invalid]="isInvalid('parent.nombreCuidador')"
+                >
+                <small
+                    class="message-error"
+                    *ngIf="isInvalid('parent.nombreCuidador')"
+                >Formato invpalido</small>
             </div>
             <div class="form-group">
                 <label for="relationship">Parentesco:</label>
-                <select class="form-control" name="genero" id="relationship">
+                <select 
+                    class="form-control" 
+                    name="genero" 
+                    id="relationship"
+                    formControlName="parentesco"
+                    [class.input-invalid]="isInvalid('parent.parentesco')"
+                >
+                    <small
+                        class="message-error"
+                        *ngIf="isInvalid('parent.parentesco')"
+                    >Formato invpalido</small>
                     <option value="genero">Seleccionar parentesco</option>
                     <option value="madre">Madre</option>
                     <option value="padre">Padre</option>
@@ -159,7 +179,15 @@
             </div>
             <div class="form-group">
                 <label for="genero-rel">Género:</label>
-                <select class="form-control" name="genero-rel" id="genero">
+                <select 
+                    class="form-control" name="genero-rel" id="genero"
+                    formControlName="generoCuidador"
+                    [class.input-invalid]="isInvalid('parent.generoCuidador')"
+                >
+                    <small
+                        class="message-error"
+                        *ngIf="isInvalid('parent.generoCuidador')"
+                    >Formato invpalido</small>
                     <option value="genero-cuidador">Género</option>
                     <option value="M">Masculino</option>
                     <option value="F">Femenino</option>
@@ -167,7 +195,18 @@
             </div>
             <div class="form-group">
                 <label for="phone">Teléfono:</label>
-                <input class="form-control" id="phone" type="tel" placeholder="012-345-6789" required pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+                <input class="form-control" 
+                    id="phone" 
+                    type="tel" 
+                    placeholder="012-345-6789" 
+                    required pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                    formControlName="telefono"
+                    [class.input-invalid]="isInvalid('parent.telefono')"
+                >
+                    <small
+                        class="message-error"
+                        *ngIf="isInvalid('parent.telefono')"
+                    >Formato invpalido</small>
             </div>
         </fieldset>
         <input 
@@ -177,4 +216,8 @@
             (click)="onSubmit()"
         >
     </div>
+
+    <!-- <div>
+        {{ form.value | json }}
+    </div> -->
 </form>

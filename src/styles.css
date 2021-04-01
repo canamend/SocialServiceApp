@@ -125,6 +125,7 @@ body{
     padding: 8px 40px 8px 10px;
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
+    border: 1px solid #fff;
 }
 .form-control:focus{
     outline: none;
@@ -135,6 +136,15 @@ body{
     top: 5px;
     right: 7px;
     z-index: 100;
+}
+.input-invalid{
+    border: 1px solid #BB2D3B;
+}
+.message-error{
+    color: #BB2D3B;
+    position: absolute;
+    bottom: -20px;
+    right: 0;
 }
 
 /* FOOTER */

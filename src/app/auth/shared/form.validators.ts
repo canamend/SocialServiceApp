@@ -1,4 +1,4 @@
-import { AbstractControl, Validators } from "@angular/forms";
+import { AbstractControl, ValidationErrors, Validators } from "@angular/forms";
 import { REGEX_NAME } from "./form.regex";
 
 // Validators for name control
@@ -26,4 +26,11 @@ export function ValidateDate(control: AbstractControl) {
   const todayTimestamp = Date.now();
 
   return (dateTimestamp < todayTimestamp)? null: { dateInvalid: true }
+}
+
+export function passwordsMatch(control: AbstractControl): ValidationErrors | null {
+  const contrasenia = control.get('contrasenia').value;
+  const contraseniaRep = control.get('contraseniaConfirm').value;
+  return (contrasenia === contraseniaRep) ?
+    null: { noSonIguales: true };
 }

@@ -40,9 +40,15 @@ export class RegisterPatientComponent{
     
     return control.invalid && control.touched;
   }
+
+  passwordsNotMatch(): boolean{
+    return this.form.get('account').errors?.noSonIguales;
+  }
   
   onSubmit(){
     // console.log('Nombre: ',this.form.controls['nombre'].value);
      
   }
+
+
 }

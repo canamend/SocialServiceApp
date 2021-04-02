@@ -99,7 +99,7 @@
                 <small 
                     class="message-error"
                     *ngIf="isInvalid('account.usuario')"
-                >Nombre de ususario muy corto</small>
+                >Nombre de usuario muy corto</small>
             </div>
             <div class="form-group">
                 <label for="pass">Contraseña:</label>
@@ -126,10 +126,12 @@
                     formControlName="contraseniaConfirm"
                     [class.input-invalid]="isInvalid('account.contraseniaConfirm')"
                 >
-                <small 
+                <span 
                     class="message-error"
-                    *ngIf="isInvalid('account.contraseniaConfirm')"
-                >Contraseñas no coincide</small>
+                    *ngIf="passwordsNotMatch() && isInvalid('account.contraseniaConfirm')"
+                >
+                    Contraseñas no coinciden
+                </span>
             </div>
         </fieldset>
 
@@ -146,7 +148,7 @@
                 <small
                     class="message-error"
                     *ngIf="isInvalid('parent.nombreCuidador')"
-                >Formato invpalido</small>
+                >Formato inválido</small>
             </div>
             <div class="form-group">
                 <label for="relationship">Parentesco:</label>
@@ -160,7 +162,7 @@
                     <small
                         class="message-error"
                         *ngIf="isInvalid('parent.parentesco')"
-                    >Formato invpalido</small>
+                    >Formato inválido</small>
                     <option value="genero">Seleccionar parentesco</option>
                     <option value="madre">Madre</option>
                     <option value="padre">Padre</option>

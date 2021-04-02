@@ -23,7 +23,7 @@
                 <small 
                     class="message-error"
                     *ngIf="isInvalid('infoPerson.nombre')"
-                >Formato incorrecto</small>
+                >Formato inválido</small>
             </div>
             <div class="form-group">
                 <label for="ap_paterno">Apellido paterno:</label>
@@ -37,7 +37,7 @@
                 <small 
                     class="message-error"
                     *ngIf="isInvalid('infoPerson.appaterno')"
-                >Formato incorrecto</small>
+                >Formato inválido</small>
             </div>
             <div class="form-group">
                 <label for="ap_materno">Apellido materno:</label>
@@ -51,7 +51,7 @@
                 <small 
                     class="message-error"
                     *ngIf="isInvalid('infoPerson.apmaterno')"
-                >Formato incorrecto</small>
+                >Formato inválido</small>
             </div>
             <div class="form-group">
                 <label for="date">Fecha de nacimiento:</label>
@@ -126,12 +126,12 @@
                     formControlName="contraseniaConfirm"
                     [class.input-invalid]="isInvalid('account.contraseniaConfirm')"
                 >
-                <span 
+                <small 
                     class="message-error"
                     *ngIf="passwordsNotMatch() && isInvalid('account.contraseniaConfirm')"
                 >
                     Contraseñas no coinciden
-                </span>
+                </small>
             </div>
         </fieldset>
 
@@ -159,11 +159,7 @@
                     formControlName="parentesco"
                     [class.input-invalid]="isInvalid('parent.parentesco')"
                 >
-                    <small
-                        class="message-error"
-                        *ngIf="isInvalid('parent.parentesco')"
-                    >Formato inválido</small>
-                    <option value="genero">Seleccionar parentesco</option>
+                    <option value="">Seleccionar parentesco</option>
                     <option value="madre">Madre</option>
                     <option value="padre">Padre</option>
                     <option value="madrastra">Madrastra</option>
@@ -178,6 +174,10 @@
                     <option value="Primo">Primo</option>
                     <option value="otro">Otro</option>
                 </select>
+                <small
+                    class="message-error"
+                    *ngIf="isInvalid('parent.parentesco')"
+                >Parentesco no seleccionado</small>
             </div>
             <div class="form-group">
                 <label for="genero-rel">Género:</label>
@@ -186,29 +186,28 @@
                     formControlName="generoCuidador"
                     [class.input-invalid]="isInvalid('parent.generoCuidador')"
                 >
-                    <small
-                        class="message-error"
-                        *ngIf="isInvalid('parent.generoCuidador')"
-                    >Formato invpalido</small>
-                    <option value="genero-cuidador">Género</option>
+                    <option value="">Género</option>
                     <option value="M">Masculino</option>
                     <option value="F">Femenino</option>
                 </select>
+                <small
+                    class="message-error"
+                    *ngIf="isInvalid('parent.generoCuidador')"
+                >Género no seleccionado</small>
             </div>
             <div class="form-group">
                 <label for="phone">Teléfono:</label>
                 <input class="form-control" 
                     id="phone" 
                     type="tel" 
-                    placeholder="012-345-6789" 
-                    required pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                    placeholder="012-345-6789"
                     formControlName="telefono"
                     [class.input-invalid]="isInvalid('parent.telefono')"
                 >
                     <small
                         class="message-error"
                         *ngIf="isInvalid('parent.telefono')"
-                    >Formato invpalido</small>
+                    >Formato inválido</small>
             </div>
         </fieldset>
         <input 

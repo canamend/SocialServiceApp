@@ -22,5 +22,5 @@ export const parentForm = new FormGroup({
   nombreCuidador: new FormControl('', nameValidators),
   parentesco: new FormControl('', Validators.required),
   generoCuidador: new FormControl('', Validators.required),
-  telefono: new FormControl('', Validators.pattern(REGEX_PHONE))
+  telefono: new FormControl('',[Validators.required, Validators.pattern(REGEX_PHONE)])
 });

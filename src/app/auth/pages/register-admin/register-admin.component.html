@@ -1,50 +1,143 @@
 <h1 class="title">Registro de administrador</h1>
-<form class="form form-register"> 
-    <div class="form-container">
-        <fieldset class="field-set">
-            <p class="section-title">Datos personales</p>
 
+<form class="form form-register" [formGroup]="form">
+    <div class="form-container">
+        <fieldset class="field-set" formGroupName="infoPerson">
+            <p class="section-title">Datos personales</p>
             <div class="form-group">
                 <label for="name">Nombre(s):</label>
-                <input class="form-control" id="name" type="text" placeholder="Ingresa tu nombre">
+                <input 
+                    class="form-control" 
+                    id="name" type="text" 
+                    placeholder="Ingresa tu nombre"
+                    formControlName="nombre" 
+                    [class.input-invalid]="isInvalid('infoPerson.nombre')"
+                >
+                <small 
+                    class="message-error"
+                    *ngIf="isInvalid('infoPerson.nombre')"
+                >Formato inválido</small>
             </div>
             <div class="form-group">
                 <label for="ap_paterno">Apellido paterno:</label>
-                <input class="form-control" id="ap_paterno" type="text" placeholder="Apellido paterno">
+                <input 
+                    class="form-control" 
+                    id="ap_paterno" type="text" 
+                    placeholder="Apellido paterno"
+                    formControlName ="appaterno"
+                    [class.input-invalid]="isInvalid('infoPerson.appaterno')"
+                >
+                <small 
+                    class="message-error"
+                    *ngIf="isInvalid('infoPerson.appaterno')"
+                >Formato inválido</small>
             </div>
             <div class="form-group">
                 <label for="ap_materno">Apellido materno:</label>
-                <input class="form-control" id="ap_materno" type="text" placeholder="Apellido materno">
+                <input 
+                    class="form-control" 
+                    id="ap_materno" type="text" 
+                    placeholder="Apellido materno"
+                    formControlName="apmaterno"
+                    [class.input-invalid]="isInvalid('infoPerson.apmaterno')"
+                >
+                <small 
+                    class="message-error"
+                    *ngIf="isInvalid('infoPerson.apmaterno')"
+                >Formato inválido</small>
+            </div>
+            <div class="form-group">
+                <label for="date">Fecha de nacimiento:</label>
+                <input 
+                    class="form-control" 
+                    id="date" type="date"
+                    formControlName="fnacimiento"
+                    [class.input-invalid]="isInvalid('infoPerson.fnacimiento')"
+                >
+                <small 
+                    class="message-error"
+                    *ngIf="isInvalid('infoPerson.fnacimiento')"
+                >Fecha inválida</small>
             </div>
             <div class="form-group">
                 <label for="genero">Género:</label>
-                <select class="form-control" name="generi" id="genero" >
-                    <option value="genero">Género</option>
+                <select 
+                    class="form-control" 
+                    id="genero" 
+                    formControlName="genero"
+                    [class.input-invalid]="isInvalid('infoPerson.genero')"
+                >
+                    <option value="">Género</option>
                     <option value="M">Masculino</option>
                     <option value="F">Femenino</option>
                 </select>
+                <small 
+                    class="message-error"
+                    *ngIf="isInvalid('infoPerson.genero')"
+                >Género no seleccionado</small>
             </div>
         </fieldset>
-            
-        <fieldset class="field-set">
+
+        <fieldset class="field-set" formGroupName="account">
             <p class="section-title">Datos de usuario</p>
             <div class="form-group">
-                <label for="">Usuario:</label>
-                <input class="form-control" id="user" type="text" placeholder="Nombre de usuario">
+                <label for="user">Usuario:</label>
+                <input 
+                    class="form-control" 
+                    id="user" type="text" 
+                    placeholder="Nombre de usuario" 
+                    formControlName="usuario"
+                    [class.input-invalid]="isInvalid('account.usuario')"
+                >
+                <small 
+                    class="message-error"
+                    *ngIf="isInvalid('account.usuario')"
+                >Nombre de usuario muy corto</small>
             </div>
             <div class="form-group">
                 <label for="pass">Contraseña:</label>
-                <input class="form-control" id="pass" type="text" placeholder="Contraseña">
+                <input 
+                    class="form-control" 
+                    id="pass" 
+                    type="password" 
+                    placeholder="Contraseña"
+                    formControlName="contrasenia"
+                    [class.input-invalid]="isInvalid('account.contrasenia')"
+                >
+                <small 
+                    class="message-error"
+                    *ngIf="isInvalid('account.contrasenia')"
+                >Contraseña muy corta</small>
             </div>
             <div class="form-group">
                 <label for="verify-pass">Confirmar contraseña:</label>
-                <input class="form-control" id="verify-pass" type="text" placeholder="Contraseña">
-            </div>
-            <div class="form-group">
-                <label for="security-code">Código de seguridad:</label>
-                <input class="form-control" id="security-code" type="text" placeholder="Código">
+                <input 
+                    class="form-control" 
+                    id="verify-pass" 
+                    type="password" 
+                    placeholder="Contraseña"
+                    formControlName="contraseniaConfirm"
+                    [class.input-invalid]="isInvalid('account.contraseniaConfirm')"
+                >
+                <small 
+                    class="message-error"
+                    *ngIf="passwordsNotMatch() && isInvalid('account.contraseniaConfirm')"
+                >
+                    Contraseñas no coinciden
+                </small>
             </div>
         </fieldset>
-        <input type= "submit" value= "Ingresar" class="btn btn-submit">
+
+        <input 
+            type="submit" 
+            value="Ingresar" 
+            class="btn btn-submit" 
+            [disabled]="form.invalid"
+            (click)="onSubmit()"
+        >
     </div>
-  </form>
+
+    <!-- <div>
+        {{ form.value | json }}
+    </div> -->
+</form>

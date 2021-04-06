@@ -47,6 +47,7 @@ export class RegisterPatientComponent{
   
   onSubmit(){
     // console.log('Nombre: ',this.form.controls['nombre'].value);
+     console.log('Activo');
      
   }
 

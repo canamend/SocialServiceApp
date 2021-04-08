@@ -1,17 +1,17 @@
 <header>
   <nav class="navbar">
     <figure class="menu-hamburguer" (click)="onClickMenu()">
-      <img *ngIf="!menuActive" class="img" src="assets/images/menu.svg" alt="menu">
-      <img *ngIf="menuActive" class="img" src="assets/images/close.svg" alt="menu">
+      <img *ngIf="!menuActive" class="img" src="assets/images/icons/menu.svg" alt="menu">
+      <img *ngIf="menuActive" class="img" src="assets/images/icons/close.svg" alt="menu">
     </figure>
     <figure class="avatar-container responsive">
-      <img class="img" src="assets/images/girl.png" alt="avatar">
+      <img class="img" src="assets/images/avatars/girl.png" alt="avatar">
     </figure>
     <ul class="navbar-menu">
       <li><a class="navbar-link" routerLinkActive="navbar-link-active" routerLink="/patient/home">Inicio</a></li>
       <li>
           <figure class="avatar-container no-responsive">
-              <img class="img" src="assets/images/girl.png" alt="avatar">
+              <img class="img" src="assets/images/avatars/girl.png" alt="avatar">
           </figure>
       </li>
     </ul>

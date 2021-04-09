@@ -12,7 +12,12 @@ import { LayoutComponent } from './layout/layout/layout.component';
 
 
 @NgModule({
-  declarations: [NavbarComponent, MainComponent, SetTestComponent, InfoPatientComponent, LayoutComponent],
+  declarations: [
+    NavbarComponent, 
+    MainComponent, 
+    SetTestComponent, 
+    InfoPatientComponent, 
+    LayoutComponent],
   imports: [
     CommonModule,
     AdminRoutingModule

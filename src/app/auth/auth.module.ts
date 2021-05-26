@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http'
 
 // Routing module
 import { AuthRoutingModule } from './auth-routing.module';
+// Services
+import { AuthService } from "./core/services/auth.service";
 
 //Components
 import { LoginComponent } from './pages/login/login.component';
@@ -19,8 +22,12 @@ import { LayoutComponent } from './layout/layout/layout.component';
   imports: [
     CommonModule,
     AuthRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  exports: []
+  exports: [],
+  providers: [
+    AuthService
+  ]
 })
 export class AuthModule { }

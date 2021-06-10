@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://192.168.0.22:8080'
+  baseUrl: 'https://morning-caverns-09401.herokuapp.com'
 };
 
 /*

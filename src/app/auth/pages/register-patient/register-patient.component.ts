@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder } from "@angular/forms";
+import { AuthService } from '../../core/services/auth.service';
 
 import { accountForm, infoPersonForm, parentForm } from '../../shared/form.model';
 
@@ -13,7 +14,8 @@ export class RegisterPatientComponent{
   form: FormGroup;
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private authService: AuthService
   ) { 
     this._initForm();
   }
@@ -23,7 +25,7 @@ export class RegisterPatientComponent{
     this.form = this.fb.group(
       {
         infoPerson: infoPersonForm,
-        account: accountForm,
+        account: accountForm(this.authService),
         parent: parentForm
       }
     )
@@ -33,12 +35,23 @@ export class RegisterPatientComponent{
     return this.form.get(controlName);
   }
 
-  // Verify if a control is invalid
-  // Return: true if invalid, false otherwise.
+  /**
+   * Verify if a control is invalid
+   * @param controlName The control's name o path
+   * @returns True if invalid, false otherwise.
+   */
   isInvalid(controlName: string): boolean{
     const control = this.form.get(controlName);
     
     return control.invalid && control.touched;
+  }
+
+  /**
+   * Verify if username already exist by inspecting the accountExist error in the username control.
+   * @returns True is username already exists, false otherwise.
+   */
+  usernameExist(): boolean{
+    return this.form.get('account.usuario').hasError('accountExists')
   }
 
   passwordsNotMatch(): boolean{

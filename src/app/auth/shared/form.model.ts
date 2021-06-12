@@ -1,6 +1,7 @@
 import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { AuthService } from "../core/services/auth.service";
 import { REGEX_PHONE } from "./form.regex";
-import { nameValidators, accountValidators, ValidateDate, passwordsMatch } from "./form.validators";
+import { nameValidators, accountValidators, ValidateDate, passwordsMatch, AsyncValidators } from "./form.validators";
 
 export const infoPersonForm = new FormGroup({
   nombre: new FormControl('', nameValidators),
@@ -10,13 +11,18 @@ export const infoPersonForm = new FormGroup({
   genero: new FormControl('', Validators.required)
 });
 
-export const accountForm = new FormGroup({
-  usuario: new FormControl('', accountValidators),
-  contrasenia: new FormControl('', accountValidators),
-  contraseniaConfirm: new FormControl('', accountValidators)
-}, {
-  validators: passwordsMatch
-});
+
+export const accountForm = (authService: AuthService)=> {
+
+  return new FormGroup({
+    usuario: new FormControl('', accountValidators, AsyncValidators.notExistsUsername(authService)),
+    contrasenia: new FormControl('', accountValidators),
+    contraseniaConfirm: new FormControl('', accountValidators)
+    }, {
+    validators: passwordsMatch
+  });
+}
+
 
 export const parentForm = new FormGroup({
   nombreCuidador: new FormControl('', nameValidators),

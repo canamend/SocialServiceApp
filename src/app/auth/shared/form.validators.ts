@@ -1,4 +1,8 @@
-import { AbstractControl, ValidationErrors, Validators } from "@angular/forms";
+import { AbstractControl, AsyncValidatorFn, ValidationErrors, Validators } from "@angular/forms";
+import { Observable } from "rxjs";
+import { map } from "rxjs/operators";
+
+import { AuthService } from "../core/services/auth.service";
 import { REGEX_NAME } from "./form.regex";
 
 // Validators for name control
@@ -28,9 +32,27 @@ export function ValidateDate(control: AbstractControl) {
   return (dateTimestamp < todayTimestamp)? null: { dateInvalid: true }
 }
 
+// Verificar si dos contraseñas coinciden.
 export function passwordsMatch(control: AbstractControl): ValidationErrors | null {
   const contrasenia = control.get('contrasenia').value;
   const contraseniaRep = control.get('contraseniaConfirm').value;
   return (contrasenia === contraseniaRep) ?
     null: { noSonIguales: true };
+}
+
+export class AsyncValidators{
+
+  // Validar que el nombre de usuario no exista.
+  static notExistsUsername(authService: AuthService): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+      const username = control.value;
+      console.log('Username',username);
+      return authService.getAccount(username)
+        .pipe( 
+          map( account => account? ({accountExists: true}): null )
+        );
+    };
+  }
+
+  
 }

@@ -1,225 +1,232 @@
-<h1 class="title">Registro de paciente</h1>
-<form class="form form-register" [formGroup]="form">
-    <div class="form-container">
-        <div class="form-group">
-            <label for="security-code">Número de expediente:</label>
-            <input 
-                class="form-control" 
-                id="security-code" type="text" 
-                placeholder="Expediente"
-            >
-        </div>
-        <fieldset class="field-set" formGroupName="infoPerson">
-            <p class="section-title">Datos personales</p>
-            <div class="form-group">
-                <label for="name">Nombre(s):</label>
-                <input 
-                    class="form-control" 
-                    id="name" type="text" 
-                    placeholder="Ingresa tu nombre"
-                    formControlName="nombre" 
-                    [class.input-invalid]="isInvalid('infoPerson.nombre')"
-                >
-                <small 
-                    class="message-error"
-                    *ngIf="isInvalid('infoPerson.nombre')"
-                >Formato inválido</small>
-            </div>
-            <div class="form-group">
-                <label for="ap_paterno">Apellido paterno:</label>
-                <input 
-                    class="form-control" 
-                    id="ap_paterno" type="text" 
-                    placeholder="Apellido paterno"
-                    formControlName ="appaterno"
-                    [class.input-invalid]="isInvalid('infoPerson.appaterno')"
-                >
-                <small 
-                    class="message-error"
-                    *ngIf="isInvalid('infoPerson.appaterno')"
-                >Formato inválido</small>
-            </div>
-            <div class="form-group">
-                <label for="ap_materno">Apellido materno:</label>
-                <input 
-                    class="form-control" 
-                    id="ap_materno" type="text" 
-                    placeholder="Apellido materno"
-                    formControlName="apmaterno"
-                    [class.input-invalid]="isInvalid('infoPerson.apmaterno')"
-                >
-                <small 
-                    class="message-error"
-                    *ngIf="isInvalid('infoPerson.apmaterno')"
-                >Formato inválido</small>
-            </div>
-            <div class="form-group">
-                <label for="date">Fecha de nacimiento:</label>
-                <input 
-                    class="form-control" 
-                    id="date" type="date"
-                    formControlName="fnacimiento"
-                    [class.input-invalid]="isInvalid('infoPerson.fnacimiento')"
-                >
-                <small 
-                    class="message-error"
-                    *ngIf="isInvalid('infoPerson.fnacimiento')"
-                >Fecha inválida</small>
-            </div>
-            <div class="form-group">
-                <label for="genero">Género:</label>
-                <select 
-                    class="form-control" 
-                    id="genero" 
-                    formControlName="genero"
-                    [class.input-invalid]="isInvalid('infoPerson.genero')"
-                >
-                    <option value="">Género</option>
-                    <option value="M">Masculino</option>
-                    <option value="F">Femenino</option>
-                </select>
-                <small 
-                    class="message-error"
-                    *ngIf="isInvalid('infoPerson.genero')"
-                >Género no seleccionado</small>
-            </div>
-        </fieldset>
+<div class="animated fadeInLeft fast">
 
-        <fieldset class="field-set" formGroupName="account">
-            <p class="section-title">Datos de usuario</p>
+    <h1 class="title">Registro de paciente</h1>
+    <form class="form form-register" [formGroup]="form">
+        <div class="form-container">
             <div class="form-group">
-                <label for="user">Usuario:</label>
+                <label for="security-code">Número de expediente:</label>
                 <input 
                     class="form-control" 
-                    id="user" type="text" 
-                    placeholder="Nombre de usuario" 
-                    formControlName="usuario"
-                    [class.input-invalid]="isInvalid('account.usuario')"
+                    id="security-code" type="text" 
+                    placeholder="Expediente"
                 >
-                <small 
-                    class="message-error"
-                    *ngIf="isInvalid('account.usuario')"
-                >Nombre de usuario muy corto</small>
             </div>
-            <div class="form-group">
-                <label for="pass">Contraseña:</label>
-                <input 
-                    class="form-control" 
-                    id="pass" 
-                    type="password" 
-                    placeholder="Contraseña"
-                    formControlName="contrasenia"
-                    [class.input-invalid]="isInvalid('account.contrasenia')"
-                >
-                <small 
-                    class="message-error"
-                    *ngIf="isInvalid('account.contrasenia')"
-                >Contraseña muy corta</small>
-            </div>
-            <div class="form-group">
-                <label for="verify-pass">Confirmar contraseña:</label>
-                <input 
-                    class="form-control" 
-                    id="verify-pass" 
-                    type="password" 
-                    placeholder="Contraseña"
-                    formControlName="contraseniaConfirm"
-                    [class.input-invalid]="isInvalid('account.contraseniaConfirm')"
-                >
-                <small 
-                    class="message-error"
-                    *ngIf="passwordsNotMatch() && isInvalid('account.contraseniaConfirm')"
-                >
-                    Contraseñas no coinciden
-                </small>
-            </div>
-        </fieldset>
-
-        <fieldset class="field-set" formGroupName="parent">
-            <p class="section-title">Datos de cuidadores</p>
-            <div class="form-group">
-                <label for="tutor">Cuidador primario:</label>
-                <input class="form-control" 
-                    id="tutor" type="text" 
-                    placeholder="Nombre completo"
-                    formControlName="nombreCuidador"
-                    [class.input-invalid]="isInvalid('parent.nombreCuidador')"
-                >
-                <small
-                    class="message-error"
-                    *ngIf="isInvalid('parent.nombreCuidador')"
-                >Formato inválido</small>
-            </div>
-            <div class="form-group">
-                <label for="relationship">Parentesco:</label>
-                <select 
-                    class="form-control" 
-                    name="genero" 
-                    id="relationship"
-                    formControlName="parentesco"
-                    [class.input-invalid]="isInvalid('parent.parentesco')"
-                >
-                    <option value="">Seleccionar parentesco</option>
-                    <option value="madre">Madre</option>
-                    <option value="padre">Padre</option>
-                    <option value="madrastra">Madrastra</option>
-                    <option value="padrastro">Padrastro</option>
-                    <option value="abuela">Abuela</option>
-                    <option value="abuelo">Abuelo</option>
-                    <option value="hermana">Hermana</option>
-                    <option value="hermano">Hermano</option>
-                    <option value="tía">Tía</option>
-                    <option value="tío">Tío</option>
-                    <option value="Prima">Prima</option>
-                    <option value="Primo">Primo</option>
-                    <option value="otro">Otro</option>
-                </select>
-                <small
-                    class="message-error"
-                    *ngIf="isInvalid('parent.parentesco')"
-                >Parentesco no seleccionado</small>
-            </div>
-            <div class="form-group">
-                <label for="genero-rel">Género:</label>
-                <select 
-                    class="form-control" name="genero-rel" id="genero"
-                    formControlName="generoCuidador"
-                    [class.input-invalid]="isInvalid('parent.generoCuidador')"
-                >
-                    <option value="">Género</option>
-                    <option value="M">Masculino</option>
-                    <option value="F">Femenino</option>
-                </select>
-                <small
-                    class="message-error"
-                    *ngIf="isInvalid('parent.generoCuidador')"
-                >Género no seleccionado</small>
-            </div>
-            <div class="form-group">
-                <label for="phone">Teléfono:</label>
-                <input class="form-control" 
-                    id="phone" 
-                    type="tel" 
-                    placeholder="012-345-6789"
-                    formControlName="telefono"
-                    [class.input-invalid]="isInvalid('parent.telefono')"
-                >
+            <fieldset class="field-set" formGroupName="infoPerson">
+                <p class="section-title">Datos personales</p>
+                <div class="form-group">
+                    <label for="name">Nombre(s):</label>
+                    <input 
+                        class="form-control" 
+                        id="name" type="text" 
+                        placeholder="Ingresa tu nombre"
+                        formControlName="nombre" 
+                        [class.input-invalid]="isInvalid('infoPerson.nombre')"
+                    >
+                    <small 
+                        class="message-error"
+                        *ngIf="isInvalid('infoPerson.nombre')"
+                    >Formato inválido</small>
+                </div>
+                <div class="form-group">
+                    <label for="ap_paterno">Apellido paterno:</label>
+                    <input 
+                        class="form-control" 
+                        id="ap_paterno" type="text" 
+                        placeholder="Apellido paterno"
+                        formControlName ="appaterno"
+                        [class.input-invalid]="isInvalid('infoPerson.appaterno')"
+                    >
+                    <small 
+                        class="message-error"
+                        *ngIf="isInvalid('infoPerson.appaterno')"
+                    >Formato inválido</small>
+                </div>
+                <div class="form-group">
+                    <label for="ap_materno">Apellido materno:</label>
+                    <input 
+                        class="form-control" 
+                        id="ap_materno" type="text" 
+                        placeholder="Apellido materno"
+                        formControlName="apmaterno"
+                        [class.input-invalid]="isInvalid('infoPerson.apmaterno')"
+                    >
+                    <small 
+                        class="message-error"
+                        *ngIf="isInvalid('infoPerson.apmaterno')"
+                    >Formato inválido</small>
+                </div>
+                <div class="form-group">
+                    <label for="date">Fecha de nacimiento:</label>
+                    <input 
+                        class="form-control" 
+                        id="date" type="date"
+                        formControlName="fnacimiento"
+                        [class.input-invalid]="isInvalid('infoPerson.fnacimiento')"
+                    >
+                    <small 
+                        class="message-error"
+                        *ngIf="isInvalid('infoPerson.fnacimiento')"
+                    >Fecha inválida</small>
+                </div>
+                <div class="form-group">
+                    <label for="genero">Género:</label>
+                    <select 
+                        class="form-control" 
+                        id="genero" 
+                        formControlName="genero"
+                        [class.input-invalid]="isInvalid('infoPerson.genero')"
+                    >
+                        <option value="">Género</option>
+                        <option value="M">Masculino</option>
+                        <option value="F">Femenino</option>
+                    </select>
+                    <small 
+                        class="message-error"
+                        *ngIf="isInvalid('infoPerson.genero')"
+                    >Género no seleccionado</small>
+                </div>
+            </fieldset>
+    
+            <fieldset class="field-set" formGroupName="account">
+                <p class="section-title">Datos de usuario</p>
+                <div class="form-group">
+                    <label for="user">Usuario:</label>
+                    <input 
+                        class="form-control" 
+                        id="user" type="text" 
+                        placeholder="Nombre de usuario" 
+                        formControlName="usuario"
+                        [class.input-invalid]="isInvalid('account.usuario')"
+                    >
+                    <small 
+                        class="message-error"
+                        *ngIf="isInvalid('account.usuario') && !usernameExist()"
+                    >Nombre de usuario muy corto</small>
+                    <small 
+                        class="message-error"
+                        *ngIf="usernameExist()"
+                    >El usuario ya existe</small>
+                </div>
+                <div class="form-group">
+                    <label for="pass">Contraseña:</label>
+                    <input 
+                        class="form-control" 
+                        id="pass" 
+                        type="password" 
+                        placeholder="Contraseña"
+                        formControlName="contrasenia"
+                        [class.input-invalid]="isInvalid('account.contrasenia')"
+                    >
+                    <small 
+                        class="message-error"
+                        *ngIf="isInvalid('account.contrasenia')"
+                    >Contraseña muy corta</small>
+                </div>
+                <div class="form-group">
+                    <label for="verify-pass">Confirmar contraseña:</label>
+                    <input 
+                        class="form-control" 
+                        id="verify-pass" 
+                        type="password" 
+                        placeholder="Contraseña"
+                        formControlName="contraseniaConfirm"
+                        [class.input-invalid]="isInvalid('account.contraseniaConfirm')"
+                    >
+                    <small 
+                        class="message-error"
+                        *ngIf="passwordsNotMatch() && isInvalid('account.contraseniaConfirm')"
+                    >
+                        Contraseñas no coinciden
+                    </small>
+                </div>
+            </fieldset>
+    
+            <fieldset class="field-set" formGroupName="parent">
+                <p class="section-title">Datos de cuidadores</p>
+                <div class="form-group">
+                    <label for="tutor">Cuidador primario:</label>
+                    <input class="form-control" 
+                        id="tutor" type="text" 
+                        placeholder="Nombre completo"
+                        formControlName="nombreCuidador"
+                        [class.input-invalid]="isInvalid('parent.nombreCuidador')"
+                    >
                     <small
                         class="message-error"
-                        *ngIf="isInvalid('parent.telefono')"
+                        *ngIf="isInvalid('parent.nombreCuidador')"
                     >Formato inválido</small>
-            </div>
-        </fieldset>
-        <input 
-            type="submit" 
-            value="Ingresar" 
-            class="btn btn-submit" 
-            [disabled]="form.invalid"
-            (click)="onSubmit()"
-        >
-    </div>
-
-    <!-- <div>
-        {{ form.value | json }}
-    </div> -->
-</form>
+                </div>
+                <div class="form-group">
+                    <label for="relationship">Parentesco:</label>
+                    <select 
+                        class="form-control" 
+                        name="genero" 
+                        id="relationship"
+                        formControlName="parentesco"
+                        [class.input-invalid]="isInvalid('parent.parentesco')"
+                    >
+                        <option value="">Seleccionar parentesco</option>
+                        <option value="madre">Madre</option>
+                        <option value="padre">Padre</option>
+                        <option value="madrastra">Madrastra</option>
+                        <option value="padrastro">Padrastro</option>
+                        <option value="abuela">Abuela</option>
+                        <option value="abuelo">Abuelo</option>
+                        <option value="hermana">Hermana</option>
+                        <option value="hermano">Hermano</option>
+                        <option value="tía">Tía</option>
+                        <option value="tío">Tío</option>
+                        <option value="Prima">Prima</option>
+                        <option value="Primo">Primo</option>
+                        <option value="otro">Otro</option>
+                    </select>
+                    <small
+                        class="message-error"
+                        *ngIf="isInvalid('parent.parentesco')"
+                    >Parentesco no seleccionado</small>
+                </div>
+                <div class="form-group">
+                    <label for="genero-rel">Género:</label>
+                    <select 
+                        class="form-control" name="genero-rel" id="genero"
+                        formControlName="generoCuidador"
+                        [class.input-invalid]="isInvalid('parent.generoCuidador')"
+                    >
+                        <option value="">Género</option>
+                        <option value="M">Masculino</option>
+                        <option value="F">Femenino</option>
+                    </select>
+                    <small
+                        class="message-error"
+                        *ngIf="isInvalid('parent.generoCuidador')"
+                    >Género no seleccionado</small>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Teléfono:</label>
+                    <input class="form-control" 
+                        id="phone" 
+                        type="tel" 
+                        placeholder="012-345-6789"
+                        formControlName="telefono"
+                        [class.input-invalid]="isInvalid('parent.telefono')"
+                    >
+                        <small
+                            class="message-error"
+                            *ngIf="isInvalid('parent.telefono')"
+                        >Formato inválido</small>
+                </div>
+            </fieldset>
+            <input 
+                type="submit" 
+                value="Ingresar" 
+                class="btn btn-submit" 
+                [disabled]="form.invalid"
+                (click)="onSubmit()"
+            >
+        </div>
+    
+        <!-- <div>
+            {{ form.value | json }}
+        </div> -->
+    </form>
+</div>

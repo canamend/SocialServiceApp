@@ -6,7 +6,7 @@ import { AuthService } from "../core/services/auth.service";
 import { REGEX_NAME } from "./form.regex";
 
 // Validators for name control
-export const nameValidators = [
+export const stringValidators = [
   Validators.required, 
   Validators.pattern(REGEX_NAME)
 ];

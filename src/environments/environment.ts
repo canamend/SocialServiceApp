@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'https://morning-caverns-09401.herokuapp.com'
+  // baseUrl: 'https://morning-caverns-09401.herokuapp.com'
+  baseUrl: 'http://localhost:8080'
 };
 
 /*

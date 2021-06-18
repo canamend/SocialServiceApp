@@ -1,4 +1,4 @@
-export interface Admin {
+export interface AdminPost {
     nombre: string;
     appaterno: string;
     apmaterno: string;

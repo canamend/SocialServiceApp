@@ -12,7 +12,7 @@ const routes: Routes = [
     children: [
       { path: 'home', component: MainComponent },               //  admin/home
       { path: 'settest', component: SetTestComponent },         //  admin/settest
-      { path: 'infopatient', component: InfoPatientComponent }, //  admin/infopatient
+      { path: 'infopatient/:username', component: InfoPatientComponent }, //  admin/infopatient
       { path: '**', pathMatch: 'full', redirectTo: 'home' }
     ]
   },

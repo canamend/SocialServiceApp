@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Account } from '../../core/models/account.interface';
-import { Admin } from "../../core/models/admin.interface";
+import { AdminPost } from "../../core/models/admin.interface";
 
 import { AuthService } from '../../core/services/auth.service';
 import { accountForm, infoPersonForm } from '../../shared/form.model';
@@ -67,7 +67,7 @@ export class RegisterAdminComponent{
     // Create account by values from the form
     const account: Account = this.form.value.account;
     account.rol = 'admin_rol';
-    const admin: Admin = this.form.value.infoPerson;
+    const admin: AdminPost = this.form.value.infoPerson;
 
     // Init animation
     Swal.fire({
@@ -85,13 +85,13 @@ export class RegisterAdminComponent{
         icon: 'success'
       });
       this.router.navigateByUrl('auth/login');
+      this.form.reset();
 
     } catch (error) {
-      await Swal.fire({ 
+      Swal.fire({ 
         title: 'Hubo un error al realizar el registro',
         icon: 'error'
       });
-      console.log(error);
     }
   }
 

@@ -84,10 +84,11 @@ export class RegisterAdminComponent{
         title: 'Registro realizado con éxito',
         icon: 'success'
       });
-      this.router.navigateByUrl('auth/login');
       this.form.reset();
+      this.router.navigateByUrl('auth/login');
 
     } catch (error) {
+      console.log(error)
       Swal.fire({ 
         title: 'Hubo un error al realizar el registro',
         icon: 'error'

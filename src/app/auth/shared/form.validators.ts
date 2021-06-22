@@ -19,6 +19,7 @@ export const accountValidators = [
 
 // To validate date
 export function ValidateDate(control: AbstractControl) {
+  if(!control.value) return null;
   const dateArray = control.value.split('-');
 
   const year: number = parseInt(dateArray[0]);
@@ -46,7 +47,6 @@ export class AsyncValidators{
   static notExistsUsername(authService: AuthService): AsyncValidatorFn {
     return (control: AbstractControl): Observable<ValidationErrors | null> => {
       const username = control.value;
-      console.log('Username',username);
       return authService.getAccount(username)
         .pipe( 
           map( account => account? ({accountExists: true}): null )

@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormBuilder } from "@angular/forms";
+import { FormGroup, FormBuilder, FormControl } from "@angular/forms";
+import { Router } from '@angular/router';
+import { Carer } from 'src/app/core/models/carer.interface';
+import Swal from 'sweetalert2';
+import { Account } from '../../core/models/account.interface';
+import { PatientPost } from '../../core/models/patient-post.interface';
 import { AuthService } from '../../core/services/auth.service';
 
 import { accountForm, infoPersonForm, parentForm } from '../../shared/form.model';
@@ -15,7 +20,8 @@ export class RegisterPatientComponent{
 
   constructor(
     private fb: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) { 
     this._initForm();
   }
@@ -26,10 +32,12 @@ export class RegisterPatientComponent{
       {
         infoPerson: infoPersonForm,
         account: accountForm(this.authService),
-        parent: parentForm
+        parent: parentForm,
+        expediente: new FormControl('')
       }
     )
   }
+  
 
   getControl(controlName: string){
     return this.form.get(controlName);
@@ -58,10 +66,49 @@ export class RegisterPatientComponent{
     return this.form.get('account').errors?.noSonIguales;
   }
   
-  onSubmit(){
-    // console.log('Nombre: ',this.form.controls['nombre'].value);
-     console.log('Activo');
-     
+  async onSubmit(){
+    // Create account by values from the form
+    const account: Account = this.form.value.account;
+    account.rol = 'paciente_rol';
+    const patient: PatientPost = this.form.value.infoPerson;
+    patient.usuario = account.usuario;
+    const { nombreCuidador, parentesco, generoCuidador, telefono } = this.form.value.parent;
+    const carer: Carer = {
+      nombre_completo: nombreCuidador,
+      parentesco,
+      genero: generoCuidador,
+      telefono
+    }
+
+    // Init animation
+    Swal.fire({
+      title: 'Realizando el registro',
+      allowOutsideClick: false,
+      text: 'Espere por favor'
+    });
+    Swal.showLoading();
+
+    try {
+      await this.authService.signUpAccount(account);
+      const response = await this.authService.addCuidador(carer);
+      patient.id_cuidador = response.insertId;
+      patient.no_expediente = this.form.value.expediente;
+      
+      await this.authService.signUpPatient(patient);
+      await Swal.fire({
+        title: 'Registro realizado con éxito',
+        icon: 'success'
+      });
+      this.form.reset();
+      this.router.navigateByUrl('auth/login');
+
+    } catch (error) {
+      console.log(error)
+      Swal.fire({ 
+        title: 'Hubo un error al realizar el registro',
+        icon: 'error'
+      });
+    }
   }
 
 

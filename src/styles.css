@@ -236,9 +236,15 @@ body{
 .main-admin .form-control{
     border: 1px solid rgba(0, 0, 0, 0.301);
 }
+.main-admin form{
+    position: relative;
+}
 .main-admin form .title{
     margin-top: .5rem;
     font-size: 1.5rem;
+}
+.main-admin form .message-error{
+    margin-bottom: 80px;
 }
 .items{
     width: 100%;

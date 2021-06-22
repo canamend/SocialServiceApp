@@ -10,6 +10,8 @@ import { AdminPost } from '../models/admin.interface';
 import { Account } from '../models/account.interface';
 import { LoginResponse } from '../models/login-response.interface';
 import { TokenService } from '../../../core/services/token.service';
+import { PatientPost } from '../models/patient-post.interface';
+import { Carer } from 'src/app/core/models/carer.interface';
 
 @Injectable()
 export class AuthService {
@@ -30,6 +32,19 @@ export class AuthService {
   signUpAdmin(admin: AdminPost, usuario: string){
     const endpoint = `${this.baseUrl}/admin`;
     return this._http.post(endpoint, { ...admin, usuario}).toPromise();
+  }
+
+  signUpPatient(patient: PatientPost){
+    const endpoint = `${this.baseUrl}/patient`;
+    return this._http.post(endpoint, { ...patient}).toPromise();
+  } 
+  addCuidador(carer: Carer): Promise<any>{
+    const endpoint = `${this.baseUrl}/cuidador`;
+    const body = {
+      ...carer,
+      nombre: carer.nombre_completo    
+    }
+    return this._http.post(endpoint,body).toPromise();
   }
 
   /**

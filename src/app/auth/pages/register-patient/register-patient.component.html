@@ -2,13 +2,14 @@
 
     <h1 class="title">Registro de paciente</h1>
     <form class="form form-register" [formGroup]="form">
-        <div class="form-container">
+        <div class="form-container" >
             <div class="form-group">
                 <label for="security-code">Número de expediente:</label>
                 <input 
                     class="form-control" 
                     id="security-code" type="text" 
                     placeholder="Expediente"
+                    formControlName="expediente"
                 >
             </div>
             <fieldset class="field-set" formGroupName="infoPerson">

@@ -1,7 +1,8 @@
 <loading-overlay *ngIf="isLoading"></loading-overlay>
 <div class="container main-admin">
     <div>
-        <h2 class="title">Pacientes registrados</h2>
+        <h2 class="title" *ngIf="patients?.length>0">Pacientes registrados</h2>
+        <h2 class="title" *ngIf="patients?.length==0">No hay pacientes registrados</h2>
         <ul class="items">
             <li class="item" *ngFor="let patient of patients">
                 <div class="item-info">
@@ -17,9 +18,5 @@
             </li>
         </ul>
     </div>
-    <form>
-        <h2 class="title">Nuevo expediente</h2>
-        <input class="form-control" type="text" placeholder="Ingrese No. expediente">
-        <button class="btn btn-submit">Registrar expediente</button>
-    </form>
+    <app-add-expediente [adminId]="admin?.id_admin"></app-add-expediente>
 </div>

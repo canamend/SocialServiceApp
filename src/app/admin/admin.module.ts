@@ -15,6 +15,8 @@ import { LoadingOverlayComponent } from "../shared/components/loading-overlay/lo
 
 // pipes
 import { AvatarPatientPipe } from '../shared/pipes/avatar-patient.pipe';
+import { AddExpedienteComponent } from './components/add-expediente/add-expediente.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -25,11 +27,13 @@ import { AvatarPatientPipe } from '../shared/pipes/avatar-patient.pipe';
     InfoPatientComponent, 
     LayoutComponent,
     LoadingOverlayComponent,
-    AvatarPatientPipe
+    AvatarPatientPipe,
+    AddExpedienteComponent,
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
+    FormsModule
   ],
   providers: [
     AdminService,

@@ -1,0 +1,25 @@
+<form #form="ngForm">
+    <h2 class="title">Nuevo expediente</h2>
+    <input 
+        class="form-control" 
+        type="text"
+        placeholder="Ingrese No. expediente"
+        name="expediente"
+        required
+        [(ngModel)]="expediente"
+        #exp="ngModel"
+    >
+    <small 
+        class="message-error"
+        *ngIf="exp.invalid && (exp.dirty || exp.touched)"
+    >Formato inválido</small>
+    <button 
+        class="btn btn-submit"
+        (click)="onSubmit(form)"
+        *ngIf="!isLoading"
+    >Registrar expediente</button>
+    <div
+        *ngIf="isLoading"
+        class="spinner"
+    ></div>
+</form>

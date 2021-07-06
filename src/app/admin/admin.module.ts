@@ -14,10 +14,9 @@ import { LayoutComponent } from './layout/layout/layout.component';
 import { LoadingOverlayComponent } from "../shared/components/loading-overlay/loading-overlay.component";
 
 // pipes
-import { AvatarPatientPipe } from '../shared/pipes/avatar-patient.pipe';
 import { AddExpedienteComponent } from './components/add-expediente/add-expediente.component';
 import { FormsModule } from '@angular/forms';
-
+import { AvatarPatientPipe } from "../shared/pipes/avatar-patient.pipe";
 
 @NgModule({
   declarations: [
@@ -27,8 +26,8 @@ import { FormsModule } from '@angular/forms';
     InfoPatientComponent, 
     LayoutComponent,
     LoadingOverlayComponent,
-    AvatarPatientPipe,
     AddExpedienteComponent,
+    AvatarPatientPipe
   ],
   imports: [
     CommonModule,

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PatientService } from 'src/app/core/services/patient.service';
 
 @Component({
   selector: 'app-header-patient',
@@ -8,11 +9,20 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderPatientComponent implements OnInit {
 
   menuActive = false;
-  constructor() { }
+  gender: string;
+  constructor(
+    private patientService: PatientService
+  ) { }
 
   ngOnInit(): void {
-
+    this.getGender();
   }
+
+  async getGender(){
+    const { genero } = await this.patientService.getPatient();
+    this.gender = genero;
+  }
+  
   onClickMenu(){
     this.menuActive = !this.menuActive;
     let navbarMenu = document.querySelector('.navbar-menu');

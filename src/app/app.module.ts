@@ -3,15 +3,15 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
-
-// Components
-import { AppComponent } from './app.component';
-import { TokenService } from "./core/services/token.service";
 import { TokenInterceptor } from "./core/interceptors/token.interceptor";
+import { TokenService } from "./core/services/token.service";
+
+import { AppComponent } from './app.component';
+import { AuthGuard } from './core/guards/auth.guard';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -24,7 +24,8 @@ import { TokenInterceptor } from "./core/interceptors/token.interceptor";
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
-    }
+    },
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

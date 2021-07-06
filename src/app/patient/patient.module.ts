@@ -8,6 +8,7 @@ import { HomePatientComponent } from './pages/home-patient/home-patient.componen
 import { LayoutComponent } from './layout/layout/layout.component';
 import { TestComponent } from './pages/test/test.component';
 
+import { AvatarPatientPipe } from '../shared/pipes/avatar-patient.pipe'
 
 
 @NgModule({

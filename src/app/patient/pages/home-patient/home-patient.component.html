@@ -1,7 +1,9 @@
-<div class="container">
+<loading-overlay *ngIf="isLoading"></loading-overlay>
+
+<div class="container" *ngIf="patient">
     <div class="info-patient">
-      <h1>Nombre completo del paciente</h1>
-      <h2>No. Expediente: <span>123456</span></h2>
+      <h1>{{ patient.nombre}} {{patient.ap_paterno}} {{patient.ap_materno}}</h1>
+      <h2>No. Expediente:  <span> {{ patient.no_expediente }} </span></h2>
     </div>
     <section >
       <div class="container-tasks patient">

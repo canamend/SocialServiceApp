@@ -8,10 +8,12 @@ import { TokenService } from "./core/services/token.service";
 
 import { AppComponent } from './app.component';
 import { AuthGuard } from './core/guards/auth.guard';
+import { ImagenPipe } from './shared/pipes/imagen.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
+    ImagenPipe,
   ],
   imports: [
     BrowserModule,

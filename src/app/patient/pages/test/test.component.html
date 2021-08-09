@@ -1,41 +1,66 @@
-<div class="container test-container">
+<loading-overlay *ngIf="isLoading"></loading-overlay>
+<div class="container test-container" *ngIf="test">
     <p class="test-intructions">Selecciona la frecuencia con la que te ocurren las siguientes situaciones. No hay respuestas buenas ni malas.</p>
-    <div class="test-content">
-        <h2 class="test-name title">Escala de Ansiedad de <span>Nombre de test</span></h2>
+    <div class="test-content" *ngIf="questions[con]; else finalizar">
+        <h2 class="test-name title"> {{ test.nombre }} </h2>
         <div class="test-question-container">
-            <h3 class="question-text">Hay cosas que me preocupan</h3>
+            <h3 class="question-text"> {{ questions[con].nombre }} </h3>
             <figure class="question-image-container">
-                <img class="img" src="assets/images/questions/preocupacion.png" alt="">
+                <img class="img" src="assets/images/questions/{{questions[con].id_pregunta}}.jpg" alt="">
             </figure>
         </div>  
         <div class="container-answers">
             <div class="container-answer">
-                <figure class="answer-image">
-                    <img class="img" src="assets/images/answers/nunca.png" alt="nunca">
+                <figure class="answer-image" 
+                        [ngClass]="{
+                            'answer-image-primary': opcionActiva === 'nunca'
+                         }">
+                    <img class="img" src="assets/images/answers/nunca.png" alt="nunca" (click)="checkAnswer('nunca')">
                 </figure>
                 <p class="answer-text">Nunca</p>
             </div>
             <div class="container-answer">
-                <figure class="answer-image">
-                    <img class="img" src="assets/images/answers/aveces.png" alt="A veces">
+                <figure class="answer-image" 
+                        [ngClass]="{
+                            'answer-image-primary': opcionActiva === 'veces'
+                        }">
+                    <img class="img" src="assets/images/answers/aveces.png" alt="A veces" (click)="checkAnswer('veces')">
                 </figure>
                 <p class="answer-text">A veces</p>
             </div>
             <div class="container-answer">
-                <figure class="answer-image">
-                    <img class="img" src="assets/images/answers/muchasveces.png" alt="nunca">
+                <figure class="answer-image" 
+                        [ngClass]="{
+                            'answer-image-primary': opcionActiva === 'muchas'
+                        }">
+                    <img class="img" src="assets/images/answers/muchasveces.png" alt="muchas veces" (click)="checkAnswer('muchas')">
                 </figure>
                 <p class="answer-text">Muchas veces</p>
             </div>
             <div class="container-answer">
-                <figure class="answer-image">
-                    <img class="img" src="assets/images/answers/siempre.png" alt="nunca">
+                <figure class="answer-image" 
+                        [ngClass]="{
+                            'answer-image-primary': opcionActiva === 'siempre'
+                        }">
+                    <img class="img" src="assets/images/answers/siempre.png" alt="siempre" (click)="checkAnswer('siempre')">
                 </figure>
                 <p class="answer-text">Siempre</p>
             </div>
+            <!--<div class="button-next-container" *ngIf="con > questions.length-1; else finalizar">
+                <input type= "button" value= "Siguiente" class="btn btn-primary btn-submit" (click)="siguiente()">
+            </div> -->
             <div class="button-next-container">
-                <input type= "button" value= "Siguiente" class="btn btn-primary btn-submit">
+                <input type= "button" value= "Siguiente" class="btn btn-primary btn-submit" (click)="siguiente()">
             </div>
+                   
         </div>
     </div>
+
+    
+    <ng-template #finalizar>
+        <div class="button-end-container">
+            <input type= "button" value= "Finalizar" class="btn btn-primary btn-submit" (click)="concluir()">
+        </div>
+    </ng-template>
+
 </div>

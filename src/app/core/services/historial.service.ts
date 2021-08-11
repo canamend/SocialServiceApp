@@ -2,11 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { environment } from 'src/environments/environment';
+import { Historial } from '../models/historial.interface';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TestService {
+export class HistorialService {
   baseUrl = environment.baseUrl;
   
   constructor(
@@ -14,9 +15,9 @@ export class TestService {
   ) { }
   
 
-  getTest(): Promise<any>{
-    const endpoint = `${this.baseUrl}/test/2`;
-    return this._http.get(endpoint).toPromise();
+  getHistorial(): Promise<Historial[]>{
+    const endpoint = `${this.baseUrl}/historial/6`;
+    return this._http.get<Historial[]>(endpoint).toPromise();
   }
 
 }

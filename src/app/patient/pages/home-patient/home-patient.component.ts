@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Historial } from 'src/app/core/models/historial.interface';
 import { Patient } from 'src/app/core/models/users.interface';
+import { HistorialService } from 'src/app/core/services/historial.service';
 import { PatientService } from 'src/app/core/services/patient.service';
 
 @Component({
@@ -11,6 +13,7 @@ import { PatientService } from 'src/app/core/services/patient.service';
 export class HomePatientComponent implements OnInit{
   patient: Patient;
   isLoading: boolean;
+  historial: Historial[];
   constructor(
     private router: Router,
     private patientService: PatientService

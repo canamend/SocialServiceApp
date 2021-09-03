@@ -16,14 +16,12 @@
             <th class="table-head">Fecha</th>
           </thead>
           <tbody>
-            <tr class="table-row task" (click)="onAnswerTest()">
-              <td class="table-column">Test de <span>...</span></td>
-              <td class="table-column"> dd/mm/aaaa </td>
-            </tr>
-            <tr class="table-row task" (click)="onAnswerTest()">
-              <td class="table-column">Test de <span>...</span></td>
-              <td class="table-column">dd/mm/aaaa</td>
-            </tr>
+            <ng-container *ngFor= "let hist of historial">
+              <tr *ngIf="hist.puntaje===null" class="table-row task" (click)="onAnswerTest(hist.id_test, hist.id_historial, hist.id_paciente)">
+                <td class="table-column"> Test de {{ hist.id_test | nombreTest }} </td>
+                <td class="table-column"> {{ hist.f_asignacion | date }} </td> <!--  Agregar el router link para que al dar click se active el test necesario  -->
+              </tr>
+            </ng-container>  
           </tbody>
         </table>
       </div>
@@ -36,32 +34,22 @@
         <thead>
           <th class="table-head">Test</th>
           <th class="table-head">Puntaje</th>
-          <th class="table-head">Nivel</th>
-          <th class="table-head">Fecha</th>
+          <th class="table-head">Fecha de asignación</th>
+          <th class="table-head">Fecha de resolución</th>
           <th class="table-head">Psicólogo</th>
         </thead>
         <tbody>
-          <tr class="table-row info">
-              <td data-th="Test:" class="table-column">Nombre de test <span></span></td>
-              <td data-th="Puntaje:" class="table-column"> # puntos</td>
-              <td data-th="Nivel:" class="table-column">Nivel Obtenido</td>
-              <td data-th="Fecha:" class="table-column">dd/mm/aaaa</td>
-              <td data-th="Psicólogo:" class="table-column">Nombre de Psicólogo</td>
-          </tr>
-          <tr class="table-row info">
-              <td data-th="Test:" class="table-column">Nombre de test <span></span></td>
-              <td data-th="Puntaje:" class="table-column"> # puntos</td>
-              <td data-th="Nivel:" class="table-column">Nivel Obtenido</td>
-              <td data-th="Fecha:" class="table-column">dd/mm/aaaa</td>
-              <td data-th="Psicólogo:" class="table-column">Nombre de Psicólogo</td>
-          </tr>
-          <tr class="table-row info">
-              <td data-th="Test:" class="table-column">Nombre de test <span></span></td>
-              <td data-th="Puntaje:" class="table-column"> # puntos</td>
-              <td data-th="Nivel:" class="table-column">Nivel Obtenido</td>
-              <td data-th="Fecha:" class="table-column">dd/mm/aaaa</td>
-              <td data-th="Psicólogo:" class="table-column">Nombre de Psicólogo</td>
-          </tr>
+          <ng-container *ngFor= "let hist of historial">
+            <tr *ngIf="hist.puntaje!==null" class="table-row info">
+                <td data-th="Test:" class="table-column"> Test de {{ hist.id_test | nombreTest }} <span></span></td>
+                <td data-th="Puntaje:" class="table-column"> {{hist.puntaje}} </td>
+                <td data-th="Fecha de asignación:" class="table-column">{{hist.f_asignacion | date }}</td>
+                <td data-th="Fecha de resolución:" class="table-column">{{hist.f_fin | date }}</td>
+                <ng-container *ngIf="admins">  
+                <td data-th="Psicólogo:" class="table-column"> {{ hist.id_admin | psicNombre : admins }} </td>
+                </ng-container>
+            </tr>
+          </ng-container>  
         </tbody>
       </table>
     </section>

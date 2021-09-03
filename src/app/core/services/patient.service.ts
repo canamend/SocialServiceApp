@@ -6,6 +6,7 @@ import { HttpHeaders } from '@angular/common/http';
 // Models
 import { Patient } from '../models/users.interface';
 import { Carer } from '../models/carer.interface';
+import { Historial } from '../models/historial.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -35,11 +36,12 @@ export class PatientService {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json');
     return headers;
-  }
+  } 
   
   addExpediente(expediente: string, id_admin: number, disponible: number){
     const endpoint = `${this.baseUrl}/expediente`;
     const body = { expediente, id_admin, disponible };    
     return this._http.post(endpoint,body,{ headers: this.headers}).toPromise();
   }
+  
 }

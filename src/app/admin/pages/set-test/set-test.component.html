@@ -1,57 +1,36 @@
+<loading-overlay *ngIf="isLoading"></loading-overlay>
+
 <div class="container set-test">
-    <h2 class="title">Asignar test: <Span>Nombre de test</Span></h2>
+    <h2 class="title">Asignar test: </h2>
+
+    <ul>
+        <ng-container *ngFor= "let test of tests">
+            <label class="title"> <input class= "checkbox" type= "checkbox"> {{ test.nombre }}  </label>
+        </ng-container> 
+    </ul> 
+
     <div class= "object-container">
         <a id="select-all" class="select-all" href="#">Seleccionar todos</a>
-    </div>   
+    </div>
+
+    
     <ul class="items">
-        <li class="item">
-            <div class="item-info">
-                <figure>
-                    <img class="img" src="assets/images/avatars/girl.png" alt="icono de usuario">
-                </figure>
-                <h3 class="item-name">Nombre completo de paciente</h3>
-            </div>
-            <input class= "check-box" type= "checkbox">
-        </li>
-        <li class="item">
-            <div class="item-info">
-                <figure>
-                    <img class="img" src="assets/images/avatars/girl.png" alt="icono de usuario">
-                </figure>
-                <h3 class="item-name">Nombre completo de paciente</h3>
-            </div>
-            <input class= "check-box" type= "checkbox">
-        </li>
-        <li class="item">
-            <div class="item-info">
-                <figure>
-                    <img class="img" src="assets/images/avatars/girl.png" alt="icono de usuario">
-                </figure>
-                <h3 class="item-name">Nombre completo de paciente</h3>
-            </div>
-            <input class= "check-box" type= "checkbox">
-        </li>
-        <li class="item">
-            <div class="item-info">
-                <figure>
-                    <img class="img" src="assets/images/avatars/girl.png" alt="icono de usuario">
-                </figure>
-                <h3 class="item-name">Nombre completo de paciente</h3>
-            </div>
-            <input class= "check-box" type= "checkbox">
-        </li>
-        <li class="item">
-            <div class="item-info">
-                <figure>
-                    <img class="img" src="assets/images/avatars/girl.png" alt="icono de usuario">
-                </figure>
-                <h3 class="item-name">Nombre completo de paciente</h3>
-            </div>
-            <input class= "check-box" type= "checkbox">
-        </li>
+        <ng-container *ngFor= "let patient of patients">
+            <li class="item">
+                <div class="item-info">
+                    <figure>
+                        <img class="img" src="assets/images/avatars/girl.png" alt="icono de usuario">
+                    </figure>
+                    <h3 class="item-name">{{ patient.nombre }}  {{ patient.ap_paterno}} {{ patient.ap_materno }}</h3>
+                </div>
+                <input class= "check-box" type= "checkbox">
+            </li>
+        </ng-container>
     </ul>
+
+
     <div class="object-container">
-        <button class="btn btn-primary btn-submit">Asignar</button>
+        <button class="btn btn-primary btn-submit" (click)="onClickAsignar()">Asignar</button>
     </div>
     
 </div> 

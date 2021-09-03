@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 
 import { environment } from 'src/environments/environment'
 import { Admin, Patient } from '../models/users.interface';
+import { AdminAux } from '../models/admin.interface';
 
 @Injectable()
 export class AdminService {
@@ -17,5 +18,9 @@ export class AdminService {
     return this._http.get<Admin>(endpoint).toPromise();
   }
 
+  getAdmins(): Promise<AdminAux[]>{
+    const endpoint = `${this.baseUrl}/admin/all`;
+    return this._http.get<AdminAux[]>(endpoint).toPromise();
+  }
 
 }

@@ -8,7 +8,8 @@ import { HomePatientComponent } from './pages/home-patient/home-patient.componen
 import { LayoutComponent } from './layout/layout/layout.component';
 import { TestComponent } from './pages/test/test.component';
 
-import { AvatarPatientPipe } from '../shared/pipes/avatar-patient.pipe'
+import { SharedModule } from '../shared/shared.module';
+
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { AvatarPatientPipe } from '../shared/pipes/avatar-patient.pipe'
   ],
   imports: [
     CommonModule,
-    PatientRoutingModule
+    PatientRoutingModule,
+    SharedModule
   ]
 })
 export class PatientModule { }

@@ -17,6 +17,7 @@ import { LoadingOverlayComponent } from "../shared/components/loading-overlay/lo
 import { AddExpedienteComponent } from './components/add-expediente/add-expediente.component';
 import { FormsModule } from '@angular/forms';
 import { AvatarPatientPipe } from "../shared/pipes/avatar-patient.pipe";
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { AvatarPatientPipe } from "../shared/pipes/avatar-patient.pipe";
   imports: [
     CommonModule,
     AdminRoutingModule,
-    FormsModule
+    FormsModule,
+    SharedModule
   ],
   providers: [
     AdminService,

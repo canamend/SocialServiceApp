@@ -9,6 +9,11 @@ export interface Test {
 export interface Answers {
     "1": Type1[];
 }
+export interface TestInfo {
+    id_test:   number;
+    nombre:    string;
+    enfoque:   string;
+}
 
 export interface Type1 {
     id_respuesta:    number;

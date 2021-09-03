@@ -1,5 +1,17 @@
 <loading-overlay *ngIf="isLoading"></loading-overlay>
+<!--
+<div class="alert error">
+    <input type="checkbox" id="alert1"/>
+<label class="close" title="close" for="alert1">
+  <i class="icon-remove"></i>
+</label>
+    <p class="inner">
+        <strong>Warning!</strong> No se encontró nada con el término ...
+    </p>
+</div>
+-->
 <div class="container main-admin">
+
     <div>
         <h2 class="title" *ngIf="patients?.length>0">Pacientes registrados</h2>
         <h2 class="title" *ngIf="patients?.length==0">No hay pacientes registrados</h2>

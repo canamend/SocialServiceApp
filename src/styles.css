@@ -246,6 +246,49 @@ body{
 .main-admin form .message-error{
     margin-bottom: 80px;
 }
+
+.alert .inner {
+    display: block;
+    padding: 6px;
+    margin: 6px;
+    border-radius: 3px;
+    border: 1px solid rgb(180,180,180);
+    background-color: rgb(212,212,212);
+}
+
+.alert .close {
+    float: right;
+    margin: 3px 12px 0px 0px;
+    cursor: pointer;
+}
+
+.alert .inner,.alert .close {
+    color: rgb(88,88,88);
+}
+
+.alert input {
+    display: none;
+}
+
+.alert input:checked ~ * {
+    animation-name: dismiss,hide;
+    animation-duration: 300ms;
+    animation-iteration-count: 1;
+    animation-timing-function: ease;
+    animation-fill-mode: forwards;
+    animation-delay: 0s,100ms;
+}
+
+.alert.error .inner {
+    border: 1px solid rgb(238,211,215);
+    background-color: rgb(242,222,222);
+    text-align:center;
+}
+
+.alert.error .inner,.alert.error .close {
+    color: rgb(185,74,72);
+}
+
 .items{
     width: 100%;
 }

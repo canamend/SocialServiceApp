@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -8,19 +8,31 @@ import { TokenService } from "./core/services/token.service";
 
 import { AppComponent } from './app.component';
 import { AuthGuard } from './core/guards/auth.guard';
-import { ImagenPipe } from './shared/pipes/imagen.pipe';
+
+//cambiar el locale de la app
+import localeEs from '@angular/common/locales/es-MX';
+import { registerLocaleData } from '@angular/common';
+import { AdminService } from './core/services/admin.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+registerLocaleData( localeEs );
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ImagenPipe,
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule 
   ],
   providers: [
+    AdminService,
+    {
+      provide: LOCALE_ID,
+      useValue: 'es-MX'
+    },
     TokenService,
     {
       provide: HTTP_INTERCEPTORS,

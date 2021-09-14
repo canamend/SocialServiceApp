@@ -3,7 +3,7 @@
 <div class="container" *ngIf="patient">
     <div class="container-info-patient">
         <figure>
-            <img class="img" [src]="patient?.genero|avatarPatient" alt="avatar de paciente">
+            <img class="img" [src]="patient.genero | avatarPatient" alt="icono de usuario">
         </figure>
         <div class="info-patient">
             <h1>{{patient?.nombre}} {{patient?.ap_paterno}} {{patient?.ap_materno}}</h1>
@@ -17,7 +17,7 @@
                 <th class="table-head">Test</th>
                 <th class="table-head">Puntaje</th>
                 <th class="table-head">Nivel</th>
-                <th class="table-head">Fecha</th>
+                <th class="table-head">Fecha de asignación</th>
                 <th class="table-head">Psicólogo</th>
             </thead>
             <tbody>
@@ -26,7 +26,7 @@
                         <tr *ngIf="hist.puntaje!==null" class="table-row task">
                             <td data-th="Test:" class="table-column"> Test de {{ hist.id_test | nombreTest }} </td>
                             <td data-th="Puntaje:" class="table-column"> {{ hist.puntaje }} </td>
-                            <td data-th="Nivel:" class="table-column">Nivel Obtenido</td>
+                            <td data-th="Nivel:" class="table-column"> {{ hist.puntaje | nivelAnsiedad }} </td>
                             <td data-th="Fecha:" class="table-column"> {{ hist.f_asignacion | date }} </td>
                             <td data-th="Psicólogo:" class="table-column"> {{ hist.id_admin | psicNombre : admins }} </td>
                         </tr>
@@ -35,6 +35,15 @@
             </tbody>
         </table>
     </section>
+
+    <div>
+        <p>
+            <select name="miselect" [(ngModel)]="seleccionado" (change)="seleccionarTest()">
+                <option [value]="item.id_test" *ngFor="let item of tests">{{item.id_test | nombreTest }}</option>
+            </select>
+        </p>
+        <button class="btn btn-primary btn-submit" (click)="asignarTest()">Asignar</button>
+    </div>
 
     <section class="aditional-info">
         <div class="container-tasks">
@@ -47,7 +56,7 @@
                 <tbody>
                     <ng-container *ngFor= "let hist of historial">
                         <tr *ngIf="hist.puntaje===null" class="table-row info">
-                            <td class="table-column">Test de {{ hist.id_historial | nombreTest }} </td>
+                            <td class="table-column">Test de {{ hist.id_test | nombreTest }} </td>
                             <td class="table-column">{{ hist.f_asignacion | date }}</td>
                         </tr>
                 </ng-container>

@@ -23,4 +23,9 @@ export class AdminService {
     return this._http.get<AdminAux[]>(endpoint).toPromise();
   }
 
+  getAdmin(): Promise<Admin>{
+    const endpoint = `${this.baseUrl}/admin/`;
+    return this._http.get<Admin>(endpoint).toPromise();
+  }
+
 }

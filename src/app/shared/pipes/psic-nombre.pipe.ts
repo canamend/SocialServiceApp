@@ -9,12 +9,11 @@ export class PsicNombrePipe implements PipeTransform {
   transform( id_admin: number, admins:AdminAux[] ): String {
 
     for(var i=0; i<admins.length; i++){
-      if(id_admin == admins[i].id_admin ){
+      if(id_admin === admins[i].id_admin ){
         return `${admins[i].nombre}  ${admins[i].ap_paterno}`;
-      }else{
-        return 'Psicologo no registrado';
       }
     }
+    return 'Psicologo no registrado';
 
   }
 }

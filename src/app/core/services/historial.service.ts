@@ -15,6 +15,11 @@ export class HistorialService {
     private _http: HttpClient
   ) { }
   
+  postHistorial(id_test : number, id_paciente : number, id_admin : number, f_asignacion : string){
+    const endpoint = `${this.baseUrl}/historial`
+    const body = { id_test, id_paciente, id_admin, f_asignacion }
+    return this._http.post(endpoint,body,{ headers: this.headers}).toPromise();
+  }
 
   getHistorial(patient_id: number): Promise<Historial[]>{
     const endpoint = `${this.baseUrl}/historial/${patient_id}`;

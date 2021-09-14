@@ -3,34 +3,37 @@
 <div class="container set-test">
     <h2 class="title">Asignar test: </h2>
 
-    <ul>
-        <ng-container *ngFor= "let test of tests">
-            <label class="title"> <input class= "checkbox" type= "checkbox"> {{ test.nombre }}  </label>
-        </ng-container> 
-    </ul> 
+    <div>
+        <p>
+            <select name="miselect" [(ngModel)]="seleccionado" (change)="seleccionarTest()">
+                <option [value]="item.id_test" *ngFor="let item of tests">{{item.id_test | nombreTest }}</option>
+            </select>
+        </p>
+    </div>
 
-    <div class= "object-container">
+    <div class="object-container">
         <a id="select-all" class="select-all" href="#">Seleccionar todos</a>
     </div>
 
-    
+
     <ul class="items">
-        <ng-container *ngFor= "let patient of patients">
+        <ng-container *ngFor="let patient of patients">
             <li class="item">
                 <div class="item-info">
                     <figure>
                         <img class="img" src="assets/images/avatars/girl.png" alt="icono de usuario">
                     </figure>
-                    <h3 class="item-name">{{ patient.nombre }}  {{ patient.ap_paterno}} {{ patient.ap_materno }}</h3>
+                    <h3 class="item-name">{{ patient.nombre }} {{ patient.ap_paterno}} {{ patient.ap_materno }}</h3>
                 </div>
-                <input class= "check-box" type= "checkbox">
+                <input class="check-box" type="checkbox" (change)="onChange(patient.id_paciente, $event.target.checked)">
             </li>
         </ng-container>
     </ul>
 
 
     <div class="object-container">
-        <button class="btn btn-primary btn-submit" (click)="onClickAsignar()">Asignar</button>
+        <button class="btn btn-primary btn-submit" (click)="asignarTest()">Asignar</button>
+        <pre>Form values: {{formPatient.value | json}}</pre>
     </div>
-    
-</div> 
+
+</div>

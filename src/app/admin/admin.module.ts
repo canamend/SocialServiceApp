@@ -18,6 +18,7 @@ import { AddExpedienteComponent } from './components/add-expediente/add-expedien
 import { FormsModule } from '@angular/forms';
 import { AvatarPatientPipe } from "../shared/pipes/avatar-patient.pipe";
 import { SharedModule } from '../shared/shared.module';
+import { NombreTestPipe } from '../shared/pipes/nombre-test.pipe';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { SharedModule } from '../shared/shared.module';
     LayoutComponent,
     LoadingOverlayComponent,
     AddExpedienteComponent,
-    AvatarPatientPipe
+    AvatarPatientPipe,
   ],
   imports: [
     CommonModule,
@@ -38,7 +39,8 @@ import { SharedModule } from '../shared/shared.module';
   ],
   providers: [
     AdminService,
-    PatientService
+    PatientService,
+    NombreTestPipe
   ],
   exports:[LayoutComponent]
 })

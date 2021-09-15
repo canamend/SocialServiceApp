@@ -6,11 +6,26 @@
     	</figure>
 		<div class="search responsive">
 
-			<input class="form-control search-input" type="search" placeholder="Buscar paciente">
-			
-			<figure class="icon-search-container">
-				<img class="img" src="assets/images/icons/lupa.png" alt="Avatar">
-			</figure>
+			<p>
+				<input type="text" class="form-control search-input" placeholder="Buscar paciente..." id="domTextElement">
+			</p>
+			  
+				<ng-container *ngIf="inputValue!==''">
+					<ng-container *ngFor="let patient of patients | filter : 'nombre' : inputValue : includes">
+						{{patientName.nombre}} {{ patientName.ap_paterno }} {{ patientName.ap_materno }}
+					</ng-container>
+				</ng-container>
+
+			 <button type="button"  (click)="getValueInput()">
+				<figure class="icon-search-container">
+					<img class="img" src="assets/images/icons/lupa.png" alt="Avatar">
+				</figure>
+			</button>
+
+			<!--<ng-container *ngIf="inputValue">
+				<p>{{ patients | filter : inputValue : true }}</p>
+			</ng-container> -->
+
 		</div>
       	<ul class="navbar-menu">
         	<li><a (click)="closeMenu()" class="navbar-link" routerLinkActive="navbar-link-active" routerLink="/admin/home">Inicio</a></li>

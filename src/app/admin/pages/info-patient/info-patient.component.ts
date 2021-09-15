@@ -64,7 +64,6 @@ export class InfoPatientComponent implements OnInit {
       this.tests = await this.testService.getTests();
       this.admin =await this.adminService.getAdmin();
       this.isLoading = false;
-      console.log(this.admins);
     } catch (error) {
       this.router.navigate(['admin/home']);
     }

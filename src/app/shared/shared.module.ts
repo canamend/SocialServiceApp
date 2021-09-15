@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { NombreTestPipe } from './pipes/nombre-test.pipe';
 import { PsicNombrePipe } from './pipes/psic-nombre.pipe';
 import { NivelAnsiedadPipe } from './pipes/nivel-ansiedad.pipe';
+import { FiltroPacientePipe } from './pipes/filtro-paciente.pipe';
 
 
 
@@ -15,13 +16,15 @@ import { NivelAnsiedadPipe } from './pipes/nivel-ansiedad.pipe';
   declarations: [
     NombreTestPipe,
     PsicNombrePipe,
-    NivelAnsiedadPipe
+    NivelAnsiedadPipe,
+    FiltroPacientePipe
   ],
   exports: [
     CommonModule,
     NombreTestPipe,
     PsicNombrePipe,
-    NivelAnsiedadPipe
+    NivelAnsiedadPipe,
+    FiltroPacientePipe
   ],
   imports: [
     CommonModule,

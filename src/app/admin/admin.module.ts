@@ -19,6 +19,8 @@ import { FormsModule } from '@angular/forms';
 import { AvatarPatientPipe } from "../shared/pipes/avatar-patient.pipe";
 import { SharedModule } from '../shared/shared.module';
 import { NombreTestPipe } from '../shared/pipes/nombre-test.pipe';
+import { ListaPacientesComponent } from './components/lista-pacientes/lista-pacientes.component';
+import { InputPatientsComponent } from './components/input-patients/input-patients.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import { NombreTestPipe } from '../shared/pipes/nombre-test.pipe';
     LoadingOverlayComponent,
     AddExpedienteComponent,
     AvatarPatientPipe,
+    ListaPacientesComponent,
+    InputPatientsComponent,
   ],
   imports: [
     CommonModule,

@@ -3,13 +3,13 @@
 <div class="container set-test">
     <h2 class="title">Asignar test: </h2>
 
-    <div>
-        <p>
-            <select name="miselect" [(ngModel)]="seleccionado" (change)="seleccionarTest()">
-                <option [value]="item.id_test" *ngFor="let item of tests">{{item.id_test | nombreTest }}</option>
-            </select>
-        </p>
-    </div>
+
+            <div>
+                <select name="miselect" [(ngModel)]="seleccionado" (change)="seleccionarTest()" class="custom-select">
+                    <option value="0">Selecciona un test:</option>
+                    <option [value]="item.id_test" *ngFor="let item of tests">{{item.id_test | nombreTest }}</option>
+                </select>
+            </div>
 
     <div class="object-container">
         <a id="select-all" class="select-all" href="#">Seleccionar todos</a>
@@ -21,7 +21,7 @@
             <li class="item">
                 <div class="item-info">
                     <figure>
-                        <img class="img" src="assets/images/avatars/girl.png" alt="icono de usuario">
+                        <img class="img" [src]="patient.genero | avatarPatient" alt="icono de usuario">
                     </figure>
                     <h3 class="item-name">{{ patient.nombre }} {{ patient.ap_paterno}} {{ patient.ap_materno }}</h3>
                 </div>
@@ -33,7 +33,6 @@
 
     <div class="object-container">
         <button class="btn btn-primary btn-submit" (click)="asignarTest()">Asignar</button>
-        <pre>Form values: {{formPatient.value | json}}</pre>
     </div>
 
 </div>

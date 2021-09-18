@@ -1,10 +1,16 @@
 interface User {
-    nombre: String;
+    nombre: string;
     ap_paterno: string;
     ap_materno: string;
     genero: string;
     f_nacimiento: string;
     usuario: string;
+}
+
+export interface dataPatient{
+    nombre:string;
+    id: number;
+    username: string;
 }
 
 export interface Admin extends User{

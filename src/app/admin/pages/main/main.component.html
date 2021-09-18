@@ -1,33 +1,12 @@
 <loading-overlay *ngIf="isLoading"></loading-overlay>
-<!--
-<div class="alert error">
-    <input type="checkbox" id="alert1"/>
-<label class="close" title="close" for="alert1">
-  <i class="icon-remove"></i>
-</label>
-    <p class="inner">
-        <strong>Warning!</strong> No se encontró nada con el término ...
-    </p>
-</div>
--->
+
 <div class="container main-admin">
 
     <div>
         <h2 class="title" *ngIf="patients?.length>0">Pacientes registrados</h2>
         <h2 class="title" *ngIf="patients?.length==0">No hay pacientes registrados</h2>
         <ul class="items">
-            <li class="item" *ngFor="let patient of patients">
-                <div class="item-info">
-                    <figure>
-                        <img class="img" [src]="patient.genero | avatarPatient" alt="icono de usuario">
-                    </figure>
-                    <h3 class="item-name">{{patient.nombre}} {{patient.ap_paterno}} {{patient.ap_materno}}</h3>
-                    <figure class="no-responsive">
-                        <img class="img" src="assets/images/icons/calendario.png" alt="estado de test">
-                    </figure>
-                </div>
-                <button class="btn btn-primary" (click)="onClickVerMas(patient.usuario)">Ver mas</button>
-            </li>
+            <app-lista-pacientes [patients]="patients"></app-lista-pacientes>
         </ul>
     </div>
     <app-add-expediente [adminId]="admin?.id_admin"></app-add-expediente>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Patient } from 'src/app/core/models/users.interface';
+import { dataPatient, Patient } from 'src/app/core/models/users.interface';
 import { PatientService } from 'src/app/core/services/patient.service';
 
 @Component({
@@ -10,11 +10,18 @@ import { PatientService } from 'src/app/core/services/patient.service';
 })
 export class NavbarComponent implements OnInit {
   menuActive = false;
-  inputValue : string = '';
   patients: Patient[];
+  patientsEncontrados: Patient[];
   isLoading : boolean;
-  patientsNames : string[];
+  patientName : string;
+  patient : dataPatient;
+  patientsNames: dataPatient[];
+  sugerenciasPacientes: dataPatient[]
   searchValue : string;
+  nombre: string = '';
+  hayError: boolean= false;
+  encontro: boolean;
+  mostrarSugerencias:boolean=false;
 
   constructor(
     private route: ActivatedRoute,
@@ -25,13 +32,17 @@ export class NavbarComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    const username = this.route.snapshot.params['username'];
+    this.fetchData(username);
   }
 
-  async fetchData(){
+  async fetchData(username: string){
     try {
       this.patients = await this.patientService.getPatients();
+      this.patientsNames = new Array();
       for(var i=0; i<this.patients.length;i++){
-        this.patientsNames[i]=`${this.patients[i].nombre} ${this.patients[i].ap_paterno} ${this.patients[i].ap_materno}`;
+        this.patientName = `${this.patients[i].nombre} ${this.patients[i].ap_paterno} ${this.patients[i].ap_materno}`;
+        this.patientsNames.push( {nombre: this.patientName, id: this.patients[i].id_paciente, username:  this.patients[i].usuario } );
       }
       
       console.log(this.patientsNames);
@@ -58,12 +69,60 @@ export class NavbarComponent implements OnInit {
     navbarMenu.classList.remove('show');
     navbarMenu.classList.add('hidden');
     this.menuActive = false;
+    this.patientsEncontrados = []; /////verificar si no desaparecen los pacientes buscados
   }
 
-  getValueInput() {
-    this.inputValue = (<HTMLInputElement>document.getElementById("domTextElement")).value; 
-    //document.getElementById("valueInput").innerHTML = inputValue; 
-    console.log(this.inputValue);
+  async buscarPaciente( nombre: string) {
+    this.patientsEncontrados = new Array();
+    this.nombre = nombre;
+    this.encontro = false;
+    for(var i=0; i<this.patientsNames.length;i++){
+      if(this.patientsNames[i].nombre.includes(this.nombre)){
+        this.encontro = true;
+        console.log(this.patientsNames[i].nombre);
+        this.patientsEncontrados.push(await this.patientService.getPatient(this.patientsNames[i].username));
+      }
+    }
+    if(!this.encontro){
+      this.hayError=true;
+      this.patientsEncontrados = [];
+    }else{
+      this.hayError=false;
+    }
+    this.mostrarSugerencias=false;
+  }
+
+  onClickVerMas(username: string){
+    this.router.navigate(['/admin/infopatient', username])
+    this.patientsEncontrados = [];
+    this.mostrarSugerencias=false;
+  }
+
+  async sugerencias( nombre: string){
+    
+      this.hayError = false; 
+      this.encontro = false;
+      this.nombre = nombre;
+      if(nombre!==''){
+        this.sugerenciasPacientes = new Array();
+        for(var i=0; i<this.patientsNames.length;i++){
+          if(this.patientsNames[i].nombre.includes(this.nombre)){
+            this.encontro = true;
+            this.sugerenciasPacientes.push({nombre:this.patientsNames[i].nombre, id:this.patientsNames[i].id, username:this.patientsNames[i].username});
+            this.sugerenciasPacientes = this.sugerenciasPacientes.splice(0,5)
+          }
+        }
+        if(!this.encontro){
+          this.hayError=true;
+          this.sugerenciasPacientes = [];
+          this.mostrarSugerencias=false;
+        }else{
+          this.hayError=false;
+          this.mostrarSugerencias=true;
+        }
+      }else{
+        this.mostrarSugerencias=false;
+      }
   }
   
 }

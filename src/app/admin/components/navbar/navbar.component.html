@@ -1,40 +1,50 @@
+<loading-overlay *ngIf="isLoading"></loading-overlay>
 <header>
     <nav class="navbar">
         <figure class="menu-hamburguer" (click)="onClickMenu()">
         	<img *ngIf="!menuActive" class="img" src="assets/images/icons/menu.svg" alt="menu">
         	<img *ngIf="menuActive" class="img" src="assets/images/icons/close.svg" alt="menu">
     	</figure>
+
 		<div class="search responsive">
-
-			<p>
-				<input type="text" class="form-control search-input" placeholder="Buscar paciente..." id="domTextElement">
-			</p>
-			  
-				<ng-container *ngIf="inputValue!==''">
-					<ng-container *ngFor="let patient of patients | filter : 'nombre' : inputValue : includes">
-						{{patientName.nombre}} {{ patientName.ap_paterno }} {{ patientName.ap_materno }}
-					</ng-container>
-				</ng-container>
-
-			 <button type="button"  (click)="getValueInput()">
-				<figure class="icon-search-container">
-					<img class="img" src="assets/images/icons/lupa.png" alt="Avatar">
-				</figure>
-			</button>
-
-			<!--<ng-container *ngIf="inputValue">
-				<p>{{ patients | filter : inputValue : true }}</p>
-			</ng-container> -->
-
+			<app-input-patients
+				(onSend)="buscarPaciente( $event )"
+				(onDebounce)="sugerencias( $event )">
+			</app-input-patients>
+					
+			<figure class="icon-search-container">
+				<img class="img" src="assets/images/icons/lupa.png" alt="Avatar">
+			</figure>
+			
+			<ul *ngIf="mostrarSugerencias"
+				class="list-group responsive">
+				<li *ngFor="let paciente of sugerenciasPacientes"
+					class="list-group-item responsive"
+					(click)="onClickVerMas(paciente.username)">
+					{{ paciente.nombre }}
+				</li>
+			</ul>
 		</div>
+		
       	<ul class="navbar-menu">
         	<li><a (click)="closeMenu()" class="navbar-link" routerLinkActive="navbar-link-active" routerLink="/admin/home">Inicio</a></li>
         	<li><a (click)="closeMenu()" class="navbar-link" routerLinkActive="navbar-link-active" routerLink="/admin/settest">Asignar Test</a></li>
         	<li class="search no-responsive">
-            	<input class="form-control search-input" type="search" placeholder="Buscar paciente">
+            	<app-input-patients
+					(onSend)="buscarPaciente( $event )"
+					(onDebounce)="sugerencias( $event )">
+				</app-input-patients>
             	<figure class="icon-search-container">
             	    <img class="img" src="assets/images/icons/lupa.png" alt="Avatar">
             	</figure>
+				<ul *ngIf="mostrarSugerencias"
+					class="list-group no-responsive">
+					<li *ngFor="let paciente of sugerenciasPacientes"
+						class="list-group-item"
+						(click)="onClickVerMas(paciente.username)">
+						{{ paciente.nombre }}
+					</li>
+				</ul>
         	</li>
         	<li >
             	<figure class="avatar-container no-responsive">
@@ -44,3 +54,20 @@
       	</ul>
     </nav>
 </header>
+
+
+<div *ngIf="hayError; else mostrarBusqueda" class="alert error">
+	<input type="checkbox" id="alert1"/>
+<label class="close" title="close" for="alert1">
+  <i class="icon-remove"></i>
+</label>
+	<p class="inner">
+		<strong>Warning!</strong> No se encontró nada con el término {{ this.nombre }}
+	</p>
+</div>
+
+<ng-template #mostrarBusqueda>
+	<div *ngIf="patientsEncontrados" class="container">
+		<app-lista-pacientes [patients]="patientsEncontrados"></app-lista-pacientes>
+	</div>
+  </ng-template>

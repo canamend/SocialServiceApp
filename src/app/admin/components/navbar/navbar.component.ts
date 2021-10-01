@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { dataPatient, Patient } from 'src/app/core/models/users.interface';
 import { PatientService } from 'src/app/core/services/patient.service';
@@ -22,16 +23,21 @@ export class NavbarComponent implements OnInit {
   hayError: boolean= false;
   encontro: boolean;
   mostrarSugerencias:boolean=false;
+  newUsername: string ='';
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private patientService: PatientService
+    private patientService: PatientService,
+    private location: Location
   ) {
     this.isLoading = true;
    }
 
   ngOnInit(): void {
+    /*this.activeRoute.queryParams.subscribe(queryParams => {
+      // do something with the query params
+    });*/
     const username = this.route.snapshot.params['username'];
     this.fetchData(username);
   }
@@ -74,7 +80,7 @@ export class NavbarComponent implements OnInit {
 
   async buscarPaciente( nombre: string) {
     this.patientsEncontrados = new Array();
-    this.nombre = nombre;
+    this.nombre = nombre.toUpperCase();
     this.encontro = false;
     for(var i=0; i<this.patientsNames.length;i++){
       if(this.patientsNames[i].nombre.includes(this.nombre)){
@@ -91,18 +97,30 @@ export class NavbarComponent implements OnInit {
     }
     this.mostrarSugerencias=false;
   }
-
+////////////////////////////pendiente a modificacion//////////////
   onClickVerMas(username: string){
-    this.router.navigate(['/admin/infopatient', username])
+    this.route.params.subscribe(routeParams => {
+      this.router.navigate([`/admin/infopatient/${routeParams}`]);
+    });
     this.patientsEncontrados = [];
     this.mostrarSugerencias=false;
   }
+
+  load(username: string, paramsUser: string){
+    //this.router.navigate(['/admin/infopatient', username]);
+    console.log(this.router.url);
+    this.router.url.replace(paramsUser,username);
+    console.log(this.router.url);
+    console.log(username);
+    this.router.navigate([`/admin/infopatient/${username}`]);
+  }
+  ////////////////////////////fin de pendiente a modificacion//////////////
 
   async sugerencias( nombre: string){
     
       this.hayError = false; 
       this.encontro = false;
-      this.nombre = nombre;
+      this.nombre = nombre.toUpperCase();
       if(nombre!==''){
         this.sugerenciasPacientes = new Array();
         for(var i=0; i<this.patientsNames.length;i++){

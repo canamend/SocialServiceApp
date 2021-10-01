@@ -37,11 +37,12 @@
     </section>
 
     <div>
-        <p>
-            <select name="miselect" [(ngModel)]="seleccionado" (change)="seleccionarTest()">
-                <option [value]="item.id_test" *ngFor="let item of tests">{{item.id_test | nombreTest }}</option>
-            </select>
-        </p>
+            <div>
+                <select name="miselect" [(ngModel)]="seleccionado" (change)="seleccionarTest()" class="custom-select">
+                    <option value="0">Selecciona un test:</option>
+                    <option [value]="item.id_test" *ngFor="let item of tests">{{item.id_test | nombreTest }}</option>
+                </select>
+            </div>
         <button class="btn btn-primary btn-submit" (click)="asignarTest()">Asignar</button>
     </div>
 

@@ -29,6 +29,7 @@ export class InputPatientsComponent /*implements OnInit*/ {
   
   buscarPaciente(){
     this.onSend.emit( this.nombre );
+    this.nombre='';
   }
 
   teclaPresionada( ){

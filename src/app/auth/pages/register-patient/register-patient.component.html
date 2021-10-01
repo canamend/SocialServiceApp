@@ -22,6 +22,7 @@
                         placeholder="Ingresa tu nombre"
                         formControlName="nombre" 
                         [class.input-invalid]="isInvalid('infoPerson.nombre')"
+                        value=""  onkeyup="javascript:this.value=this.value.toUpperCase();"
                     >
                     <small 
                         class="message-error"
@@ -36,6 +37,7 @@
                         placeholder="Apellido paterno"
                         formControlName ="appaterno"
                         [class.input-invalid]="isInvalid('infoPerson.appaterno')"
+                        value=""  onkeyup="javascript:this.value=this.value.toUpperCase();"
                     >
                     <small 
                         class="message-error"
@@ -50,6 +52,7 @@
                         placeholder="Apellido materno"
                         formControlName="apmaterno"
                         [class.input-invalid]="isInvalid('infoPerson.apmaterno')"
+                        value=""  onkeyup="javascript:this.value=this.value.toUpperCase();"
                     >
                     <small 
                         class="message-error"

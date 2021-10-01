@@ -68,6 +68,17 @@
 
 <ng-template #mostrarBusqueda>
 	<div *ngIf="patientsEncontrados" class="container">
-		<app-lista-pacientes [patients]="patientsEncontrados"></app-lista-pacientes>
+		<li class="item" *ngFor="let patient of patientsEncontrados">
+			<div class="item-info">
+				<figure>
+					<img class="img" [src]="patient.genero | avatarPatient" alt="icono de usuario">
+				</figure>
+				<h3 class="item-name">{{patient.nombre}} {{patient.ap_paterno}} {{patient.ap_materno}}</h3>
+				<figure class="no-responsive">
+					<img class="img" src="assets/images/icons/calendario.png" alt="estado de test">
+				</figure>
+			</div>
+			<button class="btn btn-primary" (click)="onClickVerMas(patient.usuario)">Ver mas</button>
+		</li>
 	</div>
   </ng-template>

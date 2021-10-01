@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { Patient } from 'src/app/core/models/users.interface';
 
 @Component({
@@ -6,12 +7,14 @@ import { Patient } from 'src/app/core/models/users.interface';
   templateUrl: './lista-pacientes.component.html',
   styleUrls: ['./lista-pacientes.component.css']
 })
-export class ListaPacientesComponent implements OnInit {
+export class ListaPacientesComponent {
 
-  @Input() patients: Patient[]=[]; 
-  constructor() { }
+  @Input() patients: Patient[]=[];
+  constructor(
+    private router: Router
+  ) { }
 
-  ngOnInit(): void {
+  onClickVerMas(username: string){
+    this.router.navigate(['/admin/infopatient', username])
   }
-
 }

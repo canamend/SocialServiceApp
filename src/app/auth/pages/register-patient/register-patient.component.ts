@@ -39,6 +39,13 @@ export class RegisterPatientComponent{
   }
   
 
+  /*mayus(e) {
+    e.value = e.value.toUpperCase();
+  }
+  onKey(event: any) { // without type info
+    this.values += event.target.value + ' | ';
+  }*/
+
   getControl(controlName: string){
     return this.form.get(controlName);
   }
@@ -70,6 +77,7 @@ export class RegisterPatientComponent{
     // Create account by values from the form
     const account: Account = this.form.value.account;
     account.rol = 'paciente_rol';
+
     const patient: PatientPost = this.form.value.infoPerson;
     patient.usuario = account.usuario;
     const { nombreCuidador, parentesco, generoCuidador, telefono } = this.form.value.parent;
@@ -89,11 +97,13 @@ export class RegisterPatientComponent{
     Swal.showLoading();
 
     try {
-      await this.authService.signUpAccount(account);
       const response = await this.authService.addCuidador(carer);
       patient.id_cuidador = response.insertId;
       patient.no_expediente = this.form.value.expediente;
-      
+      patient.nombre = patient.nombre.toUpperCase();
+      patient.apmaterno = patient.apmaterno.toUpperCase();
+      patient.appaterno = patient.appaterno.toUpperCase();
+      await this.authService.signUpAccount(account);
       await this.authService.signUpPatient(patient);
       await Swal.fire({
         title: 'Registro realizado con éxito',

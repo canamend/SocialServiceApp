@@ -12,6 +12,7 @@ import { SetTestComponent } from './pages/set-test/set-test.component';
 import { InfoPatientComponent } from './pages/info-patient/info-patient.component';
 import { LayoutComponent } from './layout/layout/layout.component';
 import { LoadingOverlayComponent } from "../shared/components/loading-overlay/loading-overlay.component";
+import { InputPatientsComponent } from './components/input-patients/input-patients.component';
 
 // pipes
 import { AddExpedienteComponent } from './components/add-expediente/add-expediente.component';
@@ -19,8 +20,6 @@ import { FormsModule } from '@angular/forms';
 import { AvatarPatientPipe } from "../shared/pipes/avatar-patient.pipe";
 import { SharedModule } from '../shared/shared.module';
 import { NombreTestPipe } from '../shared/pipes/nombre-test.pipe';
-import { ListaPacientesComponent } from './components/lista-pacientes/lista-pacientes.component';
-import { InputPatientsComponent } from './components/input-patients/input-patients.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +31,6 @@ import { InputPatientsComponent } from './components/input-patients/input-patien
     LoadingOverlayComponent,
     AddExpedienteComponent,
     AvatarPatientPipe,
-    ListaPacientesComponent,
     InputPatientsComponent,
   ],
   imports: [

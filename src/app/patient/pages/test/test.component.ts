@@ -7,6 +7,7 @@ import { TestService } from 'src/app/core/services/test.service';
 
 import Swal from "sweetalert2" ;
 import { PatientService } from '../../../core/services/patient.service';
+import { Answer } from '../../../core/models/test.interface';
 
 @Component({
   selector: 'app-test',
@@ -16,6 +17,7 @@ import { PatientService } from '../../../core/services/patient.service';
 })
 export class TestComponent implements OnInit {
   questions: Question [];
+  answers: { [key: string]: Answer[]};
   test: Test;
   id_test: number;
   id_paciente: number;
@@ -57,6 +59,7 @@ export class TestComponent implements OnInit {
       this.isLoading = true;
       this.test = await this.testService.getTest(this.id_test);
       this.questions = this.test.questions; 
+      this.answers = this.test.answers;
       this.isLoading= false;
       
     } catch (error) {
@@ -84,6 +87,7 @@ export class TestComponent implements OnInit {
   }
 
   siguiente(){
+    console.log(this.answers);
     if(this.opcionActiva.length>0){
       if( this.con < this.questions.length){
         this.con++;

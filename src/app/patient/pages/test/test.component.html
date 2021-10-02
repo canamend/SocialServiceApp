@@ -10,15 +10,16 @@
             </figure>
         </div>  
         <div class="container-answers">
-            <div class="container-answer">
+            <div class="container-answer" *ngFor="let answer of answers[questions[con].tipo_respuestas]">
                 <figure class="answer-image" 
                         [ngClass]="{
                             'answer-image-primary': opcionActiva === 'nunca'
                          }">
-                    <img class="img" src="assets/images/answers/nunca.png" alt="nunca" (click)="checkAnswer('nunca')">
+                    <img class="img" src="assets/images/answers/{{ answer.ulr_imagen }}" alt="nunca" (click)="checkAnswer('nunca')">
                 </figure>
-                <p class="answer-text">Nunca</p>
+                <p class="answer-text"> {{answer.opcion}} </p>
             </div>
+            <!-- 
             <div class="container-answer">
                 <figure class="answer-image" 
                         [ngClass]="{
@@ -46,9 +47,7 @@
                 </figure>
                 <p class="answer-text">Siempre</p>
             </div>
-            <!--<div class="button-next-container" *ngIf="con > questions.length-1; else finalizar">
-                <input type= "button" value= "Siguiente" class="btn btn-primary btn-submit" (click)="siguiente()">
-            </div> -->
+            -->            
             <div class="button-next-container">
                 <input type= "button" value= "Siguiente" class="btn btn-primary btn-submit" (click)="siguiente()">
             </div>

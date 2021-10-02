@@ -3,19 +3,10 @@ export interface Test {
     nombre:    string;
     enfoque:   string;
     questions: Question[];
-    answers:   Answers;
+    answers:   { [key: string]: Answer[] };
 }
 
-export interface Answers {
-    "1": Type1[];
-}
-export interface TestInfo {
-    id_test:   number;
-    nombre:    string;
-    enfoque:   string;
-}
-
-export interface Type1 {
+export interface Answer {
     id_respuesta:    number;
     opcion:          string;
     puntos:          number;
@@ -31,4 +22,10 @@ export interface Question {
     id_test:         number;
     tipo_respuestas: number;
     ulr_imagen:      string;
+}
+
+export interface TestInfo {
+    id_test:   number;
+    nombre:    string;
+    enfoque:   string;
 }

@@ -17,7 +17,7 @@ import { InputPatientsComponent } from './components/input-patients/input-patien
 // pipes
 import { AddExpedienteComponent } from './components/add-expediente/add-expediente.component';
 import { FormsModule } from '@angular/forms';
-import { AvatarPatientPipe } from "../shared/pipes/avatar-patient.pipe";
+import { AvatarPatientPipe } from '../shared/pipes/avatar-patient.pipe';
 import { SharedModule } from '../shared/shared.module';
 import { NombreTestPipe } from '../shared/pipes/nombre-test.pipe';
 
@@ -30,7 +30,6 @@ import { NombreTestPipe } from '../shared/pipes/nombre-test.pipe';
     LayoutComponent,
     LoadingOverlayComponent,
     AddExpedienteComponent,
-    AvatarPatientPipe,
     InputPatientsComponent,
   ],
   imports: [
@@ -42,7 +41,8 @@ import { NombreTestPipe } from '../shared/pipes/nombre-test.pipe';
   providers: [
     AdminService,
     PatientService,
-    NombreTestPipe
+    NombreTestPipe,
+    AvatarPatientPipe
   ],
   exports:[LayoutComponent]
 })

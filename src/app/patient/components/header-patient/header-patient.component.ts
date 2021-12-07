@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PatientService } from 'src/app/core/services/patient.service';
+import { Router } from '@angular/router';
+import { TokenService } from 'src/app/core/services/token.service';
 
 @Component({
   selector: 'app-header-patient',
@@ -11,7 +13,9 @@ export class HeaderPatientComponent implements OnInit {
   menuActive = false;
   gender: string;
   constructor(
-    private patientService: PatientService
+    private patientService: PatientService,
+    private router: Router,
+    private auth: TokenService
   ) { }
 
   ngOnInit(): void {
@@ -40,6 +44,11 @@ export class HeaderPatientComponent implements OnInit {
     navbarMenu.classList.remove('show');
     navbarMenu.classList.add('hidden');
     this.menuActive = false;
+  }
+
+  cerrarSesion(){
+    this.auth.removeToken();
+    this.router.navigate(['/auth/login']);
   }
 
 }

@@ -268,7 +268,9 @@ body{
 }
 
 /*ADMIN*/
-
+.navbar-link{
+    cursor: pointer;
+}
 
 .custom-select{
     position: relative;

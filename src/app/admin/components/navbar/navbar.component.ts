@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { dataPatient, Patient } from 'src/app/core/models/users.interface';
 import { PatientService } from 'src/app/core/services/patient.service';
+import { TokenService } from 'src/app/core/services/token.service';
 
 @Component({
   selector: 'app-navbar',
@@ -27,7 +28,8 @@ export class NavbarComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private patientService: PatientService
+    private patientService: PatientService,
+    private auth: TokenService
   ) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.isLoading = true;
@@ -125,6 +127,11 @@ export class NavbarComponent implements OnInit {
       }else{
         this.mostrarSugerencias=false;
       }
+  }
+
+  cerrarSesion(){
+    this.auth.removeToken();
+    this.router.navigate(['/auth/login']);
   }
   
 }

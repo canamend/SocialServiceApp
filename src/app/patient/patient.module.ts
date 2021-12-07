@@ -10,6 +10,7 @@ import { TestComponent } from './pages/test/test.component';
 
 import { SharedModule } from '../shared/shared.module';
 
+import { AvatarPatientPipe } from '../shared/pipes/avatar-patient.pipe';
 
 
 @NgModule({
@@ -17,12 +18,16 @@ import { SharedModule } from '../shared/shared.module';
     HeaderPatientComponent, 
     HomePatientComponent, 
     LayoutComponent, 
-    TestComponent
+    TestComponent,
   ],
   imports: [
     CommonModule,
     PatientRoutingModule,
     SharedModule
-  ]
+  ],
+  providers:[
+    AvatarPatientPipe
+  ],
+  exports:[LayoutComponent]
 })
 export class PatientModule { }

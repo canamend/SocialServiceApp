@@ -25,6 +25,7 @@ export class TestComponent implements OnInit {
   con: number = 0;
   score: number;
   final: number;
+  opcionActivaAux: string;
   opcionActiva: string = '';
   id_historial: number;
   myDate: Date;
@@ -68,33 +69,38 @@ export class TestComponent implements OnInit {
     }
   }
 
-  checkAnswer(response: string){
-    switch(response){
-      case 'nunca':
+  checkAnswer(response: string, puntos: number){
+    /*switch(response){
+      case 'Nunca':
         this.score=0;
         break;
-      case 'veces':
+      case 'A veces':
         this.score=1;
         break;
-      case 'muchas':
+      case 'Muchas veces':
         this.score=2;
         break;       
-      case 'siempre':
+      case 'Siempre':
         this.score=3;
         break;  
-    }
-    this.opcionActiva = response;
+    } */
+    this.score=puntos;
+    this.opcionActivaAux = response;
+    this.opcionActiva = response.toString();
+
   }
 
   siguiente(){
-    console.log(this.answers);
+    
     if(this.opcionActiva.length>0){
       if( this.con < this.questions.length){
         this.con++;
         this.final+=this.score;
       }
       this.opcionActiva='';
+      this.opcionActivaAux='';
     }
+    console.log(this.final);
   }
 
   async concluir(){

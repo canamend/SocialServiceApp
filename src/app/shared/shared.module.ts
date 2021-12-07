@@ -5,6 +5,7 @@ import { NombreTestPipe } from './pipes/nombre-test.pipe';
 import { PsicNombrePipe } from './pipes/psic-nombre.pipe';
 import { NivelAnsiedadPipe } from './pipes/nivel-ansiedad.pipe';
 import { FiltroPacientePipe } from './pipes/filtro-paciente.pipe';
+import { AvatarPatientPipe } from './pipes/avatar-patient.pipe';
 
 
 
@@ -17,14 +18,16 @@ import { FiltroPacientePipe } from './pipes/filtro-paciente.pipe';
     NombreTestPipe,
     PsicNombrePipe,
     NivelAnsiedadPipe,
-    FiltroPacientePipe
+    FiltroPacientePipe,
+    AvatarPatientPipe
   ],
   exports: [
     CommonModule,
     NombreTestPipe,
     PsicNombrePipe,
     NivelAnsiedadPipe,
-    FiltroPacientePipe
+    FiltroPacientePipe,
+    AvatarPatientPipe
   ],
   imports: [
     CommonModule,

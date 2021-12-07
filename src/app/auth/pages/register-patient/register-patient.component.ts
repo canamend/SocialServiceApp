@@ -37,14 +37,6 @@ export class RegisterPatientComponent{
       }
     )
   }
-  
-
-  /*mayus(e) {
-    e.value = e.value.toUpperCase();
-  }
-  onKey(event: any) { // without type info
-    this.values += event.target.value + ' | ';
-  }*/
 
   getControl(controlName: string){
     return this.form.get(controlName);
@@ -97,14 +89,14 @@ export class RegisterPatientComponent{
     Swal.showLoading();
 
     try {
-      const response = await this.authService.addCuidador(carer);
-      patient.id_cuidador = response.insertId;
+      const responseCarer = await this.authService.addCuidador(carer);
+      patient.id_cuidador = responseCarer.insertId; 
       patient.no_expediente = this.form.value.expediente;
       patient.nombre = patient.nombre.toUpperCase();
       patient.apmaterno = patient.apmaterno.toUpperCase();
       patient.appaterno = patient.appaterno.toUpperCase();
       await this.authService.signUpAccount(account);
-      await this.authService.signUpPatient(patient);
+      await this.authService.signUpPatient(patient, account.usuario );
       await Swal.fire({
         title: 'Registro realizado con éxito',
         icon: 'success'

@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomePatientComponent } from './pages/home-patient/home-patient.component';
 import { LayoutComponent } from "./layout/layout/layout.component";
 import { TestComponent } from './pages/test/test.component';
+import { ResultsComponent } from './pages/results/results.component';
 
 
 const routes: Routes = [
@@ -12,7 +13,8 @@ const routes: Routes = [
   { path: '', component: LayoutComponent,
     children: [
       { path: 'home', component: HomePatientComponent},                      /*  /patient/home */
-      { path: 'test/:id_test', component: TestComponent},                      /*  /patient/test */
+      { path: 'test/:id_test', component: TestComponent},                     /*  /patient/test */
+      { path: 'results/:id_results', component: ResultsComponent},
       { path: '**', pathMatch: 'full', redirectTo: 'home' }
     ]
   },

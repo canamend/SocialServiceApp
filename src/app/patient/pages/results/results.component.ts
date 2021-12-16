@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'; /* s */
 import { Router } from '@angular/router';
 import { Historial } from 'src/app/core/models/historial.interface';
 import { Admin, Patient } from 'src/app/core/models/users.interface';
@@ -9,12 +9,11 @@ import { AdminAux } from '../../../core/models/admin.interface';
 import { HistorialService } from 'src/app/core/services/historial.service';
 
 @Component({
-  selector: 'app-home-patient',
-  templateUrl: './home-patient.component.html',
-  styleUrls: ['./home-patient.component.css']
+  selector: 'app-results',
+  templateUrl: './results.component.html',
+  styleUrls: ['./results.component.css']
 })
-
-export class HomePatientComponent implements OnInit{
+export class ResultsComponent implements OnInit {
   patient: Patient;
   isLoading: boolean;
   test: Test;
@@ -44,12 +43,7 @@ export class HomePatientComponent implements OnInit{
       this.router.navigate(['/auth/login']);
     }
   }
-
-  onAnswerTest(id_test: number, id_historial: number, id_paciente: number){
-    this.router.navigate([ `/patient/test/${id_test}` , { id_hist: id_historial, id_pac: id_paciente } ]);
-  }
-
-  score(id_test: number, id_historial: number, id_paciente: number){
-    this.router.navigate([ `/patient/results/${id_test}` , { id_hist: id_historial, id_pac: id_paciente } ]);
-  }
 }
+
+
+

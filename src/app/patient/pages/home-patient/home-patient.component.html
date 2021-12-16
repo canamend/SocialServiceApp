@@ -47,6 +47,7 @@
                 <td data-th="Fecha de resolución:" class="table-column">{{hist.f_fin | date }}</td>
                 <ng-container *ngIf="admins">  
                 <td data-th="Psicólogo:" class="table-column"> {{ hist.id_admin | psicNombre : admins }} </td>
+                <button class="btn btn-primary" (click) = "score(hist.id_test, hist.id_historial, hist.id_paciente)">Ver resultados</button>
                 </ng-container>
             </tr>
           </ng-container>  

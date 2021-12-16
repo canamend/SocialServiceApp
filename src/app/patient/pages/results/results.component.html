@@ -1,0 +1,37 @@
+<div class="container" *ngIf="patient">
+    <div class="info-patient">
+      <h1>{{ patient.nombre}} {{patient.ap_paterno}} {{patient.ap_materno}}</h1>
+      <h2>No. Expediente:  <span> {{ patient.no_expediente }} </span></h2>
+    </div>
+    <div>
+        <h3 class="form-control" > TEST: Test de Spence </h3>
+        <h3 class="form-control"> Puntaje:  80 </h3>
+        <h3 class="form-control"> Fecha de asignación: 8 ago. 2021 </h3>
+        <h3 class="form-control"> Fecha de resolución:  28 ago. 2021 </h3>
+        <h3 class="form-control"> Psicólogo:  David Tlahuapa</h3>
+    </div>
+
+
+    <section class="history-test">
+        <table class="table">
+          <caption class="title">
+            Detalle de puntuación:
+          </caption>
+          <thead>
+            <th class="table-head">Pregunta</th>
+            <th class="table-head">Puntaje</th>
+          </thead>
+          <tbody>
+            <ng-container *ngFor= "let hist of historial">
+              <tr *ngIf="hist.puntaje!==null" class="table-row info">
+                  <td data-th="Test:" class="table-column" > Ataques de pánico y Agorafobia <span></span></td>
+                  <td data-th="Puntaje:" class="table-column"> {{hist.puntaje}} </td>
+              </tr>
+            </ng-container>  
+          </tbody>
+        </table>
+      </section>
+
+
+</div>
+  

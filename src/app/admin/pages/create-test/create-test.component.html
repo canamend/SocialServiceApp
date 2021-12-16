@@ -1,0 +1,25 @@
+<div class="container create-test">
+    <form [formGroup]="form">
+        
+
+
+            <div formArrayName="preguntas" *ngFor="let question of form.controls.preguntas?.value; let i = index" >
+                <ng-container [formGroupName]="i">
+                    <input placeholder="Pregunta" formControlName="question">
+                    <input placeholder="Descripción" formControlName="password">
+                    <label>
+                        <input 
+                            type="checkbox" 
+                            formControlName="checkbox"
+                        >
+                    </label>
+                    
+                    <div *ngIf="checkbox">
+                        <p>Data is valid.</p>
+                    </div>  
+                </ng-container>
+
+            </div>
+            <button (click)="addCreds()">Añadir Pregunta</button>
+    </form>
+</div>

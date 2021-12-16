@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { AdminRoutingModule } from "./admin-routing.module";
 // Services
@@ -16,10 +17,10 @@ import { InputPatientsComponent } from './components/input-patients/input-patien
 
 // pipes
 import { AddExpedienteComponent } from './components/add-expediente/add-expediente.component';
-import { FormsModule } from '@angular/forms';
 import { AvatarPatientPipe } from '../shared/pipes/avatar-patient.pipe';
 import { SharedModule } from '../shared/shared.module';
 import { NombreTestPipe } from '../shared/pipes/nombre-test.pipe';
+import { CreateTestComponent } from './pages/create-test/create-test.component';
 
 @NgModule({
   declarations: [
@@ -31,12 +32,14 @@ import { NombreTestPipe } from '../shared/pipes/nombre-test.pipe';
     LoadingOverlayComponent,
     AddExpedienteComponent,
     InputPatientsComponent,
+    CreateTestComponent,
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
     FormsModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule
   ],
   providers: [
     AdminService,

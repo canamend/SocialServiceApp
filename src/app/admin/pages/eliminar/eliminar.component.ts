@@ -65,9 +65,9 @@ export class EliminarComponent implements OnInit {
       this.patients = await this.patientService.getPatients();
       this.tests =  await this.testService.getTests();
       this.admin = await this.adminService.getAdmin();
-      console.log(this.tests);    
+     // console.log(this.tests);    
       this.isLoading = false;
-      console.log(this.patients, this.tests);
+     // console.log(this.patients, this.tests);
     } catch (error) {
       this.router.navigate(['admin/home']);
     }
@@ -85,6 +85,7 @@ export class EliminarComponent implements OnInit {
       }   
     }
     console.log(this.formPatient.value.checkArray.length)
+    console.log(this.formPatient.value.checkArray[0])
   }
 
   
@@ -92,13 +93,13 @@ export class EliminarComponent implements OnInit {
     try {
       this.isLoading = true;
       for(var i=0; i<this.formPatient.value.checkArray.length;i++){
-        this.historialService.postHistorial(this.verSeleccion, this.formPatient.value.checkArray[i], this.admin.id_admin, this.mySQLDateString );
+        this.patientService.accountDeletePaciente(this.formPatient.value.checkArray[i]);
       }
       this.isLoading = false;
       Swal.fire({
         position: 'top-right',
         icon: 'success',
-        text: `Test de ${this.pipe.transform(this.verSeleccion)} asignado con éxito`,
+        text: `Eliminado con exito`,
         timer: 2000,
         showConfirmButton: false  
       })

@@ -28,6 +28,11 @@ export class PatientService {
     return this._http.get<Patient>(endpoint).toPromise();
   }
   
+  accountDeletePaciente(id: number ){
+    const endpoint = `${this.baseUrl}/patient/${id}`;
+    return this._http.delete<Patient>(endpoint).toPromise();
+  }
+  
   getCarer(id: number): Promise<Carer>{
     const endpoint = `${this.baseUrl}/cuidador/${id}`;
     return this._http.get<Carer>(endpoint).toPromise();
@@ -43,5 +48,6 @@ export class PatientService {
     const body = { expediente, id_admin, disponible };    
     return this._http.post(endpoint,body,{ headers: this.headers}).toPromise();
   }
+ 
   
 }

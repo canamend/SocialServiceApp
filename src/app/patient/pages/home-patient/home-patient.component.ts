@@ -36,6 +36,7 @@ export class HomePatientComponent implements OnInit{
       this.isLoading = true;
       this.patient = await this.patientService.getPatient();
       this.historial = await this.historialService.getHistorial(this.patient.id_paciente);
+      
       this.admins = await this.adminService.getAdmins();
       this.isLoading= false;
       

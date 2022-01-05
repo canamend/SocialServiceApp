@@ -49,12 +49,6 @@ export class EliminarComponent implements OnInit {
   ngOnInit(): void {
     const username = this.route.snapshot.params['username'];
     this.fetchData(username);
-
-    const currentDayOfMonth = this.currentDate.getDate();
-    const currentMonth = this.currentDate.getMonth();
-    const currentYear = this.currentDate.getFullYear();
-
-    this.mySQLDateString = currentYear + "-" + (currentMonth + 1) + "-" + currentDayOfMonth+"T05:00:00.000Z";
     
     
     this.patientFormArray = <FormArray>this.formPatient.controls.checkArray;
@@ -63,7 +57,6 @@ export class EliminarComponent implements OnInit {
     try {
       this.isLoading = true;
       this.patients = await this.patientService.getPatients();
-      this.tests =  await this.testService.getTests();
       this.admin = await this.adminService.getAdmin();
      // console.log(this.tests);    
       this.isLoading = false;
@@ -84,8 +77,6 @@ export class EliminarComponent implements OnInit {
         }
       }   
     }
-    console.log(this.formPatient.value.checkArray.length)
-    console.log(this.formPatient.value.checkArray[0])
   }
 
   
@@ -93,7 +84,10 @@ export class EliminarComponent implements OnInit {
     try {
       this.isLoading = true;
       for(var i=0; i<this.formPatient.value.checkArray.length;i++){
-        this.patientService.accountDeletePaciente(this.formPatient.value.checkArray[i]);
+        for(var j=0; j<this.patients.length; j++)
+        if(this.patients[j].id_paciente==this.formPatient.value.checkArray[i]){
+          this.patientService.deletePatient(this.patients[j].usuario);
+        }
       }
       this.isLoading = false;
       Swal.fire({

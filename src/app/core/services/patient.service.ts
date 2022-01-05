@@ -28,9 +28,9 @@ export class PatientService {
     return this._http.get<Patient>(endpoint).toPromise();
   }
   
-  accountDeletePaciente(id: number ){
-    const endpoint = `${this.baseUrl}/patient/${id}`;
-    return this._http.delete<Patient>(endpoint).toPromise();
+  deletePatient(username: string ){
+    const endpoint = `${this.baseUrl}/patient/${username}`;
+    return this._http.delete(endpoint).toPromise();
   }
   
   getCarer(id: number): Promise<Carer>{

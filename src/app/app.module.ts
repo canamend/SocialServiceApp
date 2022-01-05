@@ -14,6 +14,7 @@ import localeEs from '@angular/common/locales/es-MX';
 import { registerLocaleData } from '@angular/common';
 import { AdminService } from './core/services/admin.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 registerLocaleData( localeEs );
 
 @NgModule({
@@ -25,7 +26,8 @@ registerLocaleData( localeEs );
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule 
+    FormsModule,
+    NoopAnimationsModule 
   ],
   providers: [
     AdminService,

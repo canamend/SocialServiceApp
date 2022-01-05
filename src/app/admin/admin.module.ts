@@ -22,6 +22,7 @@ import { SharedModule } from '../shared/shared.module';
 import { NombreTestPipe } from '../shared/pipes/nombre-test.pipe';
 import { CreateTestComponent } from './pages/create-test/create-test.component';
 import { EliminarComponent } from './pages/eliminar/eliminar.component';
+import { ConfirmarComponent } from './components/confirmar/confirmar.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { EliminarComponent } from './pages/eliminar/eliminar.component';
     InputPatientsComponent,
     CreateTestComponent,
     EliminarComponent,
+    ConfirmarComponent,
   ],
   imports: [
     CommonModule,

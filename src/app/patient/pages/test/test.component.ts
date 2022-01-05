@@ -62,7 +62,6 @@ export class TestComponent implements OnInit {
       this.questions = this.test.questions; 
       this.answers = this.test.answers;
       this.isLoading= false;
-      
     } catch (error) {
       this.isLoading= false;
       this.router.navigate(['/auth/login']);

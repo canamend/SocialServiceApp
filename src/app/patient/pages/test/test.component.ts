@@ -25,6 +25,12 @@ export class TestComponent implements OnInit {
   con: number = 0;
   score: number;
   final: number;
+  p1: number;
+  p2: number;
+  p3: number;
+  p4: number;
+  p5: number;
+  p6: number;
   opcionActivaAux: string;
   opcionActiva: string = '';
   id_historial: number;
@@ -45,6 +51,13 @@ export class TestComponent implements OnInit {
       .subscribe( ({ id_test }) => this.id_test=id_test );
     this.fetchData();
     this.final=0;
+    this.p1=0;
+    this.p2=0;
+    this.p3=0;
+    this.p4=0;
+    this.p5=0;
+    this.p6=0;
+
     this.id_historial = Number(this.activatedRoute.snapshot.paramMap.get('id_hist'));
     this.id_paciente = Number(this.activatedRoute.snapshot.paramMap.get('id_pac'));
 
@@ -62,6 +75,7 @@ export class TestComponent implements OnInit {
       this.questions = this.test.questions; 
       this.answers = this.test.answers;
       this.isLoading= false;
+      //console.log(this.test)
     } catch (error) {
       this.isLoading= false;
       this.router.navigate(['/auth/login']);
@@ -69,28 +83,35 @@ export class TestComponent implements OnInit {
   }
 
   checkAnswer(response: string, puntos: number){
-    /*switch(response){
-      case 'Nunca':
-        this.score=0;
-        break;
-      case 'A veces':
-        this.score=1;
-        break;
-      case 'Muchas veces':
-        this.score=2;
-        break;       
-      case 'Siempre':
-        this.score=3;
-        break;  
-    } */
     this.score=puntos;
     this.opcionActivaAux = response;
     this.opcionActiva = response.toString();
 
   }
 
-  siguiente(){
+  siguiente(tipo : number){
     
+    switch(tipo){
+      case 1:
+        this.p1=this. p1 + this.score;
+        break;
+      case 2:
+        this.p2+=this.score;
+        break;
+      case 3:
+        this.p3+=this.score;
+        break;
+      case 4:
+        this.p4+=this.score;
+        break;
+      case 5:
+        this.p5+=this.score;
+        break;
+      case 6:
+        this.p6+=this.score;
+        break;
+      default:
+    } 
     if(this.opcionActiva.length>0){
       if( this.con < this.questions.length){
         this.con++;
@@ -99,13 +120,13 @@ export class TestComponent implements OnInit {
       this.opcionActiva='';
       this.opcionActivaAux='';
     }
-    console.log(this.final);
+    console.log('final: '+this.final);
   }
 
   async concluir(){
     try {
       this.isLoading = true;
-      await this.historialService.updateHistorial( this.final, this.mySQLDateString, this.id_historial, this.id_paciente );
+      await this.historialService.updateHistorial( this.final, this.mySQLDateString, this.id_historial, this.id_paciente,this.p1,this.p2, this.p3, this.p4, this.p5, this.p6);
       this.isLoading = false;
       Swal.fire({
         position: 'top-right',
@@ -128,3 +149,4 @@ export class TestComponent implements OnInit {
     }
   }
 }
+

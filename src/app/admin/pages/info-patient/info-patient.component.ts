@@ -98,5 +98,8 @@ export class InfoPatientComponent implements OnInit {
       });;
     }
   }
+  score(id_test: number, id_historial: number, usuario: string){
+    this.router.navigate([ `/admin/resultados/${id_test}` , { id_hist: id_historial,  nom: usuario } ]);
+  }
 
 }

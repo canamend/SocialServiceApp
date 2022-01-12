@@ -15,13 +15,13 @@
                         [ngClass]="{
                             'answer-image-primary': opcionActivaAux === indice
                          }">
-                    <img class="img" [src]="'assets/images/answers/' + answer.url_imagen" [alt]="answer.opcion" (click)="checkAnswer(indice, answer.puntos)">
+                    <img class="img" [src]="'assets/images/answers/' + answer.url_imagen" [alt]="answer.opcion" (click)="checkAnswer(indice, answer.puntos, questions[con].tipo_pregunta)">
                 </figure>
                 <p class="answer-text"> {{answer.opcion}} </p>
             </div>
                       
             <div class="button-next-container">
-                <input type= "button" value= "Siguiente" class="btn btn-primary btn-submit" (click)="siguiente()">
+                <input type= "button" value= "Siguiente" class="btn btn-primary btn-submit" (click)="siguiente(questions[con].tipo_pregunta)">
             </div>
                    
         </div>

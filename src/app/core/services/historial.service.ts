@@ -32,9 +32,9 @@ export class HistorialService {
     return headers;
   }
 
-  updateHistorial(puntaje: number, fecha_fin: string, historial_id: number, patient_id: number ){
+  updateHistorial(puntaje: number, fecha_fin: string, historial_id: number, patient_id: number, p1: number, p2: number, p3: number, p4: number ,p5: number, p6: number){
     const endpoint = `${this.baseUrl}/historial/${historial_id}`;
-    const body = { puntaje, fecha_fin, historial_id, patient_id};   
+    const body = { puntaje, fecha_fin, historial_id, patient_id, p1, p2, p3, p4, p5,p6 };   
     return this._http.post(endpoint,body,{ headers: this.headers}).toPromise();
   }
 

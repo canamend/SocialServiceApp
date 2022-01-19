@@ -23,6 +23,8 @@ import { NombreTestPipe } from '../shared/pipes/nombre-test.pipe';
 import { CreateTestComponent } from './pages/create-test/create-test.component';
 import { EliminarComponent } from './pages/eliminar/eliminar.component';
 import { ConfirmarComponent } from './components/confirmar/confirmar.component';
+import { MaterialModule } from '../material/material.module';
+import { CantidadPreguntasComponent } from './components/cantidad-preguntas/cantidad-preguntas.component';
 
 @NgModule({
   declarations: [
@@ -37,13 +39,15 @@ import { ConfirmarComponent } from './components/confirmar/confirmar.component';
     CreateTestComponent,
     EliminarComponent,
     ConfirmarComponent,
+    CantidadPreguntasComponent,
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
     FormsModule,
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MaterialModule
   ],
   providers: [
     AdminService,

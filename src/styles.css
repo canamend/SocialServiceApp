@@ -158,6 +158,28 @@ body{
     padding: 12px 0;
 }
 
+/*-----------FORM TEST-----------*/
+
+.test-form-container{
+    margin: 10px;
+    color:white;
+}
+
+.text-danger{
+    color: red;
+}
+
+.test-row{
+    
+}
+
+.test-form-label{
+
+}
+
+.test-input{
+
+}
 /*------------FORM REGISTER-------------*/
 .form.form-register{
     max-width: 400px;

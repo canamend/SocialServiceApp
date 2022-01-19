@@ -1,4 +1,3 @@
-<h1>
     <!--
     {{
         (test.id)
@@ -6,32 +5,167 @@
         : 'Nuevo'
     }}
     -->
-    Test 
-    <small>Nuevo test</small>
-</h1>
 
-<div class="container create-test">
-    <form [formGroup]="form">
-        
+<div class="container form ">
 
+    
+    <h2 class="title">Test 
+        <br>
+        <small>Nuevo test</small>
+    </h2>
+    <hr>
 
-            <div formArrayName="preguntas" *ngFor="let question of form.controls.preguntas?.value; let i = index" >
-                <ng-container [formGroupName]="i">
-                    <input placeholder="Pregunta" formControlName="question">
-                    <input placeholder="Descripción" formControlName="password">
-                    <label>
-                        <input 
-                            type="checkbox" 
-                            formControlName="checkbox"
-                        >
-                    </label>
-                    
-                    <div *ngIf="checkbox">
-                        <p>Data is valid.</p>
-                    </div>  
-                </ng-container>
+    <div class = "form-container test-form-container">
+        <form (ngSubmit)="guardar()" [formGroup]="testForm">
+            
+            <div class="test-row">
+                <!-- NOMBRE -->
+                <label class="test-form-label">Nombre</label>
+                <div class="test-input">
+                    <input class = "form-control"
+                            placeholder="Nombre del test"
+                            formControlName="nombre">
+                        <span class="form-text text-danger"
+                            *ngIf="campoEsValido( 'nombre' )">
+                                Debe de tener al menos cuatro letras
+                        </span>
+                </div>
+
+                <!-- ENFOQUE -->
+                <label>Enfoque</label>
+                <div class="test-input">
+                    <input class = "form-control"
+                            placeholder="Enfoque del test"
+                            formControlName="enfoque">
+                        <span class="form-text text-danger"
+                            *ngIf="campoEsValido( 'enfoque' )">
+                                Debe contener al menos cuatro letras
+                        </span>
+                </div>
+
+                <!-- PALABRA CLAVE -->
+                <label>Palabra clave</label>
+                <p><i>Ej: Spence, Zarit...</i></p>
+                <div class="test-input">
+                    <input class = "form-control"
+                            placeholder="Palabra que ayude a identificar el test"
+                            formControlName="keyword">
+                        <span class="form-text text-danger"
+                            *ngIf="campoEsValido( 'keyword' )">
+                                Debe contener al menos cuatro letras
+                        </span>
+                </div>
 
             </div>
-            <button (click)="addCreds()">Añadir Pregunta</button>
-    </form>
+
+        <div class = " test-form-container">
+            <!-- agregar pregunta -->
+            <div class="input-group">
+                <mat-form-field [formGroup]="nuevaPregunta">
+                    
+                    <label>Pregunta</label>
+                    <input  class="form-control"
+                            placeholder="Ingrese la pregunta" 
+                            [formControl]="nuevaPregunta.controls['nombre']">
+
+                    <label>Descripcion</label>
+                    <input  class="form-control"
+                            placeholder="Describa la pregunta" 
+                            [formControl]="nuevaPregunta.controls['descripcion']">
+
+                    
+                    <label>Puntos</label>
+                    <input  type="number"  
+                            class="form-control"
+                            placeholder="Ingrese el puntaje que incrementa el valor de respuesta más alto" 
+                            [formControl]="nuevaPregunta.controls['puntos']">
+
+                    
+                    <label>Url de la imagen</label>
+                    <input  class="form-control"
+                            placeholder="Ingrese el link" 
+                            [formControl]="nuevaPregunta.controls['urlImagen']">
+
+                    <label>Factor</label>
+                    <input  class="form-control"
+                            placeholder="Ingrese el factor" 
+                            [formControl]="nuevaPregunta.controls['factor']">
+
+                </mat-form-field>
+
+                <button type="button"
+                        (click)="agregarPregunta()">
+                    Añadir Pregunta
+                </button>
+            </div>
+        </div>
+
+
+            <!-- Lista de preguntas -->
+
+            <div>
+                <label>Preguntas del test</label>
+                <div formArrayName="preguntas">
+
+                    <div class="input-group"
+                        *ngFor="let question of testForm.value.preguntas; let i = index">
+                        
+                        <p>{{ testForm.value.preguntas[i].nombre }}</p>
+                        <p>{{ testForm.value.preguntas[i].nombre }}</p>
+                        <p>{{ testForm.value.preguntas[i].nombre }}</p>
+                        <p>{{ testForm.value.preguntas[i].nombre }}</p>
+                        <p>{{ testForm.value.preguntas[i].nombre }}</p>
+                        <p>{{ testForm.value.preguntas[i].nombre }}</p>
+
+                        
+                        <!--
+                        <ng-container [formArrayName]="i">
+                            <input  class="form-control" 
+                                    placeholder="Pregunta" 
+                                    formControlName="nombre">
+                        </ng-container> -->
+
+                    </div>
+
+                </div>
+            </div>
+
+
+                <div>
+                    <div>
+                        <button type="submit">
+                            Guardar    
+                        </button>
+                    </div>
+                </div>
+        </form>
+    </div>
+</div>
+
+<span> Valid </span>
+<pre>{{ testForm.valid }}</pre>
+<br>
+
+<span> Value del test </span>
+<pre>{{ testForm.value | json }}</pre>
+<br>
+
+<span> Valid nueva pregunta </span>
+<pre>{{ nuevaPregunta.valid }}</pre>
+
+<span> Value nueva pregunta </span>
+<pre>{{ nuevaPregunta.value | json }}</pre>
+
+<div *ngIf="preguntasArr.controls[0]">
+    <span> Value preguntasArr</span>
+    <div *ngFor="let item of preguntasArray; let i = index">
+        <pre>{{ preguntasArr.at(i).value | json }}</pre>
+    </div>
+</div>
+
+<div *ngIf="preguntasArr.controls[0]">
+    <span> Value testForm.value.preguntas</span>
+    <div *ngFor="let item of testForm.value.preguntas; let i = index">
+        <pre>{{ testForm.value.preguntas[i] | json }}</pre>
+    </div>
 </div>

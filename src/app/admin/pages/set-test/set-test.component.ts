@@ -64,10 +64,8 @@ export class SetTestComponent implements OnInit {
       this.isLoading = true;
       this.patients = await this.patientService.getPatients();
       this.tests =  await this.testService.getTests();
-      this.admin = await this.adminService.getAdmin();
-      console.log(this.tests);    
+      this.admin = await this.adminService.getAdmin();    
       this.isLoading = false;
-      console.log(this.patients, this.tests);
     } catch (error) {
       this.router.navigate(['admin/home']);
     }

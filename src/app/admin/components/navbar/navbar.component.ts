@@ -49,7 +49,6 @@ export class NavbarComponent implements OnInit {
         this.patientsNames.push( {nombre: this.patientName, id: this.patients[i].id_paciente, username:  this.patients[i].usuario } );
       }
       
-      console.log(this.patientsNames);
       this.isLoading = false;
     }catch (error) {
       this.router.navigate(['admin/home']);
@@ -83,7 +82,6 @@ export class NavbarComponent implements OnInit {
     for(var i=0; i<this.patientsNames.length;i++){
       if(this.patientsNames[i].nombre.includes(this.nombre)){
         this.encontro = true;
-        console.log(this.patientsNames[i].nombre);
         this.patientsEncontrados.push(await this.patientService.getPatient(this.patientsNames[i].username));
       }
     }

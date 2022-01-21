@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { environment } from 'src/environments/environment';
-import { Test } from '../models/test.interface';
+import { Test, TestInfo, Question } from '../models/test.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +23,11 @@ export class TestService {
   getTests(): Promise<Test[]>{
     const endpoint = `${this.baseUrl}/test/all`;
     return this._http.get<Test[]>(endpoint).toPromise();
+  }
+
+  postTest( data: TestInfo, preguntas: Question[] ){
+    const endpoint = `${this.baseUrl}/test/`;
+    return this._http.post(endpoint, [data, preguntas]).toPromise();
   }
 
 }

@@ -1,0 +1,14 @@
+
+
+<div class="container">
+    <h2>Seleccione el tipo de pregunta</h2>
+
+    <div>
+        <select name="selectTipoRespuesta" [(ngModel)]="seleccionado" (change)="seleccionarTipo()" class="custom-select">
+            <option value="0">Selecciona un test:</option>
+            <option [value]="tipo.tipo_respuesta" *ngFor="let tipo of tipo_respuesta">{{ tipo.tipo_respuesta }}</option>
+        </select>
+    </div>
+    
+</div>
+

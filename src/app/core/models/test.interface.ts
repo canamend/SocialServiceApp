@@ -1,6 +1,7 @@
 export interface Test {
     id_test:   number;
     nombre:    string;
+    keyword:    string;
     enfoque:   string;
     questions: Question[];
     answers:   { [key: string]: Answer[] };
@@ -25,7 +26,8 @@ export interface Question {
 }
 
 export interface TestInfo {
-    id_test:   number;
+    id_test?:   number;
     nombre:    string;
     enfoque:   string;
+    keyword:    string;
 }

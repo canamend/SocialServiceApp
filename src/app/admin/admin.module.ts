@@ -25,6 +25,7 @@ import { EliminarComponent } from './pages/eliminar/eliminar.component';
 import { ConfirmarComponent } from './components/confirmar/confirmar.component';
 import { MaterialModule } from '../material/material.module';
 import { CantidadPreguntasComponent } from './components/cantidad-preguntas/cantidad-preguntas.component';
+import { TiposRespuestaComponent } from './components/tipos-respuesta/tipos-respuesta.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { CantidadPreguntasComponent } from './components/cantidad-preguntas/cant
     EliminarComponent,
     ConfirmarComponent,
     CantidadPreguntasComponent,
+    TiposRespuestaComponent,
   ],
   imports: [
     CommonModule,

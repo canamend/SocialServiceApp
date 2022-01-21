@@ -36,9 +36,6 @@ export class MainComponent implements OnInit {
       this.admin = admin;
       this.patients = patients;
       
-      console.log(this.admin);
-      console.log(this.patients);
-      
       this.isLoading = false;
     } catch (error) {
       this.isLoading = false;

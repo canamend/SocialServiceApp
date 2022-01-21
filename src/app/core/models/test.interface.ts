@@ -22,6 +22,8 @@ export interface Question {
     id_test:         number;
     tipo_respuestas: number;
     ulr_imagen:      string;
+    tipo_pregunta:   null | number;
+    factor:          null | string;
 }
 
 export interface TestInfo {

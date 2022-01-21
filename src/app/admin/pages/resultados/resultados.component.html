@@ -4,49 +4,51 @@
     <h2>No. Expediente:  <span> {{ patient.no_expediente }} </span></h2>
   </div>
 
-<ng-container *ngFor= "let hist of historial">
-  <div  *ngIf="hist.id_historial===id" class="info-test">
-      <h3 class="form-control" > TEST: {{ hist.id_test | nombreTest }}   </h3>
-      <h3 class="form-control"> Puntaje general:  {{hist.puntaje}} </h3>
-      <h3 class="form-control"> Fecha de asignación: {{hist.f_asignacion | date }}</h3>
-      <h3 class="form-control"> Fecha de resolución:  {{hist.f_fin | date }}</h3>
-      <h3 class="form-control"> Psicólogo:  {{ hist.id_admin | psicNombre : admins }}</h3>
-      <section class="history-test">
-        <table class="table">
-          <caption class="title">
-            Detalle de puntuación:
-          </caption>
-          <thead>
-            <th class="table-head">Pregunta</th>
-            <th class="table-head">Puntaje</th>
-          </thead>
-          <tbody>
-              <tr class="table-row info">
-                <td data-th="Test:" class="table-column" > Ataques de pánico y Agorafobia <span></span></td>
-                <td data-th="Puntaje:" class="table-column">{{hist.p1}} puntos </td>
-              </tr>
-              <tr class="table-row info"> 
-                <td data-th="Test:" class="table-column" > Trastornos de Ansiedad por Separación <span></span></td>
-                <td data-th="Puntaje:" class="table-column"> {{hist.p2}} puntos </td>
-              </tr>
-              <tr class="table-row info">
-                <td data-th="Test:" class="table-column" > Fobia Social<span></span></td>
-                <td data-th="Puntaje:" class="table-column"> {{hist.p3}} puntos</td>
-              </tr>
-              <tr class="table-row info">
-                <td data-th="Test:" class="table-column" > Miedos <span></span></td>
-                <td data-th="Puntaje:" class="table-column"> {{hist.p4}} puntos</td>
-              </tr>
-              <tr class="table-row info">
-                <td data-th="Test:" class="table-column" > Trastornos Obsesivo-Compulsivo <span></span></td>
-                <td data-th="Puntaje:" class="table-column"> {{hist.p5}} puntos</td>
-              </tr>
-              <tr class="table-row info">
-                <td data-th="Test:" class="table-column" >  Trastorno de Ansiedad Generalizada<span></span></td>
-                <td data-th="Puntaje:" class="table-column"> {{hist.p6}} puntos</td>
-              </tr>
-          </tbody>
-        </table>
-      </section>
-  </div>
-</ng-container>
+  <ng-container *ngFor= "let hist of historial">
+    <div  *ngIf="hist.id_historial===id" class="info-test">
+        <h3 class="form-control" > TEST: {{ hist.id_test | nombreTest }}   </h3>
+        <h3 class="form-control"> Puntaje general:  {{hist.puntaje}} </h3>
+        <h3 class="form-control"> Fecha de asignación: {{hist.f_asignacion | date }}</h3>
+        <h3 class="form-control"> Fecha de resolución:  {{hist.f_fin | date }}</h3>
+        <h3 class="form-control"> Psicólogo:  {{ hist.id_admin | psicNombre : admins }}</h3>
+  
+        <section *ngIf= "hist.p1" class="history-test">
+            <table class="table">
+              <caption class="title">
+                Detalle de puntuación:
+              </caption>
+              <thead>
+                <th class="table-head">Factores</th>
+                <th class="table-head">Puntaje</th>
+              </thead>
+              <tbody>
+                  <tr class="table-row info">
+                    <td data-th="Test:" class="table-column" > {{ factor1 }}  <span></span></td>
+                    <td data-th="Puntaje:" class="table-column">{{hist.p1}} puntos </td>
+                  </tr>
+                  <tr *ngIf= "hist.p2" class="table-row info"> 
+                    <td data-th="Test:" class="table-column" > {{ factor2 }}  <span></span></td>
+                    <td data-th="Puntaje:" class="table-column"> {{hist.p2}} puntos </td>
+                  </tr>
+                  <tr *ngIf= "hist.p3" class="table-row info">
+                    <td data-th="Test:" class="table-column" > {{ factor3 }} <span></span></td>
+                    <td data-th="Puntaje:" class="table-column"> {{hist.p3}} puntos</td>
+                  </tr>
+                  <tr *ngIf= "hist.p4" class="table-row info">
+                    <td data-th="Test:" class="table-column" > {{ factor4 }} <span></span></td>
+                    <td data-th="Puntaje:" class="table-column"> {{hist.p4}} puntos</td>
+                  </tr>
+                  <tr *ngIf= "hist.p5" class="table-row info">
+                    <td data-th="Test:" class="table-column" > {{ factor5 }}  <span></span></td>
+                    <td data-th="Puntaje:" class="table-column"> {{hist.p5}} puntos</td>
+                  </tr>
+                  <tr *ngIf= "hist.p6" class="table-row info">
+                    <td data-th="Test:" class="table-column" >  {{ factor6 }} <span></span></td>
+                    <td data-th="Puntaje:" class="table-column"> {{hist.p6}} puntos</td>
+                  </tr>
+              </tbody>
+            </table>
+       </section>
+   </div>
+  </ng-container>
+</div>

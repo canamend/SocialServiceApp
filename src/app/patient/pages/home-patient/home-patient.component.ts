@@ -50,7 +50,7 @@ export class HomePatientComponent implements OnInit{
     this.router.navigate([ `/patient/test/${id_test}` , { id_hist: id_historial, id_pac: id_paciente } ]);
   }
 
-  score(id_test: number, id_historial: number, id_paciente: number){
-    this.router.navigate([ `/patient/results/${id_test}` , { id_hist: id_historial, id_pac: id_paciente } ]);
+  score(id_test: number, id_historial: number, id_paciente: number, id_t:number){
+    this.router.navigate([ `/patient/results/${id_test}` , { id_hist: id_historial, id_pac: id_paciente,id_t:id_t} ]);
   }
 }

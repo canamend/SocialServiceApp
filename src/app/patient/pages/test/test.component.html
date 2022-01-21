@@ -15,7 +15,7 @@
                         [ngClass]="{
                             'answer-image-primary': opcionActivaAux === indice
                          }">
-                    <img class="img" [src]="'assets/images/answers/' + answer.url_imagen" [alt]="answer.opcion" (click)="checkAnswer(indice, answer.puntos, questions[con].tipo_pregunta)">
+                    <img class="img" [src]="'assets/images/answers/' + answer.url_imagen" [alt]="answer.opcion" (click)="checkAnswer(indice, answer.puntos)">
                 </figure>
                 <p class="answer-text"> {{answer.opcion}} </p>
             </div>

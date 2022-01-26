@@ -1,8 +1,8 @@
 export interface Respuesta {
-    id_respuesta:    number;
+    id_respuesta?:    number;
     opcion:          string;
     puntos:          number;
-    tipo_respuestas: number;
+    tipo_respuestas?: number;
     url_imagen:      string;
 }
 

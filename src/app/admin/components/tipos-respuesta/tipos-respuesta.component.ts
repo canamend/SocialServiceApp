@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Respuesta, TipoRespuesta } from 'src/app/core/models/respuesta.interface';
 import { RespuestaService } from 'src/app/core/services/respuesta.service';
+import { RespuestaFormComponent } from '../respuesta-form/respuesta-form.component';
 
 @Component({
   selector: 'app-tipos-respuesta',
@@ -10,24 +12,42 @@ import { RespuestaService } from 'src/app/core/services/respuesta.service';
   ]
 })
 export class TiposRespuestaComponent implements OnInit {
-  isLoading: boolean;
-  respuestas: Respuesta[];
-  tipo_respuesta: TipoRespuesta[] = [];
-  seleccionado: string ='0';
-  verSeleccion: number;
+
+  public tipoRespuestaForm: FormGroup;
+
+  get respuestaArray(): FormArray {
+    return this.tipoRespuestaForm?.get('respuestas') as FormArray;
+  }
 
   constructor(
+    private fb: FormBuilder,
     private respuestaService: RespuestaService,
     private router: Router,
     private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
+    this.generateTipoRespuestaForm();
     const username = this.route.snapshot.params['username'];
     this.fetchData(username);
-
-    
   }
+
+  public generateTipoRespuestaForm(): void{
+    this.tipoRespuestaForm = new FormGroup({
+      respuestas: new FormArray([
+        RespuestaFormComponent.agregarRespuestaItem(),
+        RespuestaFormComponent.agregarRespuestaItem(),
+      ])
+    });
+  }
+  
+  isLoading: boolean;
+  respuestas: Respuesta[];
+  tipo_respuesta: TipoRespuesta[] = [];
+  seleccionado: string ='0';
+  verSeleccion: number;
+
+ 
 
   async fetchData(username: string){
     try{
@@ -60,6 +80,8 @@ export class TiposRespuestaComponent implements OnInit {
 
       });
 
+      //this.tipo_respuesta[this.tipo_respuesta.length-1].tipo_respuesta=this.tipo_respuesta.length;
+
         //console.log(this.);
       console.log(this.tipo_respuesta)
         
@@ -71,6 +93,22 @@ export class TiposRespuestaComponent implements OnInit {
 
   seleccionarTipo(){
     this.verSeleccion = parseInt(this.seleccionado);
+  }
+
+  eliminarRespuesta( index: number ){
+    this.respuestaArray?.removeAt( index );
+  }
+
+  agregarRespuesta(): void {
+    this.respuestaArray?.push( RespuestaFormComponent.agregarRespuestaItem() );
+  }
+
+  guardar () {
+    if( this.tipoRespuestaForm.invalid ){
+      this.tipoRespuestaForm.markAllAsTouched();
+      return;
+    }
+    console.log(this.tipoRespuestaForm.value)
   }
 
 }

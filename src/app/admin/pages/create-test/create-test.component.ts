@@ -5,6 +5,7 @@ import { ConfirmarComponent } from '../../components/confirmar/confirmar.compone
 import { Question, TestInfo } from '../../../core/models/test.interface';
 import { TestService } from 'src/app/core/services/test.service';
 import Swal from 'sweetalert2';
+import { PreguntaFormComponent } from '../../components/pregunta-form/pregunta-form.component';
 
 @Component({
   selector: 'app-create-test',
@@ -19,16 +20,10 @@ export class CreateTestComponent implements OnInit {
     preguntas: this.fb.array([], Validators.required )
   });
 
-  nuevaPregunta: FormGroup = this.fb.group({ 
-    nombre: ['', Validators.required ],
-    descripcion: ['', ],
-    puntos: [ 0 , Validators.required ],
-    urlImagen: ['', Validators.required ],
-    factor: ['', ],
-  });
+  public preguntasTestForm: FormGroup;
 
-  get preguntasArr() {
-    return this.testForm.get('preguntas') as FormArray;
+  get preguntasArray() {
+    return this.preguntasTestForm?.get('preguntas') as FormArray;
   }
 
   preguntas: Question[] = [];
@@ -46,21 +41,23 @@ export class CreateTestComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.generatepreguntasTestForm();
   }
 
-  agregarPregunta() {
-    if( this.nuevaPregunta.invalid ){
-      return;
-    }
-
-    //this.favoritosArr.push( new FormControl( this.nuevoFavorito.value, Validators.required ) ); //favoritosArray apunta al mismo objeto
-    this.preguntasArr.push( this.fb.control(this.nuevaPregunta.value, Validators.required ) )
-    //ambos funcionan
-    this.nuevaPregunta.reset();
+  generatepreguntasTestForm() {
+    this.preguntasTestForm = new FormGroup({
+      preguntas: new FormArray([
+        PreguntaFormComponent.agregarPreguntaItem(),
+        PreguntaFormComponent.agregarPreguntaItem(),
+      ])
+    });
   }
 
-  borrar( index: number ) {
-    this.preguntasArr.removeAt(index);
+  eliminarPregunta( index: number ){
+    this.preguntasArray?.removeAt( index );
+  }
+  agregarPregunta(): void {
+    this.preguntasArray?.push( PreguntaFormComponent.agregarPreguntaItem() );
   }
 
   async guardar() {

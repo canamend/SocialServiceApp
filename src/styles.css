@@ -733,53 +733,53 @@ body{
 }
 @media screen and (max-width: 768px){
     .form{
-        margin-top: 50px;
-        width: 250px;
-        text-align: center;
+        margin-top: 50px !important;
+        width: 250px !important;
+        text-align: center !important;
     }
     .view-login{
         min-height: calc(100vh - 48px - 80px);
     }
     .menu-hamburguer{
-        display: block;
-    }
+        display: block !important;
+    } 
     .navbar{
-        position: relative;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
+        position: relative !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+    } 
     .navbar-menu{
-        display: none;
-        flex-direction: column;
-        align-items:unset;
-        position: absolute;
-        top: 48px;
-        left: 0;
-        right: 0;
-        background-color: #056665;
-        z-index: 100;
-        padding-bottom: 50px;
+        display: none !important;
+        flex-direction: column !important;
+        align-items:unset !important;
+        position: absolute !important;
+        top: 48px !important;
+        left: 0 !important;
+        right: 0 !important;
+        background-color: #056665 !important;
+        z-index: 100 !important;
+        padding-bottom: 50px !important;
     }
     .show{
-        display: block;
-        animation: openMenu .3s ease-in;
+        display: block !important;
+        animation: openMenu .3s ease-in !important;
     }
     .hidden{
-        display: none;
+        display: none !important;
     }
     .navbar-menu li{
-        display: block;
-        flex: 0 0 100%;
-        margin: 0px;
+        display: block !important;
+        flex: 0 0 100% !important;
+        margin: 0px !important;
     }
     .navbar-link{
-        display: block;
-        text-align: center;
+        display: block !important;
+        text-align: center !important;  
     }
     .navbar-link-active{
-        border: none;
-        background-color: #70af8552;
+        border: none !important;
+        background-color: #70af8552 !important;
     }
 
     /* REGISTER PATIENT */

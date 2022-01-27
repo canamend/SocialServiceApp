@@ -4,7 +4,7 @@
 
 export const environment = {
   production: true,
-  baseUrl: 'https://backendsocialservice.herokuapp.com/'
+  baseUrl: 'https://socialservicefcc.herokuapp.com/'
   //baseUrl: 'http://localhost:8080'
 };
 

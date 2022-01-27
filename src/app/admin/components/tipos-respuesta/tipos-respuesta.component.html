@@ -19,34 +19,41 @@
         </div>
     </div>
 
-    <form (ngSubmit)="guardar()" [formGroup]="tipoRespuestaForm" autocomplete="off" >
-        <p>Añada respuestas si desea añadir un nuevo tipo de pregunta que integrar al test</p>
-        
-        <ul>
-            <ol *ngFor="let respuesta of respuestaArray.controls; let i = index">
+    <div class="rounded container form-group bg-light mt-5">
+        <form (ngSubmit)="guardar()" [formGroup]="tipoRespuestaForm" autocomplete="off" >
+            <h2>Añadir tipo de respuestas</h2>
+            <p><i>Ingrese respuestas si desea añadir un nuevo tipo que integrar al test</i></p>
+            
+            <div *ngFor="let respuesta of respuestaArray.controls; let i = index">
                 <app-respuesta-form [respuestaForm]="respuesta"
                 [arrayIndex]="i"
                 [numRespuestas]="respuestaArray.length"
                 (eliminarRespuestaEvent)="eliminarRespuesta( $event )"> 
                 </app-respuesta-form>
-            </ol>
-        </ul>
-
-        <button type="button"
-                (click)="agregarRespuesta()"
-                *ngIf="respuestaArray.length<5; else respuestasMaxAdvertencia">
-            Añadir respuesta
-        </button>
-
-        <ng-template #respuestasMaxAdvertencia>
-            <span> Cinco es el máximo numero de respuestas que puedes añadir </span>
-        </ng-template>
-
-        <div class="row">
-            <button class="btn btn-primary float-end" type="submit">
-                Subir
-            </button>
-	    </div>
-    </form>
+            </div>
+    
+            <div class="row">
+                <div class="col-6"></div>
+                <div class="col-6">
+                    <button type="button" class="btn btn-success mb-3"
+                            (click)="agregarRespuesta()"
+                            *ngIf="respuestaArray.length<5; else respuestasMaxAdvertencia">
+                        Añadir respuesta
+                    </button>
+                </div>
+            </div>
+    
+            <ng-template #respuestasMaxAdvertencia>
+                <span class="text-danger"> Cinco es el máximo numero de respuestas que puedes añadir </span>
+            </ng-template>
+    
+            <div class="row">
+                <button class="btn btn-primary float-end" type="submit">
+                    Subir
+                </button>
+            </div>
+        </form>
+    </div>
+    
 </div>
 

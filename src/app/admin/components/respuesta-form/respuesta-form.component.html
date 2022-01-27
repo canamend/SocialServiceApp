@@ -1,80 +1,87 @@
-<form [formGroup]="respuestaForm" autocomplete="off">
+<div class="p-3">
+    <form [formGroup]="respuestaForm" autocomplete="off">
 
-    <h4>
-        Respuesta {{ arrayIndex + 1 }}
-    </h4>
-    <div class="row">
-        <div>
-
-            <!-- Input y validaciones para OPCION-->
-            <div class="row">
-                <label for="opcion">
-                    Respuesta
-                    <span *ngIf="opcionCampo?.hasError( 'required' ) && opcionCampo.touched">
-                        Este es un campo requerido.
-                    </span>
-                </label>
-                <input type="text" 
-                       name="opcion" 
-                       id="opcion"
-                       formControlName="opcion">
-
-                <div *ngIf="respuestaForm?.get( 'opcion' ).errors">
-                    <span *ngIf="respuestaForm?.get( 'opcion' ).errors.minlength && puntosCampo.touched">
-                        Tiene que tener por lo menos dos dígitos.
+        <h4>
+            Respuesta {{ arrayIndex + 1 }}
+        </h4>
+        <div class="row">
+            <div>
+    
+                <!-- Input y validaciones para OPCION-->
+                <div class="row">
+                    <label for="opcion" class="form-label">
+                        Formule la respuesta
+                        <br>
+                        <span *ngIf="opcionCampo?.hasError( 'required' ) && opcionCampo.touched" class="text-danger">
+                            <small>Este es un campo requerido.</small>
+                        </span>
+                    </label>
+                    <input type="text" class="form-control"
+                           placeholder="Ingrese la descripción"
+                           name="opcion" 
+                           id="opcion"
+                           formControlName="opcion">
+    
+                    <div *ngIf="respuestaForm?.get( 'opcion' ).errors">
+                        <span *ngIf="respuestaForm?.get( 'opcion' ).errors.minlength && puntosCampo.touched" class="text-danger">
+                            <small>Tiene que tener por lo menos dos dígitos.</small>
+                        </span>
+                    </div>
+                    
+                    <div *ngIf="respuestaForm?.get( 'opcion' ).errors">
+                        <span *ngIf="respuestaForm?.get( 'opcion' ).errors.maxlength && puntosCampo.touched" class="text-danger">
+                            <small>Tiene que tener como máximo diez dígitos. </small>
+                        </span>
+                    </div>
+                </div>
+    
+                <!-- Input y validaciones para PUNTOS-->
+                <div class="row">
+                    <label for="puntos" class="form-label">
+                        Puntos
+                        <br>
+                        <span *ngIf="puntosCampo?.hasError( 'required' ) && puntosCampo.touched" class="text-danger">
+                            <small>Este es un campo requerido.</small>
+                        </span>
+                    </label>
+                    <input type="puntos" class="form-control"
+                           name="puntos" 
+                           id="puntos"
+                           formControlName="puntos">
+                    <span *ngIf="puntosCampo?.hasError( 'nonZero' ) && puntosCampo.touched" class="text-danger">
+                        <small>Debe ser mayor o igual a cero.</small>
                     </span>
                 </div>
-                
-                <div *ngIf="respuestaForm?.get( 'opcion' ).errors">
-                    <span *ngIf="respuestaForm?.get( 'opcion' ).errors.maxlength && puntosCampo.touched">
-                        Tiene que tener como máximo diez dígitos.
+    
+                <!-- Input y validaciones para URL-->
+                <div class="row">
+                    <label for="url_imagen">
+                        Url de la imagen
+                        <br>
+                        <span *ngIf="urlCampo?.hasError( 'required' ) && urlCampo.touched" class="text-danger">
+                            <small>Este es un campo requerido.</small>
+                        </span>
+                    </label>
+                    <input type="text" class="form-control"
+                           placeholder="Ingrese un enlace de internet que tenga la terminación .jpg, png, jpeg..."
+                           name="url_imagen" 
+                           id="url_imagen"
+                           formControlName="url_imagen">
+                    <span *ngIf="urlCampo?.hasError( 'pattern' ) && urlCampo.touched" class="text-danger"> 
+                        <small>El url debe terminar en .jpg o .png </small>
+                        <br>
+                        Ej: <i>https://angular.io/assets/images/logos/angular/logo-nav@2x.png</i>
                     </span>
                 </div>
+    
+                <button *ngIf="numRespuestas > 2"
+                    class="btn btn-danger"
+                    type="button"
+                    (click)="eliminarRespuesta( arrayIndex )">
+                    Eliminar
+                </button>
+    
             </div>
-
-            <!-- Input y validaciones para PUNTOS-->
-            <div class="row">
-                <label for="puntos">
-                    Puntos
-                    <span *ngIf="puntosCampo?.hasError( 'required' ) && puntosCampo.touched">
-                        Este es un campo requerido.
-                    </span>
-                </label>
-                <input type="puntos" 
-                       name="puntos" 
-                       id="puntos"
-                       formControlName="puntos">
-                <span *ngIf="puntosCampo?.hasError( 'nonZero' ) && puntosCampo.touched">
-                    Debe ser mayor o igual a cero.
-                </span>
-            </div>
-
-            <!-- Input y validaciones para URL-->
-            <div class="row">
-                <label for="url_imagen">
-                    Url de la imagen
-                    <span *ngIf="urlCampo?.hasError( 'required' ) && urlCampo.touched">
-                        Este es un campo requerido.
-                    </span>
-                </label>
-                <input type="text" 
-                       name="url_imagen" 
-                       id="url_imagen"
-                       formControlName="url_imagen">
-                <span *ngIf="urlCampo?.hasError( 'pattern' ) && urlCampo.touched">
-                    El url debe terminar en .jpg o .png
-                    <br>
-                    Ej: <i>https://angular.io/assets/images/logos/angular/logo-nav@2x.png</i>
-                </span>
-            </div>
-
-            <button *ngIf="numRespuestas > 2"
-                class="btn btn-danger"
-                type="button"
-                (click)="eliminarRespuesta( arrayIndex )">
-                Eliminar
-            </button>
-
         </div>
-    </div>
-</form>
+    </form>
+</div>

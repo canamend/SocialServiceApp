@@ -17,7 +17,9 @@ export class CreateTestComponent implements OnInit {
     nombre: [ '', [ Validators.required, Validators.minLength(4) ] ,  ],
     enfoque: [ '', [ Validators.required, Validators.minLength(4) ] ,  ],
     keyword: [ '', [ Validators.required, Validators.minLength(4) ] , ],
-    preguntas: this.fb.array([], Validators.required )
+    preguntas: new FormArray([
+      PreguntaFormComponent.agregarPreguntaItem()
+    ])
   });
 
   public preguntasTestForm: FormGroup;
@@ -69,7 +71,13 @@ export class CreateTestComponent implements OnInit {
     console.log(this.testForm.value) */
     //this.testForm.reset();
     //console.log(this.preguntasArr)
-    console.log(this.testForm);
+    if( this.testForm.invalid ){
+      this.testForm.markAllAsTouched();
+      this.preguntasTestForm.markAllAsTouched();
+      return;
+    }
+    console.log(this.testForm.value)
+    console.log(this.preguntasTestForm.value)
     this.test = {
       nombre: this.testForm.value.nombre,
       keyword: this.testForm.value.keyword,

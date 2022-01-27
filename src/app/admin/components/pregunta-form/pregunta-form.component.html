@@ -1,32 +1,34 @@
 <form [formGroup]="preguntasForm" autocomplete="off">
 
     <h4>
-        Preguntas {{ arrayIndex + 1 }}
+        Pregunta {{ arrayIndex + 1 }}
     </h4>
     <div class="row">
         <div>
 
             <!-- Input y validaciones para NOMBRE-->
             <div class="row">
-                <label for="nombre">
-                    Nombre
-                    <span *ngIf="nombreCampo?.hasError( 'required' ) && nombreCampo.touched">
+                <label clas="form-label "for="nombre">
+                    Ingrese la pregunta
+                    <span *ngIf="nombreCampo?.hasError( 'required' ) && nombreCampo.touched" class="text-danger">
                         Este es un campo requerido.
                     </span>
                 </label>
                 <input type="text" 
                        name="nombre" 
                        id="nombre"
-                       formControlName="nombre">
+                       formControlName="nombre"
+                       placeholder="Pregunta"
+                       class="form-control">
 
                 <div *ngIf="preguntasForm?.get( 'nombre' ).errors">
-                    <span *ngIf="preguntasForm?.get( 'nombre' ).errors.minlength && nombreCampo.touched">
+                    <span *ngIf="preguntasForm?.get( 'nombre' ).errors.minlength && nombreCampo.touched" class="text-danger">
                         Tiene que tener por lo menos dos dígitos.
                     </span>
                 </div>
                 
                 <div *ngIf="preguntasForm?.get( 'nombre' ).errors">
-                    <span *ngIf="preguntasForm?.get( 'nombre' ).errors.maxlength && nombreCampo.touched">
+                    <span *ngIf="preguntasForm?.get( 'nombre' ).errors.maxlength && nombreCampo.touched" class="text-danger">
                         Tiene que tener como máximo diez dígitos.
                     </span>
                 </div>
@@ -34,25 +36,26 @@
 
             <!-- Input y validaciones para DESCRIPCION-->
             <div class="row">
-                <label for="descripcion">
+                <label class="form-label" for="descripcion">
                     Descripcion
-                    <span *ngIf="descripcionCampo?.hasError( 'required' ) && descripcionCampo.touched">
+                    <span *ngIf="descripcionCampo?.hasError( 'required' ) && descripcionCampo.touched" class="text-danger">
                         Este es un campo requerido.
                     </span>
                 </label>
-                <input type="text" 
+                <input type="text" class="form-control"
+                       placeholder="Añada una descripción que haga la pregunta más entendible"
                        name="descripcion" 
                        id="descripcion"
                        formControlName="descripcion">
 
                 <div *ngIf="preguntasForm?.get( 'descripcion' ).errors">
-                    <span *ngIf="preguntasForm?.get( 'descripcion' ).errors.minlength && descripcionCampo.touched">
+                    <span *ngIf="preguntasForm?.get( 'descripcion' ).errors.minlength && descripcionCampo.touched" class="text-danger">
                         Tiene que tener por lo menos dos dígitos.
                     </span>
                 </div>
                 
                 <div *ngIf="preguntasForm?.get( 'descripcion' ).errors">
-                    <span *ngIf="preguntasForm?.get( 'descripcion' ).errors.maxlength && descripcionCampo.touched">
+                    <span *ngIf="preguntasForm?.get( 'descripcion' ).errors.maxlength && descripcionCampo.touched" class="text-danger">
                         Tiene que tener como máximo diez dígitos.
                     </span>
                 </div>
@@ -60,42 +63,43 @@
 
             <!-- Input y validaciones para PUNTOS-->
             <div class="row">
-                <label for="puntos">
+                <label for="puntos" class="form-label">
                     Puntos
-                    <span *ngIf="puntosCampo?.hasError( 'required' ) && puntosCampo.touched">
+                    <span *ngIf="puntosCampo?.hasError( 'required' ) && puntosCampo.touched" class="text-danger">
                         Este es un campo requerido.
                     </span>
                 </label>
-                <input type="puntos" 
+                <input type="puntos" class="form-control" 
                        name="puntos" 
                        id="puntos"
                        formControlName="puntos">
-                <span *ngIf="puntosCampo?.hasError( 'nonZero' ) && puntosCampo.touched">
+                <span *ngIf="puntosCampo?.hasError( 'nonZero' ) && puntosCampo.touched" class="text-danger">
                     Debe ser mayor o igual a cero.
                 </span>
             </div>
 
             <!-- Input y validaciones para KEYWORD DEL TEST-->
             <div class="row">
-                <label for="keyword">
-                    Palabra clave del test
-                    <span *ngIf="keywordCampo?.hasError( 'required' ) && keywordCampo.touched">
+                <label for="keyword" class="form-label">
+                    Palabra clave del test al que será asignado
+                    <span *ngIf="keywordCampo?.hasError( 'required' ) && keywordCampo.touched" class="text-danger">
                         Este es un campo requerido.
                     </span>
                 </label>
-                <input type="text" 
+                <input type="text" class="form-control"
                        name="keyword" 
                        id="keyword"
+                       placeholder="Ej: Zarit, Spence..."
                        formControlName="keyword">
 
                 <div *ngIf="preguntasForm?.get( 'keyword' ).errors">
-                    <span *ngIf="preguntasForm?.get( 'keyword' ).errors.minlength && keywordCampo.touched">
+                    <span *ngIf="preguntasForm?.get( 'keyword' ).errors.minlength && keywordCampo.touched" class="text-danger">
                         Tiene que tener por lo menos dos dígitos.
                     </span>
                 </div>
                 
                 <div *ngIf="preguntasForm?.get( 'keyword' ).errors">
-                    <span *ngIf="preguntasForm?.get( 'keyword' ).errors.maxlength && keywordCampo.touched">
+                    <span *ngIf="preguntasForm?.get( 'keyword' ).errors.maxlength && keywordCampo.touched" class="text-danger">
                         Tiene que tener como máximo diez dígitos.
                     </span>
                 </div>
@@ -105,17 +109,18 @@
 
             <!-- Input y validaciones para URL-->
             <div class="row">
-                <label for="url_imagen">
+                <label for="url_imagen" class="form-label">
                     Url de la imagen
-                    <span *ngIf="urlCampo?.hasError( 'required' ) && urlCampo.touched">
+                    <span *ngIf="urlCampo?.hasError( 'required' ) && urlCampo.touched" class="text-danger">
                         Este es un campo requerido.
                     </span>
                 </label>
-                <input type="text" 
+                <input type="text"  class="form-control"
                        name="url_imagen" 
                        id="url_imagen"
+                       placeholder="Ingrese un enlace de internet que tenga la terminación .jpg, png, jpeg..."
                        formControlName="url_imagen">
-                <span *ngIf="urlCampo?.hasError( 'pattern' ) && urlCampo.touched">
+                <span *ngIf="urlCampo?.hasError( 'pattern' ) && urlCampo.touched" class="text-danger">
                     El url debe terminar en .jpg o .png
                     <br>
                     Ej: <i>https://angular.io/assets/images/logos/angular/logo-nav@2x.png</i>
@@ -124,31 +129,32 @@
 
             <!-- Input y validaciones para FACTOR-->
             <div class="row">
-                <label for="factor">
+                <label for="factor" class="form-label">
                     Factor
-                    <span *ngIf="factorCampo?.hasError( 'required' ) && factorCampo.touched">
+                    <span *ngIf="factorCampo?.hasError( 'required' ) && factorCampo.touched" class="text-danger">
                         Este es un campo requerido.
                     </span>
                 </label>
-                <input type="text" 
+                <input type="text" class="form-control"
                        name="factor" 
                        id="factor"
+                       placeholder="Ingrese a qué factor puntúa esta pregunta"
                        formControlName="factor">
 
                 <div *ngIf="preguntasForm?.get( 'factor' ).errors">
-                    <span *ngIf="preguntasForm?.get( 'factor' ).errors.minlength && factorCampo.touched">
+                    <span *ngIf="preguntasForm?.get( 'factor' ).errors.minlength && factorCampo.touched" class="text-danger">
                         Tiene que tener por lo menos dos dígitos.
                     </span>
                 </div>
                 
                 <div *ngIf="preguntasForm?.get( 'factor' ).errors">
-                    <span *ngIf="preguntasForm?.get( 'factor' ).errors.maxlength && factorCampo.touched">
+                    <span *ngIf="preguntasForm?.get( 'factor' ).errors.maxlength && factorCampo.touched" class="text-danger">
                         Tiene que tener como máximo diez dígitos.
                     </span>
                 </div>
             </div>
 
-            <button *ngIf="numPreguntas > 2"
+            <button *ngIf="numPreguntas > 5"
                 class="btn btn-danger"
                 type="button"
                 (click)="eliminarPregunta( arrayIndex )">

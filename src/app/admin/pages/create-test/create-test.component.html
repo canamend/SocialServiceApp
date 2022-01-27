@@ -5,209 +5,121 @@
         : 'Nuevo'
     }}
     -->
-<div class="row align-items-start">
-    <div class="col-8">
+<div>
+    <div class="row align-items-start">
+        <div class="col-md-8">
 
-        <!--Encabezado del test (info general)-->
-        <div class="container form">
+            <!--Encabezado del test (info general)-->
+            <div class="container">
 
-            
-            <h2 class="title">Test 
-                <br>
-                <small>Nuevo test</small>
-            </h2>
-            <hr>
+                
+                <h2 class="title">Test 
+                    <br>
+                    <small>Nuevo test</small>
+                </h2>
+                <hr>
 
-            <div class = "form-container test-form-container">
-                <form (ngSubmit)="guardar()" [formGroup]="testForm">
+                <div class = "form-container test-form-container">
+                    <form (ngSubmit)="guardar()" [formGroup]="testForm">
+                        <h2>Información del test</h2>
+                        <p><i>Dar de alta el test antes de cargar las preguntas</i></p>
+                        
+                        <div class="test-row">
+                            <!-- NOMBRE -->
+                            <label class="test-form-label">Nombre</label>
+                            <div class="test-input">
+                                <input class = "form-control mb-2"
+                                        placeholder="Nombre del test"
+                                        formControlName="nombre">
+                                    <span class="form-text text-danger mb-2"
+                                        *ngIf="campoEsValido( 'nombre' )">
+                                            El nombre debe tener al menos cuatro letras
+                                    </span>
+                            </div>
+
+                            <!-- ENFOQUE -->
+                            <label>Enfoque</label>
+                            <div class="test-input">
+                                <input class = "form-control mb-2"
+                                        placeholder="Enfoque del test"
+                                        formControlName="enfoque">
+                                    <span class="form-text text-danger mb-2"
+                                        *ngIf="campoEsValido( 'enfoque' )">
+                                            El enfoque debe contener al menos cuatro letras
+                                    </span>
+                            </div>
+
+                            <!-- PALABRA CLAVE -->
+                            <label>Palabra clave</label>
+                            <br>
+                            <label><i>Ej: Spence, Zarit...</i></label>
+                            <div class="test-input">
+                                <input class = "form-control mb-2"
+                                        placeholder="Palabra que ayude a identificar el test"
+                                        formControlName="keyword">
+                                    <span class="form-text text-danger mb-3"
+                                        *ngIf="campoEsValido( 'keyword' )">
+                                            Debe contener al menos cuatro letras
+                                    </span>
+                            </div>
+
+                        </div>
+
+
+                            <div class = "mb-5">
+                                <div>
+                                    <button type="submit"
+                                            class="btn btn-primary float-end">
+                                        Guardar    
+                                    </button>
+                                </div>
+                            </div>
+                    </form>
+                </div>
+            </div>
+
+            <!--Formulario dinámico para las preguntas-->
+            <div class="rounded container bg-light my-5 ml-5 mr-5 p-5">
+                <form (ngSubmit)="guardar()" [formGroup]="preguntasTestForm" autocomplete="off" >
+                    <h2>Añadir preguntas</h2>
+                    <p><i>Añada preguntas su nuevo test o agregue más a uno ya existente</i></p>
+                    <hr>
+                        <div *ngFor="let pregunta of preguntasArray.controls; let i = index"
+                             class="rounded">
+                            <app-pregunta-form [preguntasForm]="pregunta"
+                            [arrayIndex]="i"
+                            [numPreguntas]="preguntasArray.length"
+                            (eliminarPreguntaEvent)="eliminarPregunta( $event )"> 
+                            </app-pregunta-form>
+                            <hr>
+                        </div>
                     
-                    <div class="test-row">
-                        <!-- NOMBRE -->
-                        <label class="test-form-label">Nombre</label>
-                        <div class="test-input">
-                            <input class = "form-control"
-                                    placeholder="Nombre del test"
-                                    formControlName="nombre">
-                                <span class="form-text text-danger"
-                                    *ngIf="campoEsValido( 'nombre' )">
-                                        Debe de tener al menos cuatro letras
-                                </span>
+                    <div class="row mb-3">
+                        <div class="col-8"></div>
+                        <div class="col-4">
+                            <button type="button" class="btn btn-success"
+                                    (click)="agregarPregunta()"
+                                    *ngIf="preguntasArray.length<30; else preguntasMaxAdvertencia">
+                                Añadir pregunta
+                            </button>
                         </div>
-
-                        <!-- ENFOQUE -->
-                        <label>Enfoque</label>
-                        <div class="test-input">
-                            <input class = "form-control"
-                                    placeholder="Enfoque del test"
-                                    formControlName="enfoque">
-                                <span class="form-text text-danger"
-                                    *ngIf="campoEsValido( 'enfoque' )">
-                                        Debe contener al menos cuatro letras
-                                </span>
-                        </div>
-
-                        <!-- PALABRA CLAVE -->
-                        <label>Palabra clave</label>
-                        <p><i>Ej: Spence, Zarit...</i></p>
-                        <div class="test-input">
-                            <input class = "form-control"
-                                    placeholder="Palabra que ayude a identificar el test"
-                                    formControlName="keyword">
-                                <span class="form-text text-danger"
-                                    *ngIf="campoEsValido( 'keyword' )">
-                                        Debe contener al menos cuatro letras
-                                </span>
-                        </div>
-
                     </div>
-
-                 <!--   
-                <div class = " test-form-container">
-                    <!-- agregar pregunta 
-                    <div class="input-group">
-                        <mat-form-field [formGroup]="nuevaPregunta">
-                            
-                            <label>Pregunta</label>
-                            <input  class="form-control"
-                                    placeholder="Ingrese la pregunta" 
-                                    [formControl]="nuevaPregunta.controls['nombre']">
-
-                            <label>Descripcion</label>
-                            <input  class="form-control"
-                                    placeholder="Describa la pregunta" 
-                                    [formControl]="nuevaPregunta.controls['descripcion']">
-
-                            
-                            <label>Puntos</label>
-                            <input  type="number"  
-                                    class="form-control"
-                                    placeholder="Ingrese el puntaje que incrementa el valor de respuesta más alto" 
-                                    [formControl]="nuevaPregunta.controls['puntos']">
-
-                            
-                            <label>Url de la imagen</label>
-                            <input  class="form-control"
-                                    placeholder="Ingrese el link" 
-                                    [formControl]="nuevaPregunta.controls['urlImagen']">
-
-                            <label>Factor</label>
-                            <input  class="form-control"
-                                    placeholder="Ingrese el factor" 
-                                    [formControl]="nuevaPregunta.controls['factor']">
-
-                        </mat-form-field>
-
-                        <button type="button"
-                                class="btn btn-primary float-end"
-                                (click)="agregarPregunta()">
-                            Añadir Pregunta
+                    
+                        
+                    <ng-template #preguntasMaxAdvertencia>
+                        <span class="text-danger"> Treinta es el máximo numero de pregunta que puedes añadir </span>
+                    </ng-template>
+            
+                    <div class="row">
+                        <button class="btn btn-primary float-end" type="submit">
+                            Cargar test
                         </button>
                     </div>
-                </div>
-
-
-                    <!-- Lista de preguntas 
-
-                    <div>
-                        <label>Preguntas del test</label>
-                        <div formArrayName="preguntas">
-
-                            <div class="input-group"
-                                *ngFor="let question of testForm.value.preguntas; let i = index">
-                                
-                                <p>{{ testForm.value.preguntas[i].nombre }}</p>
-                                <p>{{ testForm.value.preguntas[i].descripcion }}</p>
-                                <p>{{ testForm.value.preguntas[i].puntos }}</p>
-                                <p>{{ testForm.value.preguntas[i].urlImagen }}</p>
-                                <p>{{ testForm.value.preguntas[i].factor }}</p>
-
-                            </div>
-
-                        </div>
-                    </div> -->
-
-
-
-
-                        <div class = "mb-5">
-                            <div>
-                                <button type="submit"
-                                        class="btn btn-primary float-end">
-                                    Guardar    
-                                </button>
-                            </div>
-                        </div>
                 </form>
             </div>
         </div>
-
-        <!--Formulario dinámico para las preguntas-->
-        <div class="container form">
-            <form (ngSubmit)="guardar()" [formGroup]="preguntasTestForm" autocomplete="off" >
-
-                <ul>
-                    <ol *ngFor="let pregunta of preguntasArray.controls; let i = index">
-                        <app-pregunta-form [preguntasForm]="pregunta"
-                        [arrayIndex]="i"
-                        [numPreguntas]="preguntasArray.length"
-                        (eliminarPreguntaEvent)="eliminarPregunta( $event )"> 
-                        </app-pregunta-form>
-                    </ol>
-                </ul>
-        
-                <button type="button"
-                        (click)="agregarPregunta()"
-                        *ngIf="preguntasArray.length<5; else preguntasMaxAdvertencia">
-                    Añadir pregunta
-                </button>
-        
-                <ng-template #preguntasMaxAdvertencia>
-                    <span> Treinta es el máximo numero de pregunta que puedes añadir </span>
-                </ng-template>
-        
-                <div class="row">
-                    <button class="btn btn-primary float-end" type="submit">
-                        Subir
-                    </button>
-                </div>
-            </form>
+        <div class="col-md-4">
+            <app-tipos-respuesta></app-tipos-respuesta>
         </div>
     </div>
-    <div class="col-4">
-        <app-tipos-respuesta></app-tipos-respuesta>
-    </div>
 </div>
-
-
-
-
-<!--
-<span> Valid </span>
-<pre>{{ testForm.valid }}</pre>
-<br>
-
-<span> Value del test </span>
-<pre>{{ testForm.value | json }}</pre>
-<br>
-
-<span> Valid nueva pregunta </span>
-<pre>{{ nuevaPregunta.valid }}</pre>
-
-<span> Value nueva pregunta </span>
-<pre>{{ nuevaPregunta.value | json }}</pre>
-
-<div *ngIf="preguntasArr.controls[0]">
-    <span> Value preguntasArr</span>
-    <div *ngFor="let item of preguntasArray.controls; let i = index">
-        <pre>{{ preguntasArr.at(0).value | json }}</pre>
-    </div>
-</div> 
-
-<div *ngIf="preguntasArr.controls[0]">
-    <span> Value testForm.value.preguntas</span>
-    <div *ngFor="let item of testForm.value.preguntas; let i = index">
-        <pre>{{ testForm.value.preguntas[i] | json }}</pre>
-    </div>
-</div>
-
--->

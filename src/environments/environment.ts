@@ -3,9 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: true,
-  baseUrl: 'https://socialservicefcc.herokuapp.com/'
-  //baseUrl: 'http://localhost:8080'
+  production: false,
+  //baseUrl: 'https://socialservicefcc.herokuapp.com/'
+  baseUrl: 'http://localhost:8080'
 };
 
 /*

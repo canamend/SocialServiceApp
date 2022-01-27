@@ -1,1 +1,1 @@
-web: node src/SocialServiceApp.js
+web: node src/server.js

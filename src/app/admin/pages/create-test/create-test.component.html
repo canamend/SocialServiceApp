@@ -22,7 +22,6 @@
                 <div class = "form-container test-form-container">
                     <form (ngSubmit)="guardar()" [formGroup]="testForm">
                         <h2>Información del test</h2>
-                        <p><i>Dar de alta el test antes de cargar las preguntas</i></p>
                         
                         <div class="test-row">
                             <!-- NOMBRE -->
@@ -64,16 +63,6 @@
                             </div>
 
                         </div>
-
-
-                            <div class = "mb-5">
-                                <div>
-                                    <button type="submit"
-                                            class="btn btn-primary float-end">
-                                        Guardar    
-                                    </button>
-                                </div>
-                            </div>
                     </form>
                 </div>
             </div>
@@ -82,7 +71,7 @@
             <div class="rounded container bg-light my-5 ml-5 mr-5 p-5">
                 <form (ngSubmit)="guardar()" [formGroup]="preguntasTestForm" autocomplete="off" >
                     <h2>Añadir preguntas</h2>
-                    <p><i>Añada preguntas su nuevo test o agregue más a uno ya existente</i></p>
+                    <p><i>Ingrese las preguntas de su nuevo test</i></p>
                     <hr>
                         <div *ngFor="let pregunta of preguntasArray.controls; let i = index"
                              class="rounded">
@@ -120,6 +109,13 @@
         </div>
         <div class="col-md-4">
             <app-tipos-respuesta></app-tipos-respuesta>
+            <p>
+                {{testForm.valid | json}}
+                {{testForm.controls['preguntas'].valid | json}}
+                <br>
+                {{preguntasTestForm.value | json}}
+                {{preguntasTestForm.valid | json}}
+            </p>
         </div>
     </div>
 </div>

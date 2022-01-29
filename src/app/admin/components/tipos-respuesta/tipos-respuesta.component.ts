@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Respuesta, TipoRespuesta } from 'src/app/core/models/respuesta.interface';
@@ -43,7 +43,7 @@ export class TiposRespuestaComponent implements OnInit {
   
   isLoading: boolean;
   respuestas: Respuesta[];
-  tipo_respuesta: TipoRespuesta[] = [];
+  @Output() tipo_respuesta: TipoRespuesta[] = [];
   seleccionado: string ='0';
   verSeleccion: number;
 

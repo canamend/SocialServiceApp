@@ -17,9 +17,7 @@ export class CreateTestComponent implements OnInit {
     nombre: [ '', [ Validators.required, Validators.minLength(4) ] ,  ],
     enfoque: [ '', [ Validators.required, Validators.minLength(4) ] ,  ],
     keyword: [ '', [ Validators.required, Validators.minLength(4) ] , ],
-    preguntas: new FormArray([
-      PreguntaFormComponent.agregarPreguntaItem()
-    ])
+    preguntas: new FormArray([])
   });
 
   public preguntasTestForm: FormGroup;
@@ -50,7 +48,6 @@ export class CreateTestComponent implements OnInit {
     this.preguntasTestForm = new FormGroup({
       preguntas: new FormArray([
         PreguntaFormComponent.agregarPreguntaItem(),
-        PreguntaFormComponent.agregarPreguntaItem(),
       ])
     });
   }
@@ -71,7 +68,9 @@ export class CreateTestComponent implements OnInit {
     console.log(this.testForm.value) */
     //this.testForm.reset();
     //console.log(this.preguntasArr)
+    this.testForm.controls['preguntas'] = this.preguntasTestForm;
     if( this.testForm.invalid ){
+      this.testForm.controls;
       this.testForm.markAllAsTouched();
       this.preguntasTestForm.markAllAsTouched();
       return;
@@ -83,7 +82,19 @@ export class CreateTestComponent implements OnInit {
       keyword: this.testForm.value.keyword,
       enfoque: this.testForm.value.enfoque
     };
-    this.preguntas = this.testForm.value.preguntas;
+    for (let i = 0; i < this.preguntasArray.length; i++) {
+      let nuevaPregunta: Question = {
+        id_pregunta: i,
+        nombre: this.preguntasArray.at(i).value['nombre'],
+        descripcion: this.preguntasArray.at(i).value['descripcion'],
+        id_test: 0,
+        puntos: this.preguntasArray.at(i).value['puntos'],
+        tipo_respuestas: 0,
+        ulr_imagen: this.preguntasArray.at(i).value['url_imagen']
+      }
+      this.preguntas.push(nuevaPregunta);
+    }
+    console.log(this.test);
     console.log(this.preguntas);
     /*
     try {

@@ -6,16 +6,16 @@
     <div class="row">
         <select name="selectTipoRespuesta" [(ngModel)]="seleccionado" (change)="seleccionarTipo()" class="custom-select">
             <option value="0">Selecciona un tipo de pregunta:</option>
-            <option [value]="tipo.tipo_respuesta" *ngFor="let tipo of tipo_respuesta">{{ tipo.tipo_respuesta }}</option>
+            <option [value]="i"  
+                    *ngFor="let tipo of tipo_respuesta; let i = index ">
+                {{ tipo_respuesta[i].tipo_respuesta }}
+            </option>
         </select>
     </div>
 
     <div class="row"
          *ngIf="verSeleccion">
         <div *ngFor="let respuesta of tipo_respuesta[verSeleccion].respuestas">
-            {{ respuesta.opcion }}
-            {{ respuesta.puntos }}
-            {{ respuesta.url_imagen }}
         </div>
     </div>
 

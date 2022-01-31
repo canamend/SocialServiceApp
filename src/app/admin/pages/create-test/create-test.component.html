@@ -78,10 +78,16 @@
                             <app-pregunta-form [preguntasForm]="pregunta"
                             [arrayIndex]="i"
                             [numPreguntas]="preguntasArray.length"
+                            [tipos_Respuesta]="tiposFromChild"
                             (eliminarPreguntaEvent)="eliminarPregunta( $event )"> 
                             </app-pregunta-form>
                             <hr>
                         </div>
+
+                        
+                    <div *ngIf="preguntasArray.length===0">
+                        <span class="text-danger"> Es importante que agregue al menos una pregunta y rellene correctamente los campos requeridos. </span>
+                    </div>
                     
                     <div class="row mb-3">
                         <div class="col-8"></div>
@@ -98,6 +104,8 @@
                     <ng-template #preguntasMaxAdvertencia>
                         <span class="text-danger"> Treinta es el máximo numero de pregunta que puedes añadir </span>
                     </ng-template>
+
+
             
                     <div class="row">
                         <button class="btn btn-primary float-end" type="submit">
@@ -108,14 +116,7 @@
             </div>
         </div>
         <div class="col-md-4">
-            <app-tipos-respuesta></app-tipos-respuesta>
-            <p>
-                {{testForm.valid | json}}
-                {{testForm.controls['preguntas'].valid | json}}
-                <br>
-                {{preguntasTestForm.value | json}}
-                {{preguntasTestForm.valid | json}}
-            </p>
+            <app-tipos-respuesta (tiposFromChild)="getTiposRespuesta($event)"></app-tipos-respuesta>
         </div>
     </div>
 </div>

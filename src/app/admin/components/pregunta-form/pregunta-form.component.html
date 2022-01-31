@@ -61,52 +61,23 @@
                 </div>
             </div>
 
-            <!-- Input y validaciones para PUNTOS-->
-            <div class="row">
-                <label for="puntos" class="form-label">
-                    Puntos
-                    <span *ngIf="puntosCampo?.hasError( 'required' ) && puntosCampo.touched" class="text-danger">
-                        Este es un campo requerido.
-                    </span>
-                </label>
-                <input type="puntos" class="form-control" 
-                       name="puntos" 
-                       id="puntos"
-                       formControlName="puntos">
-                <span *ngIf="puntosCampo?.hasError( 'nonZero' ) && puntosCampo.touched" class="text-danger">
-                    Debe ser mayor o igual a cero.
-                </span>
-            </div>
-
-            <!-- Input y validaciones para KEYWORD DEL TEST-->
-            <div class="row">
-                <label for="keyword" class="form-label">
-                    Palabra clave del test al que será asignado
-                    <span *ngIf="keywordCampo?.hasError( 'required' ) && keywordCampo.touched" class="text-danger">
-                        Este es un campo requerido.
-                    </span>
-                </label>
-                <input type="text" class="form-control"
-                       name="keyword" 
-                       id="keyword"
-                       placeholder="Ej: Zarit, Spence..."
-                       formControlName="keyword">
-
-                <div *ngIf="preguntasForm?.get( 'keyword' ).errors">
-                    <span *ngIf="preguntasForm?.get( 'keyword' ).errors.minlength && keywordCampo.touched" class="text-danger">
-                        Tiene que tener por lo menos dos dígitos.
-                    </span>
-                </div>
-                
-                <div *ngIf="preguntasForm?.get( 'keyword' ).errors">
-                    <span *ngIf="preguntasForm?.get( 'keyword' ).errors.maxlength && keywordCampo.touched" class="text-danger">
-                        Tiene que tener como máximo diez dígitos.
-                    </span>
-                </div>
-            </div>
-
             <!-- lista desplegable -->
-
+            <div class="row">
+                <label for="idRespuesta" class="form-label">
+                    Tipo de respuesta
+                    <span *ngIf="idRespuestaCampo?.hasError( 'required' ) && idRespuestaCampo.touched" class="text-danger">
+                        Por favor, seleccione una opción
+                    </span>
+                </label>
+                <select formControlName="idRespuesta" class="form-select">
+                    <option [ngValue]="null" disabled>Elija el tipo de respuesta</option>
+                    <option [ngValue]="tipos_Respuesta[i].tipo_respuesta" 
+                            *ngFor="let tipo of tipos_Respuesta; let i = index">
+                        {{ tipos_Respuesta[i].tipo_respuesta }}
+                    </option>
+                </select>            
+            </div>
+            
             <!-- Input y validaciones para URL-->
             <div class="row">
                 <label for="url_imagen" class="form-label">

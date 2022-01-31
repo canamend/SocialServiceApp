@@ -25,9 +25,16 @@ export class TestService {
     return this._http.get<Test[]>(endpoint).toPromise();
   }
 
-  postTest( data: TestInfo, preguntas: Question[] ){
-    const endpoint = `${this.baseUrl}/test/`;
-    return this._http.post(endpoint, [data, preguntas]).toPromise();
+  
+  getTestsInfo(): Promise<TestInfo[]>{
+    const endpoint = `${this.baseUrl}/test/infoAll`;
+    return this._http.get<TestInfo[]>(endpoint).toPromise();
   }
+
+  postTest( test: Test ){
+    const endpoint = `${this.baseUrl}/test/`;
+    return this._http.post(endpoint, test).toPromise();
+  }
+
 
 }

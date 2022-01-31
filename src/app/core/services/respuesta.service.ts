@@ -18,4 +18,9 @@ export class RespuestaService {
     const endpoint = `${this.baseUrl}/respuestas/all`;
     return this._http.get<Respuesta[]>(endpoint).toPromise();
   }
+
+  postRespuestas( respuestas: Respuesta[] ){
+    const endpoint = `${this.baseUrl}/respuestas/`;
+    return this._http.post(endpoint, respuestas).toPromise();
+  }
 }

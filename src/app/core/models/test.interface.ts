@@ -4,7 +4,7 @@ export interface Test {
     keyword:    string;
     enfoque:   string;
     questions: Question[];
-    answers:   { [key: string]: Answer[] };
+    answers?:   { [key: string]: Answer[] };
 }
 
 export interface Answer {

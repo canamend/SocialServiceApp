@@ -2,15 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmarComponent } from '../../components/confirmar/confirmar.component';
-import { Question, TestInfo } from '../../../core/models/test.interface';
+import { Question, TestInfo, Test } from '../../../core/models/test.interface';
 import { TestService } from 'src/app/core/services/test.service';
 import Swal from 'sweetalert2';
 import { PreguntaFormComponent } from '../../components/pregunta-form/pregunta-form.component';
+import { TipoRespuesta } from '../../../core/models/respuesta.interface';
 
 @Component({
   selector: 'app-create-test',
   templateUrl: './create-test.component.html',
-  styleUrls: ['./create-test.component.css']
+  styleUrls: []
 })
 export class CreateTestComponent implements OnInit {
   testForm: FormGroup = this.fb.group({
@@ -28,6 +29,9 @@ export class CreateTestComponent implements OnInit {
 
   preguntas: Question[] = [];
   test: TestInfo;
+  testsInfo: TestInfo[];
+  nuevoTest: Test;
+  tiposFromChild: TipoRespuesta[];
   isLoading: boolean; 
 
   constructor( private fb: FormBuilder,
@@ -46,10 +50,12 @@ export class CreateTestComponent implements OnInit {
 
   generatepreguntasTestForm() {
     this.preguntasTestForm = new FormGroup({
-      preguntas: new FormArray([
-        PreguntaFormComponent.agregarPreguntaItem(),
-      ])
+      preguntas: new FormArray([])
     });
+  }
+
+  getTiposRespuesta(event: TipoRespuesta[]){
+    this.tiposFromChild = event;
   }
 
   eliminarPregunta( index: number ){
@@ -60,24 +66,24 @@ export class CreateTestComponent implements OnInit {
   }
 
   async guardar() {
-    /*
-    if( this.testForm.invalid ){
-      this.testForm.markAllAsTouched();
-      return;
+    this.testsInfo = await this.testService.getTests();
+    let aux: number = 0;
+
+    //se evalua que se asigne un id de test que no exista
+    while(this.testsInfo.some(test => test.id_test === aux)){
+      aux = aux + 1;
     }
-    console.log(this.testForm.value) */
-    //this.testForm.reset();
-    //console.log(this.preguntasArr)
+
     this.testForm.controls['preguntas'] = this.preguntasTestForm;
-    if( this.testForm.invalid ){
+    if( this.testForm.invalid || this.preguntasArray.length === 0 ){
       this.testForm.controls;
       this.testForm.markAllAsTouched();
       this.preguntasTestForm.markAllAsTouched();
       return;
     }
-    console.log(this.testForm.value)
-    console.log(this.preguntasTestForm.value)
+
     this.test = {
+      id_test: aux,
       nombre: this.testForm.value.nombre,
       keyword: this.testForm.value.keyword,
       enfoque: this.testForm.value.enfoque
@@ -87,19 +93,24 @@ export class CreateTestComponent implements OnInit {
         id_pregunta: i,
         nombre: this.preguntasArray.at(i).value['nombre'],
         descripcion: this.preguntasArray.at(i).value['descripcion'],
-        id_test: 0,
+        id_test: this.test.id_test,
         puntos: this.preguntasArray.at(i).value['puntos'],
-        tipo_respuestas: 0,
+        tipo_respuestas: this.preguntasArray.at(i).value['idRespuesta'], //tipos_Respuesta[idRespuestaCampo.value].tipo_respuesta
         ulr_imagen: this.preguntasArray.at(i).value['url_imagen']
       }
       this.preguntas.push(nuevaPregunta);
     }
-    console.log(this.test);
-    console.log(this.preguntas);
-    /*
+    this.nuevoTest = {
+      id_test: this.test.id_test,
+      enfoque: this.test.enfoque,
+      keyword: this.test.keyword,
+      nombre: this.test.nombre,
+      questions: this.preguntas
+    }
+
     try {
       this.isLoading = true;
-      this.testService.postTest(this.test);
+      await this.testService.postTest(this.nuevoTest);
       this.isLoading = false;
       Swal.fire({
         position: 'top-right',
@@ -117,7 +128,7 @@ export class CreateTestComponent implements OnInit {
         timer: 2000,
         showConfirmButton: false  
       });;
-    } */
+    }
   }
 
   borrarTest() {

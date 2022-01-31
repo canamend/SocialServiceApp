@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { TipoRespuesta } from '../../../core/models/respuesta.interface';
 
 @Component({
   selector: 'app-pregunta-form',
@@ -14,6 +15,8 @@ export class PreguntaFormComponent {
   @Input() arrayIndex: number;
 
   @Input() numPreguntas: number;
+
+  @Input() tipos_Respuesta : TipoRespuesta;
 
   @Output() eliminarPreguntaEvent: EventEmitter<number> = new EventEmitter<number>();
   static reg: string | RegExp = '(http)?s?:?(\/\/[^"\']*\.(?:png|jpg|jpeg|gif|png|svg))';
@@ -41,6 +44,10 @@ export class PreguntaFormComponent {
   get factorCampo (): FormControl{
     return this.preguntasForm?.get( 'factor' ) as FormControl;
   }
+
+  get idRespuestaCampo (): FormControl{
+    return this.preguntasForm?.get('idRespuesta') as FormControl;
+  }
   
   constructor() { }
 
@@ -48,11 +55,8 @@ export class PreguntaFormComponent {
     return new FormGroup({
       nombre: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(10)]),
       descripcion: new FormControl('', [ Validators.minLength(10), Validators.maxLength(100)]),
-      puntos: new FormControl(0, Validators.compose([
-                                    Validators.required, PreguntaFormComponent.nonZero ])
-                              ),
+      idRespuesta: new FormControl(null, [ Validators.required ] ),
       url_imagen: new FormControl('', [Validators.required, Validators.pattern(this.reg)]),
-      keyword: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(10)]),
       factor: new FormControl('', [Validators.minLength(2), Validators.maxLength(50)]),
     });
   }

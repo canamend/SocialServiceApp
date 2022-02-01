@@ -16,13 +16,14 @@ export interface Answer {
 }
 
 export interface Question {
-    id_pregunta:     number;
+    id_pregunta?:     number;
     nombre:          string;
     descripcion:     null | string;
-    puntos:          null;
     id_test:         number;
     tipo_respuestas: number;
-    ulr_imagen:      string;
+    url_imagen:      string;
+    tipo_pregunta?:  string;
+    factor?:         string;
 }
 
 export interface TestInfo {

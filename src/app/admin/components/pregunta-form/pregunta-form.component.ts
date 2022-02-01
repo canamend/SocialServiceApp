@@ -53,11 +53,11 @@ export class PreguntaFormComponent {
 
   static agregarPreguntaItem (): FormGroup {
     return new FormGroup({
-      nombre: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(10)]),
-      descripcion: new FormControl('', [ Validators.minLength(10), Validators.maxLength(100)]),
+      nombre: new FormControl('', [Validators.required, Validators.minLength(15), Validators.maxLength(150)]),
+      descripcion: new FormControl('', [ Validators.minLength(10), Validators.maxLength(200)]),
       idRespuesta: new FormControl(null, [ Validators.required ] ),
-      url_imagen: new FormControl('', [Validators.required, Validators.pattern(this.reg)]),
-      factor: new FormControl('', [Validators.minLength(2), Validators.maxLength(50)]),
+      url_imagen: new FormControl('', [Validators.required, Validators.pattern(this.reg), Validators.maxLength(100)]),
+      factor: new FormControl('', [Validators.minLength(5), Validators.maxLength(100)]),
     });
   }
 

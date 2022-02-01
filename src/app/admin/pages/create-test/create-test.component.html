@@ -32,7 +32,7 @@
                                         formControlName="nombre">
                                     <span class="form-text text-danger mb-2"
                                         *ngIf="campoEsValido( 'nombre' )">
-                                            El nombre debe tener al menos cuatro letras
+                                            El nombre debe tener al menos cuatro letras y máximo 100
                                     </span>
                             </div>
 
@@ -44,7 +44,7 @@
                                         formControlName="enfoque">
                                     <span class="form-text text-danger mb-2"
                                         *ngIf="campoEsValido( 'enfoque' )">
-                                            El enfoque debe contener al menos cuatro letras
+                                            El enfoque debe contener al menos cuatro letras y máximo 50
                                     </span>
                             </div>
 
@@ -58,7 +58,7 @@
                                         formControlName="keyword">
                                     <span class="form-text text-danger mb-3"
                                         *ngIf="campoEsValido( 'keyword' )">
-                                            Debe contener al menos cuatro letras
+                                            Debe contener al menos cuatro letras y máximo quince
                                     </span>
                             </div>
 
@@ -94,7 +94,7 @@
                         <div class="col-4">
                             <button type="button" class="btn btn-success"
                                     (click)="agregarPregunta()"
-                                    *ngIf="preguntasArray.length<30; else preguntasMaxAdvertencia">
+                                    *ngIf="preguntasArray.length<45; else preguntasMaxAdvertencia">
                                 Añadir pregunta
                             </button>
                         </div>
@@ -102,7 +102,7 @@
                     
                         
                     <ng-template #preguntasMaxAdvertencia>
-                        <span class="text-danger"> Treinta es el máximo numero de pregunta que puedes añadir </span>
+                        <span class="text-danger"> Cuarenta y cinco es el máximo numero de pregunta que puedes añadir </span>
                     </ng-template>
 
 

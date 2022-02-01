@@ -15,9 +15,9 @@ import { TipoRespuesta } from '../../../core/models/respuesta.interface';
 })
 export class CreateTestComponent implements OnInit {
   testForm: FormGroup = this.fb.group({
-    nombre: [ '', [ Validators.required, Validators.minLength(4) ] ,  ],
-    enfoque: [ '', [ Validators.required, Validators.minLength(4) ] ,  ],
-    keyword: [ '', [ Validators.required, Validators.minLength(4) ] , ],
+    nombre: [ '', [ Validators.required, Validators.minLength(4), Validators.maxLength(100)] ,  ],
+    enfoque: [ '', [ Validators.required, Validators.minLength(4), Validators.maxLength(50)] ,  ],
+    keyword: [ '', [ Validators.required, Validators.minLength(4), Validators.maxLength(15) ] , ],
     preguntas: new FormArray([])
   });
 
@@ -82,31 +82,25 @@ export class CreateTestComponent implements OnInit {
       return;
     }
 
-    this.test = {
+    this.nuevoTest = {
       id_test: aux,
       nombre: this.testForm.value.nombre,
       keyword: this.testForm.value.keyword,
-      enfoque: this.testForm.value.enfoque
-    };
+      enfoque: this.testForm.value.enfoque,
+      questions: []
+    }
     for (let i = 0; i < this.preguntasArray.length; i++) {
       let nuevaPregunta: Question = {
-        id_pregunta: i,
         nombre: this.preguntasArray.at(i).value['nombre'],
         descripcion: this.preguntasArray.at(i).value['descripcion'],
-        id_test: this.test.id_test,
-        puntos: this.preguntasArray.at(i).value['puntos'],
-        tipo_respuestas: this.preguntasArray.at(i).value['idRespuesta'], //tipos_Respuesta[idRespuestaCampo.value].tipo_respuesta
-        ulr_imagen: this.preguntasArray.at(i).value['url_imagen']
+        id_test: this.nuevoTest.id_test,
+        tipo_respuestas: this.preguntasArray.at(i).value['idRespuesta'], 
+        url_imagen: this.preguntasArray.at(i).value['url_imagen'],
+        factor: this.preguntasArray.at(i).value['factor']
       }
-      this.preguntas.push(nuevaPregunta);
+      this.nuevoTest.questions.push(nuevaPregunta);
     }
-    this.nuevoTest = {
-      id_test: this.test.id_test,
-      enfoque: this.test.enfoque,
-      keyword: this.test.keyword,
-      nombre: this.test.nombre,
-      questions: this.preguntas
-    }
+    console.log(this.nuevoTest);
 
     try {
       this.isLoading = true;

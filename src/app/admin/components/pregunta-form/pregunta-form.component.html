@@ -23,13 +23,13 @@
 
                 <div *ngIf="preguntasForm?.get( 'nombre' ).errors">
                     <span *ngIf="preguntasForm?.get( 'nombre' ).errors.minlength && nombreCampo.touched" class="text-danger">
-                        Tiene que tener por lo menos dos dígitos.
+                        Tiene que tener por lo menos quince dígitos.
                     </span>
                 </div>
                 
                 <div *ngIf="preguntasForm?.get( 'nombre' ).errors">
                     <span *ngIf="preguntasForm?.get( 'nombre' ).errors.maxlength && nombreCampo.touched" class="text-danger">
-                        Tiene que tener como máximo diez dígitos.
+                        Tiene que tener como máximo 150 dígitos.
                     </span>
                 </div>
             </div>
@@ -50,13 +50,13 @@
 
                 <div *ngIf="preguntasForm?.get( 'descripcion' ).errors">
                     <span *ngIf="preguntasForm?.get( 'descripcion' ).errors.minlength && descripcionCampo.touched" class="text-danger">
-                        Tiene que tener por lo menos dos dígitos.
+                        Tiene que tener por lo menos diez dígitos.
                     </span>
                 </div>
                 
                 <div *ngIf="preguntasForm?.get( 'descripcion' ).errors">
                     <span *ngIf="preguntasForm?.get( 'descripcion' ).errors.maxlength && descripcionCampo.touched" class="text-danger">
-                        Tiene que tener como máximo diez dígitos.
+                        Tiene que tener como máximo 200 dígitos.
                     </span>
                 </div>
             </div>
@@ -77,6 +77,20 @@
                     </option>
                 </select>            
             </div>
+
+            <!--
+            <div class="row"
+                *ngIf="preguntasForm?.get('idRespuesta').valid">
+                <div class="col">
+                    <p>Valor: </p>
+                    <p>Puntaje: </p>
+                </div>
+                <div class="col" *ngFor="let respuesta of tipos_Respuesta[preguntasForm?.get('idRespuesta').value].respuestas">
+                    <p>{{ respuesta.opcion }}</p>
+                    <p>{{ respuesta.puntos }}</p>
+                </div>
+                <p>Valor del campo: {{preguntasForm?.get('idRespuesta').value}} </p>
+            </div> -->
             
             <!-- Input y validaciones para URL-->
             <div class="row">
@@ -91,6 +105,11 @@
                        id="url_imagen"
                        placeholder="Ingrese un enlace de internet que tenga la terminación .jpg, png, jpeg..."
                        formControlName="url_imagen">
+                <div *ngIf="preguntasForm?.get( 'url_imagen' ).errors">
+                    <span *ngIf="preguntasForm?.get( 'url_imagen' ).errors.maxlength && urlCampo.touched" class="text-danger">
+                        Tiene que tener como máximo 200 dígitos.
+                    </span>
+                </div>
                 <span *ngIf="urlCampo?.hasError( 'pattern' ) && urlCampo.touched" class="text-danger">
                     El url debe terminar en .jpg o .png
                     <br>
@@ -114,13 +133,13 @@
 
                 <div *ngIf="preguntasForm?.get( 'factor' ).errors">
                     <span *ngIf="preguntasForm?.get( 'factor' ).errors.minlength && factorCampo.touched" class="text-danger">
-                        Tiene que tener por lo menos dos dígitos.
+                        Tiene que tener por lo menos cinco dígitos.
                     </span>
                 </div>
                 
                 <div *ngIf="preguntasForm?.get( 'factor' ).errors">
                     <span *ngIf="preguntasForm?.get( 'factor' ).errors.maxlength && factorCampo.touched" class="text-danger">
-                        Tiene que tener como máximo diez dígitos.
+                        Tiene que tener como máximo 100 dígitos.
                     </span>
                 </div>
             </div>

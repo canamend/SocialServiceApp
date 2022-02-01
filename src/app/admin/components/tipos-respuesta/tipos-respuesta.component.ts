@@ -61,7 +61,6 @@ export class TiposRespuestaComponent implements OnInit {
       this.isLoading = true;
       this.respuestas = await this.respuestaService.getRespuestas();
       var i=0;
-
       this.respuestas.forEach( answer =>{
 
         if( this.tipo_respuesta.length === 0 ) {
@@ -85,6 +84,10 @@ export class TiposRespuestaComponent implements OnInit {
         }
 
 
+      });
+      this.tipo_respuesta.unshift({
+        tipo_respuesta: null,
+        respuestas: []
       });
       this.tiposFromChild.emit(this.tipo_respuesta);
         

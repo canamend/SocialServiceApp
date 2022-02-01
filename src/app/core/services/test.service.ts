@@ -36,5 +36,10 @@ export class TestService {
     return this._http.post(endpoint, test).toPromise();
   }
 
+  postPreguntas( preguntas: Question[], id_test: number ){
+    const endpoint = `${this.baseUrl}/test/${id_test}`;
+    return this._http.post(endpoint, preguntas).toPromise();
+  }
+
 
 }

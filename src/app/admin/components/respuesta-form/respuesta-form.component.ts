@@ -34,7 +34,7 @@ export class RespuestaFormComponent {
 
   static agregarRespuestaItem (): FormGroup {
     return new FormGroup({
-      opcion: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(10)]),
+      opcion: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(20)]),
       puntos: new FormControl(0, Validators.compose([
                                     Validators.required, RespuestaFormComponent.nonZero ])
                               ),

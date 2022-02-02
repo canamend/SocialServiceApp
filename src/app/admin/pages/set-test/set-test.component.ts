@@ -99,7 +99,7 @@ export class SetTestComponent implements OnInit {
       Swal.fire({
         position: 'top-right',
         icon: 'success',
-        text: `Test de ${this.pipe.transform(this.verSeleccion)} asignado con éxito`,
+        text: `Test de asignado con éxito`,
         timer: 2000,
         showConfirmButton: false  
       })

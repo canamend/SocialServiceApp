@@ -7,6 +7,7 @@ import { EliminarComponent } from './pages/eliminar/eliminar.component';
 import { InfoPatientComponent } from './pages/info-patient/info-patient.component';
 import { MainComponent } from './pages/main/main.component';
 import { SetTestComponent } from './pages/set-test/set-test.component';
+import { ResultadosComponent } from './pages/resultados/resultados.component';
 
 const routes: Routes = [
   
@@ -17,6 +18,7 @@ const routes: Routes = [
       { path: 'eliminar', component: EliminarComponent},         //admin/eliminar
       { path: 'infopatient/:username', component: InfoPatientComponent }, //  admin/infopatient
       { path: 'createtest', component: CreateTestComponent}, 
+      { path: 'resultados/:id_resultados', component: ResultadosComponent},
       { path: '**', pathMatch: 'full', redirectTo: 'home' }
     ]
   },

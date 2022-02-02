@@ -16,9 +16,9 @@
             <th class="table-head">Fecha</th>
           </thead>
           <tbody>
-            <ng-container *ngFor= "let hist of historial">
-              <tr *ngIf="hist.puntaje===null" class="table-row task" (click)="onAnswerTest(hist.id_test, hist.id_historial, hist.id_paciente)">
-                <td class="table-column"> Test de {{ hist.id_test | nombreTest }} </td>
+            <ng-container *ngFor= "let hist of historial; let i = index">
+              <tr *ngIf="hist.puntaje===null && displayArray.length>0" class="table-row task" (click)="onAnswerTest(hist.id_test, hist.id_historial, hist.id_paciente)">
+                <td class="table-column"> Test de {{ displayArray[i].keyword }} </td>
                 <td class="table-column"> {{ hist.f_asignacion | date }} </td> <!--  Agregar el router link para que al dar click se active el test necesario  -->
               </tr>
             </ng-container>  
@@ -39,15 +39,15 @@
           <th class="table-head">Psicólogo</th>
         </thead>
         <tbody>
-          <ng-container *ngFor= "let hist of historial">
-            <tr *ngIf="hist.puntaje!==null" class="table-row info">
-                <td data-th="Test:" class="table-column"> Test de {{ hist.id_test | nombreTest }} <span></span></td>
+          <ng-container *ngFor= "let hist of historial; let i = index">
+            <tr *ngIf="hist.puntaje!==null && displayArray.length>0" class="table-row info">
+                <td data-th="Test:" class="table-column"> Test de {{ displayArray[i].keyword }} <span></span></td>
                 <td data-th="Puntaje:" class="table-column"> {{hist.puntaje}} </td>
                 <td data-th="Fecha de asignación:" class="table-column">{{hist.f_asignacion | date }}</td>
                 <td data-th="Fecha de resolución:" class="table-column">{{hist.f_fin | date }}</td>
                 <ng-container *ngIf="admins">  
                 <td data-th="Psicólogo:" class="table-column"> {{ hist.id_admin | psicNombre : admins }} </td>
-                <button class="btn btn-primary" (click) = "score(hist.id_test, hist.id_historial, hist.id_paciente)">Ver resultados</button>
+                <button class="btn btn-primary" (click) = "score(hist.id_test, hist.id_historial, hist.id_paciente,hist.id_test)">Ver resultados</button>
                 </ng-container>
             </tr>
           </ng-container>  

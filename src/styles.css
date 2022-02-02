@@ -85,6 +85,9 @@ body{
     border: none;
     border-bottom: 5px solid #C6EBC9 !important;
 }
+.navbar-custom {
+    height: 70px;
+  }
 
 /*LOGIN*/
 .view-login{

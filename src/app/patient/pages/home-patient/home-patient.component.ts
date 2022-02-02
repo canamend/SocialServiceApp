@@ -21,7 +21,8 @@ export class HomePatientComponent implements OnInit{
   testsInfo: TestInfo[];
   admins: AdminAux[]; 
   historial: Historial[];
-  
+  displayArray: { id_test: number, keyword: string } [] = []
+
   constructor(
     private router: Router,
     private patientService: PatientService,
@@ -39,11 +40,17 @@ export class HomePatientComponent implements OnInit{
       this.isLoading = true;
       this.patient = await this.patientService.getPatient();
       this.historial = await this.historialService.getHistorial(this.patient.id_paciente);
-      this.testsInfo = await this.testService.getTestsInfo();    
+      this.testsInfo = await this.testService.getTests();
       this.admins = await this.adminService.getAdmins();
-      this.isLoading= false;
-      
-    } catch (error) {
+      this.historial.forEach( hist=> {
+        let aux = {
+          id_test: hist.id_test,
+          keyword: this.testsInfo.find(test=> test.id_test==hist.id_test ).keyword
+        }
+        this.displayArray.push(aux);
+      })
+      this.isLoading = false;
+      } catch (error) {
       this.isLoading= false;
       this.router.navigate(['/auth/login']);
     }
@@ -53,7 +60,7 @@ export class HomePatientComponent implements OnInit{
     this.router.navigate([ `/patient/test/${id_test}` , { id_hist: id_historial, id_pac: id_paciente } ]);
   }
 
-  score(id_test: number, id_historial: number, id_paciente: number){
-    this.router.navigate([ `/patient/results/${id_test}` , { id_hist: id_historial, id_pac: id_paciente } ]);
+  score(id_test: number, id_historial: number, id_paciente: number, id_t:number){
+    this.router.navigate([ `/patient/results/${id_test}` , { id_hist: id_historial, id_pac: id_paciente,id_t:id_t} ]);
   }
 }

@@ -75,7 +75,7 @@ export class CreateTestComponent implements OnInit {
     }
 
     this.testForm.controls['preguntas'] = this.preguntasTestForm;
-    if( this.testForm.invalid || this.preguntasArray.length === 0 ){
+    if( this.testForm.invalid || this.preguntasTestForm.invalid ){
       this.testForm.controls;
       this.testForm.markAllAsTouched();
       this.preguntasTestForm.markAllAsTouched();
@@ -94,13 +94,13 @@ export class CreateTestComponent implements OnInit {
         nombre: this.preguntasArray.at(i).value['nombre'],
         descripcion: this.preguntasArray.at(i).value['descripcion'],
         id_test: this.nuevoTest.id_test,
-        tipo_respuestas: this.preguntasArray.at(i).value['idRespuesta'], 
+        tipo_respuestas: this.preguntasArray.at(i).value['idRespuesta'],
         url_imagen: this.preguntasArray.at(i).value['url_imagen'],
-        factor: this.preguntasArray.at(i).value['factor']
+        factor: this.preguntasArray.at(i).value['factor'],
+        tipo_pregunta: null
       }
       this.nuevoTest.questions.push(nuevaPregunta);
     }
-    console.log(this.nuevoTest);
 
     try {
       this.isLoading = true;

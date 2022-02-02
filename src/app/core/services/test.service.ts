@@ -20,14 +20,8 @@ export class TestService {
     return this._http.get<Test>(endpoint).toPromise();
   }
 
-  getTests(): Promise<Test[]>{
+  getTests(): Promise<TestInfo[]>{
     const endpoint = `${this.baseUrl}/test/all`;
-    return this._http.get<Test[]>(endpoint).toPromise();
-  }
-
-  
-  getTestsInfo(): Promise<TestInfo[]>{
-    const endpoint = `${this.baseUrl}/test/infoAll`;
     return this._http.get<TestInfo[]>(endpoint).toPromise();
   }
 

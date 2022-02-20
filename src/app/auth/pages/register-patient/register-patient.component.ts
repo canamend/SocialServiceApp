@@ -6,8 +6,11 @@ import Swal from 'sweetalert2';
 import { Account } from '../../core/models/account.interface';
 import { PatientPost } from '../../core/models/patient-post.interface';
 import { AuthService } from '../../core/services/auth.service';
+import { PatientService } from 'src/app/core/services/patient.service';
+import { AdminService } from 'src/app/core/services/admin.service';
 
 import { accountForm, infoPersonForm, parentForm } from '../../shared/form.model';
+import { Admin } from 'src/app/core/models/users.interface';
 
 @Component({
   selector: 'app-register-patient',
@@ -15,13 +18,17 @@ import { accountForm, infoPersonForm, parentForm } from '../../shared/form.model
   styleUrls: ['./register-patient.component.css']
 })
 export class RegisterPatientComponent{
+  Administrador: Admin;
+  
 
   form: FormGroup;
 
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private patientService: PatientService,
+    private adminService: AdminService
   ) { 
     this._initForm();
   }
@@ -33,7 +40,7 @@ export class RegisterPatientComponent{
         infoPerson: infoPersonForm,
         account: accountForm(this.authService),
         parent: parentForm,
-        expediente: new FormControl('')
+        expediente: new FormControl('') //Expediente
       }
     )
   }
@@ -90,7 +97,10 @@ export class RegisterPatientComponent{
 
     try {
       const responseCarer = await this.authService.addCuidador(carer);
-      patient.id_cuidador = responseCarer.insertId; 
+      patient.id_cuidador = responseCarer.insertId;
+      this.Administrador = await this.adminService.getAdmin();
+
+      await this.patientService.addExpediente(this.form.value.expediente,this.Administrador.id_admin, 1);
       patient.no_expediente = this.form.value.expediente;
       patient.nombre = patient.nombre.toUpperCase();
       patient.apmaterno = patient.apmaterno.toUpperCase();
@@ -102,7 +112,7 @@ export class RegisterPatientComponent{
         icon: 'success'
       });
       this.form.reset();
-      this.router.navigateByUrl('auth/login');
+      this.router.navigateByUrl('admin/home');
 
     } catch (error) {
       console.log(error)

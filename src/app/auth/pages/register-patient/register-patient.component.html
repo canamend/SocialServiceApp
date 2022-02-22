@@ -154,6 +154,7 @@
                         placeholder="Nombre completo"
                         formControlName="nombreCuidador"
                         [class.input-invalid]="isInvalid('parent.nombreCuidador')"
+                        value=""  onkeyup="javascript:this.value=this.value.toUpperCase();"
                     >
                     <small
                         class="message-error"

@@ -94,7 +94,7 @@ export class ResultadosComponent implements OnInit {
 
     } catch (error) {
       this.isLoading= false;
-      this.router.navigate(['/auth/login']);
+      this.router.navigate(['/admin/home']);
     }
   }
 }

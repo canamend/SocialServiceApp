@@ -29,7 +29,7 @@
                             <td data-th="Nivel:" class="table-column"> {{ hist.puntaje | nivelAnsiedad }} </td>
                             <td data-th="Fecha:" class="table-column"> {{ hist.f_asignacion | date }} </td>
                             <td data-th="Psicólogo:" class="table-column"> {{ hist.id_admin | psicNombre : admins }} </td>
-                            <button class="btn btn-primary" (click) = "score(hist.id_test, hist.id_historial,patient.nombre,hist.id_test)">Ver resultados</button>
+                            <button class="btn btn-primary" (click) = "score(hist.id_test, hist.id_historial,patient.usuario,hist.id_test)">Ver resultados</button>
                         </tr>
                     </ng-container>
                 </ng-container>

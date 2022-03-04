@@ -22,10 +22,8 @@ import { SharedModule } from '../shared/shared.module';
 import { NombreTestPipe } from '../shared/pipes/nombre-test.pipe';
 import { CreateTestComponent } from './pages/create-test/create-test.component';
 import { EliminarComponent } from './pages/eliminar/eliminar.component';
-import { ConfirmarComponent } from './components/confirmar/confirmar.component';
 import { ResultadosComponent } from './pages/resultados/resultados.component';
 import { MaterialModule } from '../material/material.module';
-import { CantidadPreguntasComponent } from './components/cantidad-preguntas/cantidad-preguntas.component';
 import { TiposRespuestaComponent } from './components/tipos-respuesta/tipos-respuesta.component';
 import { RespuestaFormComponent } from './components/respuesta-form/respuesta-form.component';
 import { PreguntaFormComponent } from './components/pregunta-form/pregunta-form.component';
@@ -42,9 +40,7 @@ import { PreguntaFormComponent } from './components/pregunta-form/pregunta-form.
     InputPatientsComponent,
     CreateTestComponent,
     EliminarComponent,
-    ConfirmarComponent,
     ResultadosComponent,
-    CantidadPreguntasComponent,
     TiposRespuestaComponent,
     RespuestaFormComponent,
     PreguntaFormComponent,

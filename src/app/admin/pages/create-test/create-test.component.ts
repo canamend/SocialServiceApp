@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { ConfirmarComponent } from '../../components/confirmar/confirmar.component';
 import { Question, TestInfo, Test } from '../../../core/models/test.interface';
 import { TestService } from 'src/app/core/services/test.service';
 import Swal from 'sweetalert2';
@@ -42,7 +41,6 @@ export class CreateTestComponent implements OnInit {
     return this.testForm.controls[campo].errors 
         && this.testForm.controls[campo].touched
   }
-
 
   ngOnInit(): void {
     this.generatepreguntasTestForm();
@@ -124,13 +122,4 @@ export class CreateTestComponent implements OnInit {
       });;
     }
   }
-
-  borrarTest() {
-
-    this.dialog.open( ConfirmarComponent, {
-      width: '20%'
-    });
-
-  }
-
 }

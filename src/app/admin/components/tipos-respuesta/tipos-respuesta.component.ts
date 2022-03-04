@@ -82,8 +82,6 @@ export class TiposRespuestaComponent implements OnInit {
               i++;
             }
         }
-
-
       });
       this.tipo_respuesta.unshift({
         tipo_respuesta: null,
@@ -135,7 +133,7 @@ export class TiposRespuestaComponent implements OnInit {
     }
     try {
       this.isLoading = true;
-      await this.respuestaService.postRespuestas(this.nuevoTipoRespuesta); //JSON.stringify(this.tipoRespuestaForm.value)
+      await this.respuestaService.postRespuestas(this.nuevoTipoRespuesta);
       Swal.fire({
         position: 'top-right',
         icon: 'success',
